@@ -4,6 +4,7 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+
 include $(TOPDIR)/rules.mk
 
 ARCH:=arm
@@ -27,7 +28,7 @@ endef
 DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 		kmod-usb-core kmod-usb2 kmod-usb-ohci \
 		kmod-usb-storage kmod-fs-vfat kmod-nls-utf8 \
-		kmod-mcs814x-wdt kmod-ledtrig-usbdev
+		kmod-ledtrig-usbdev
 
 KERNELNAME:=zImage dtbs
 
