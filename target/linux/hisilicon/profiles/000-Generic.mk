@@ -10,7 +10,7 @@ define Profile/Generic
 endef
 
 define Profile/Generic/Description
-	Default profile for Hisilicon HI3518Ev1 targets
+	Default profile for Hisilicon HI3518Ev1/HI3516Cv1 targets
 
 	Instructions are available here (rus):
 	https://zftlab.org/pages/2018010700.html
