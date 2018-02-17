@@ -13,20 +13,20 @@ BOARDS:= \
 	hi3518ev1-test1 \
 	hi3518ev1-test2
 
-LOADADDR:=0x00008000
+LOADADDR:=0x80008000
 
 define Image/BuildKernel
-	mkimage -A arm -O linux -T kernel -C gzip \
+	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
 		-d $(KDIR)/linux-3.0.8/arch/arm/boot/zImage $(KDIR)/uImage
 	cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
 endef
 
-define Image/InstallKernel
-	mkdir -p $(TARGET_DIR)/boot
-	cp $(KDIR)/uImage $(TARGET_DIR)/boot/
-endef
+#define Image/InstallKernel
+#	mkdir -p $(TARGET_DIR)/boot
+#	cp $(KDIR)/uImage $(TARGET_DIR)/boot/
+#endef
 
 #define Image/Build/Initramfs
 #	mkimage -A arm -O linux -T kernel -C gzip \
