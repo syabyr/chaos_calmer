@@ -15,7 +15,7 @@ BOARDS:= \
 
 LOADADDR:=0x80008000
 
-define Image/Build/MkuImage
+define Image/BuildKernel
 	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
