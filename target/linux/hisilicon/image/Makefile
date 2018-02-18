@@ -15,11 +15,11 @@ BOARDS:= \
 
 LOADADDR:=0x80008000
 
-define Image/BuildKernel
+define Image/Build/MkuImage
 	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
-		-d $(KDIR)/linux-3.0.8/arch/arm/boot/zImage $(KDIR)/uImage
+		-d $(KDIR)/linux-$(LINUX_VERSION)/arch/arm/boot/zImage $(KDIR)/uImage
 	cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
 endef
 
