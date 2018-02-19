@@ -19,8 +19,7 @@ define Image/BuildKernel
 	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
-		-d $(KDIR)/linux-$(LINUX_VERSION)/arch/arm/boot/zImage $(KDIR)/uImage
-	cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
+		-d $(KDIR)/linux-$(LINUX_VERSION)/arch/arm/boot/zImage $(BIN_DIR)/uImage-OpenWrt-HI3518Ev1
 endef
 
 #define Image/InstallKernel
