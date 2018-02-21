@@ -1,5 +1,9 @@
+#
+# Copyright (C) 2018 OpenWrt.org
+#
+
 config system
-	option hostname	OpenWrt_HI3518Ev1
+	option hostname	IPCam_HI3518Ev1
 	option timezone	UTC
 
 config timeserver ntp
