@@ -6,15 +6,30 @@
 
 cmd="$1"
 per="$2"
-ircut1="38"
-ircut2="39"
 ctl="/sys/class/gpio/gpio"
 
 
-help() {
+basic(){
   clear
-  echo -e "\nPlease select command:"
+  hardware=$(awk -F ': ' '/Hardware/ {print $2} 'cat /proc/cpuinfo)
+  if [[ "${hardware}" == 'hi3518' ]]; then
+    ircut1="38"
+    ircut2="39"
+    irled="?"
+    maxgpio="85"
+  elif [[ "${hardware}" == 'hi3518ev200' ]]; then
+    ircut1="33"
+    ircut2="34"
+    irled="?"
+    maxgpio="71"
+  fi
+  echo -e "\nYou SoC on board - ${hardware}\n"
+  echo -e "MaxGPIO: ${maxgpio} | IRCUT_ON: ${ircut1} | IRCUT_FF: ${ircut2} | IRLED: ${irled}\n"
   echo ""
+}
+
+help() {
+  echo -e "\nPlease select command:\n"
   echo " gpio ircut_on"
   echo " gpio ircut_off"
   echo " gpio info"
@@ -24,14 +39,12 @@ help() {
 }
 
 debug() {
-  clear
   echo "Mount DEBUGFS and get info about all GPIO"
   [ -f /sys/kernel/debug/gpio ] || mount -t debugfs none /sys/kernel/debug >/dev/null 2>&1
   [ -f /sys/kernel/debug/gpio ] && watch "cat /sys/kernel/debug/gpio"
 }
 
 info() {
-  clear
   echo "Mount DEBUGFS and get info about all GPIO"
   [ -f /sys/kernel/debug/gpio ] || mount -t debugfs none /sys/kernel/debug >/dev/null 2>&1
   [ -f /sys/kernel/debug/gpio ] && cat /sys/kernel/debug/gpio
@@ -54,10 +67,9 @@ ircut_off() {
 }
 
 search() {
-  clear
   echo "Start blink (output) on all gpio"
   echo ""
-  for pin in $(seq 0 95); do
+  for pin in $(seq 0 ${maxgpio}); do
     echo "================================="
     [ ! -f /sys/class/gpio/export ] && exit
     [ ! -d ${ctl}${pin} ] && echo ${pin} >/sys/class/gpio/export && echo "Activate in system GPIO-${pin}"
@@ -84,6 +96,7 @@ blink() {
 }
 
 
+basic
 if [ $# -ge 1 ]; then
   ${cmd}
 else
