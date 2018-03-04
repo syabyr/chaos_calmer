@@ -10,13 +10,15 @@ include $(TOPDIR)/rules.mk
 ARCH:=arm
 CPU_TYPE:=arm926ej-s
 BOARD:=hisilicon
-BOARDNAME:=Hisilicon HI3518Ev1/HI3516Cv1
+#BOARDNAME:=Hisilicon HI35XXv1
+BOARDNAME:=Hisilicon HI35XXv2
 #SUBTARGETS:=hi3518ev1 hi3516cv1
 
 FEATURES:=usb squashfs low_mem
 MAINTAINER:=ZigFisher (ZFT Lab.) <flyrouter@gmail.com>
 
-KERNEL_PATCHVER:=3.0.8
+#KERNEL_PATCHVER:=3.0.8
+KERNEL_PATCHVER:=3.4.35
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
@@ -26,7 +28,7 @@ DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 
 define Target/Description
 	Build firmware images for Hisilicon SoC based IPCam's.
-	Currently supports HI3518Ev1 based devices only.
+	Currently supports Xiong Mai (XM) based devices only.
 endef
 
 $(eval $(call BuildTarget))
