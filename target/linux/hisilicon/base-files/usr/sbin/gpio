@@ -16,20 +16,19 @@ basic(){
     ircut1="38"
     ircut2="39"
     irled="?"
-    maxgpio="85"
+    maxgpio="95"
   elif [[ "${hardware}" == 'hi3518ev200' ]]; then
     ircut1="33"
     ircut2="34"
     irled="?"
     maxgpio="71"
   fi
-  echo -e "\nYou SoC on board - ${hardware}\n"
-  echo -e "MaxGPIO: ${maxgpio} | IRCUT_ON: ${ircut1} | IRCUT_FF: ${ircut2} | IRLED: ${irled}\n"
-  echo ""
 }
 
 help() {
-  echo -e "\nPlease select command:\n"
+  echo -e "\nYou SoC on board - ${hardware}\n"
+  echo -e "MaxGPIO: ${maxgpio} | IRCUT_ON: ${ircut1} | IRCUT_FF: ${ircut2} | IRLED: ${irled}\n"
+  echo -e "Please select command:\n"
   echo " gpio ircut_on"
   echo " gpio ircut_off"
   echo " gpio info"
