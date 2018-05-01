@@ -26,7 +26,7 @@ DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 
 define Target/Description
 	Build firmware images for Hisilicon SoC based IPCam's.
-	Currently supports Xiong Mai (XM) based devices only.
+	Currently supports Xiong Mai (XM) and JVT based devices only.
 endef
 
 $(eval $(call BuildTarget))
