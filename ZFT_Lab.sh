@@ -1,14 +1,11 @@
 #!/bin/bash
 
-
 clear
 echo ""
-
 
 if [ $# -ge 1 ]; then
   build=$1
 fi
-
 
 case $build in
 
@@ -30,7 +27,7 @@ case $build in
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3518Xv2-XM-${DATE}.bin    # Copy Firmware
     ;;
 
-  hi3518v3)
+  hi3516v3)
     echo "Start building Hisi V3 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
@@ -51,14 +48,14 @@ case $build in
     #  zig@172.28.200.74:~/REPO/bitbucket_flyrouter_ipcams/OpenWrt/
     ;;
 
+  glutinium)
+    # Update ZFT Lab. package's if need
+    ./scripts/feeds update glutinium
+    ;;
+
   *)
-    echo -e "\nPlease select: hi3518v1, hi3518v2, hi3518v3 or upload\n\n";
-    #
-    # Enable update if need
-    #./scripts/feeds update glutinium
-    #
+    echo -e "\nPlease select: hi3518v1, hi3518v2, hi3516v3 or upload\n";
     sleep 1
     ;;
 
 esac
-
