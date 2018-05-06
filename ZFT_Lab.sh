@@ -1,7 +1,6 @@
 #!/bin/bash
 
 clear
-echo ""
 
 if [ $# -ge 1 ]; then
   build=$1
@@ -33,13 +32,13 @@ case $build in
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
     make clean && time make -j 7                                                                 # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3518Xv3-XM-${DATE}.bin    # Copy Firmware
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3516Xv3-XM-${DATE}.bin    # Copy Firmware
     ;;
 
   upload)
     echo "Start uploading firmware";
     scp bin/hisilicon/uImage-OpenWrt-HI35xx root@172.28.200.72:/srv/tftp/uImage                  # Upload current firmware to TFTP server
-    scp bin/hisilicon/uImage-OpenWrt-HI35xx zig@172.28.200.74:~                                  # Upload current firmware to Desktop
+    #scp bin/hisilicon/uImage-OpenWrt-HI35xx zig@172.28.200.74:~                                 # Upload current firmware to Desktop
     #scp -r \
     #  ~/chaos_calmer/bin/hisilicon/packages/base \
     #  ~/chaos_calmer/bin/hisilicon/packages/glutinium \
@@ -54,7 +53,7 @@ case $build in
     ;;
 
   *)
-    echo -e "\nPlease select: hi3518v1, hi3518v2, hi3516v3 or upload\n";
+    echo -e "\nPlease select: hi3518v1, hi3518v2, hi3516v3, upload or glutinium \n";
     sleep 1
     ;;
 
