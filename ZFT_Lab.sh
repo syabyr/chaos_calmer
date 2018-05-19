@@ -12,7 +12,7 @@ case $build in
     echo "Start building Hisi V1 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
-    make clean && time make -i -j 7                                                              # Clean and compile (!!! any errors ignored)
+    make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3518Xv1-XM-${DATE}.bin    # Copy Firmware
     ;;
@@ -30,7 +30,7 @@ case $build in
     echo "Start building Hisi V3 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
-    make clean && time make -i -j 7                                                              # Clean and compile
+    make clean && time make -j 7                                                                 # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3516Xv3-XM-${DATE}.bin    # Copy Firmware
     ;;
