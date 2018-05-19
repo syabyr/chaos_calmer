@@ -46,7 +46,7 @@ CONFIG_TARGET_BOARD="hisilicon"
 CONFIG_TARGET_ARCH_PACKAGES="hisilicon"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -march=armv5te -mtune=arm926ej-s"
 CONFIG_CPU_TYPE="arm926ej-s"
-CONFIG_LINUX_3_0=y
+CONFIG_LINUX_3_4=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_DEFAULT_dnsmasq=y
@@ -267,13 +267,13 @@ CONFIG_TARGET_INIT_SUPPRESS_STDERR=y
 CONFIG_PER_FEED_REPO=y
 CONFIG_PER_FEED_REPO_ADD_DISABLED=y
 CONFIG_PER_FEED_REPO_ADD_COMMENTED=y
+CONFIG_FEED_glutinium=y
+CONFIG_FEED_zftlab=y
 # CONFIG_FEED_packages is not set
 # CONFIG_FEED_luci is not set
 # CONFIG_FEED_routing is not set
 # CONFIG_FEED_telephony is not set
 # CONFIG_FEED_management is not set
-CONFIG_FEED_glutinium=y
-CONFIG_FEED_zftlab=y
 # CONFIG_SMIMEOPT is not set
 CONFIG_OPKGSMIME_PASSPHRASE=y
 
@@ -3515,7 +3515,7 @@ CONFIG_POSTFIX_CDB=y
 # CONFIG_PACKAGE_gstreamer1-plugins-ugly is not set
 # CONFIG_PACKAGE_gstreamer1-utils is not set
 # CONFIG_PACKAGE_icecast is not set
-# CONFIG_PACKAGE_ipeye is not set
+CONFIG_PACKAGE_ipeye=y
 CONFIG_PACKAGE_mjpg-streamer=y
 # CONFIG_MJPG_STREAMER_V4L2 is not set
 CONFIG_MJPG_STREAMER_INPUT_FILE=y
