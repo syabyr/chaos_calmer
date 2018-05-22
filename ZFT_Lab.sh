@@ -9,6 +9,7 @@ fi
 case $build in
 
   hi3518v1)
+    # For SoC’s HI35_16C_18ACE_V100 only
     echo "Start building Hisi V1 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
@@ -18,6 +19,7 @@ case $build in
     ;;
 
   hi3518v2)
+    # For SoC’s HI35_16C_18E_V200 only
     echo "Start building Hisi V2 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
@@ -27,12 +29,19 @@ case $build in
     ;;
 
   hi3516v3)
+    # Not for END users !
     echo "Start building Hisi V3 SoC's firmware";
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
     make clean && time make -j 7                                                                 # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3516Xv3-XM-${DATE}.bin    # Copy Firmware
+    ;;
+
+  update)
+    # Update ZFT Lab. feeds
+    ./scripts/feeds update glutinium
+    ./scripts/feeds update zftlab
     ;;
 
   upload)
@@ -47,12 +56,6 @@ case $build in
     #  zig@172.28.200.74:~/REPO/bitbucket_flyrouter_ipcams/OpenWrt/
     ;;
 
-  update)
-    # Update ZFT Lab. feeds
-    ./scripts/feeds update glutinium
-    ./scripts/feeds update zftlab
-    ;;
-
   ipeye)
     # For test
     ./scripts/feeds update zftlab
@@ -61,7 +64,7 @@ case $build in
     ;;
 
   *)
-    echo -e "\nPlease select: hi3518v1, hi3518v2, hi3516v3, upload or glutinium \n";
+    echo -e "\nPlease select: hi3518v1, hi3518v2 or hi3516v3 | upload, update or ipeye \n";
     sleep 1
     ;;
 
