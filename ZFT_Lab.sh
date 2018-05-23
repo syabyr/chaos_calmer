@@ -8,34 +8,34 @@ fi
 
 case $build in
 
-  hi3518v1)
-    # For SoC’s HI35_16C_18ACE_V100 only
-    echo "Start building Hisi V1 SoC's firmware";
+  hi3516cv1|hi3518av1|hi3518cv1|hi3518ev1)
+    SOC=${build}
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8";                    # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
     make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3518Xv1-XM-${DATE}.bin    # Copy Firmware
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin       # Copy Firmware
     ;;
 
-  hi3518v2)
-    # For SoC’s HI35_16C_18E_V200 only
-    echo "Start building Hisi V2 SoC's firmware";
+  hi3516cv2|hi3518ev2)
+    SOC=${build}
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35";                   # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
     make clean && time make -j 7                                                                 # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3518Xv2-XM-${DATE}.bin    # Copy Firmware
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin       # Copy Firmware
     ;;
 
-  hi3516v3)
-    # Not for END users !
-    echo "Start building Hisi V3 SoC's firmware";
+  hi3516сv3)
+    SOC=${build}
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20";                  # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
     make clean && time make -j 7                                                                 # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-HI3516Xv3-XM-${DATE}.bin    # Copy Firmware
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin       # Copy Firmware
     ;;
 
   update)
@@ -45,15 +45,16 @@ case $build in
     ;;
 
   upload)
-    echo "Start uploading firmware";
+    echo "Start uploading firmware and packages";
     scp bin/hisilicon/uImage-OpenWrt-HI35xx root@172.28.200.72:/srv/tftp/uImage                  # Upload current firmware to TFTP server
     #scp bin/hisilicon/uImage-OpenWrt-HI35xx zig@172.28.200.74:~                                 # Upload current firmware to Desktop
-    #scp -r \
-    #  ~/chaos_calmer/bin/hisilicon/packages/base \
-    #  ~/chaos_calmer/bin/hisilicon/packages/glutinium \
-    #  ~/chaos_calmer/bin/hisilicon/packages/luci \
-    #  ~/chaos_calmer/bin/hisilicon/packages/packages \
-    #  zig@172.28.200.74:~/REPO/bitbucket_flyrouter_ipcams/OpenWrt/
+    scp -r \
+      ~/chaos_calmer/bin/hisilicon/packages/base \
+      ~/chaos_calmer/bin/hisilicon/packages/glutinium \
+      ~/chaos_calmer/bin/hisilicon/packages/luci \
+      ~/chaos_calmer/bin/hisilicon/packages/packages \
+      ~/chaos_calmer/bin/hisilicon/packages/zftlab \
+      root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/      # Upload packages to OPKG server
     ;;
 
   ipeye)
@@ -64,8 +65,11 @@ case $build in
     ;;
 
   *)
-    echo -e "\nPlease select: hi3518v1, hi3518v2 or hi3516v3 | upload, update or ipeye \n";
-    sleep 1
+    echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
+    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3";
+    echo -e "\nSystem command section:\n  update\n  upload";
+    echo -e "\nRebuild software section:\n  ipeye\n"
+    sleep 3
     ;;
 
 esac

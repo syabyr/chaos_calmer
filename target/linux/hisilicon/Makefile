@@ -16,7 +16,7 @@ BOARDNAME:=Hisilicon HI35xx
 FEATURES:=usb squashfs low_mem
 MAINTAINER:=ZigFisher (ZFT Lab.) <flyrouter@gmail.com>
 
-KERNEL_PATCHVER:=3.18.20
+KERNEL_PATCHVER:=3.4.35
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
