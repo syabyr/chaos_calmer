@@ -2,8 +2,6 @@
 
 set -e # exit immediately if a command exits with a non-zero status.
 
-clear
-
 if [ $# -ge 1 ]; then
   build=$1
   vendor=$2
