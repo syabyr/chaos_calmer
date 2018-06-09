@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e # exit immediately if a command exits with a non-zero status.
+
 clear
 
 if [ $# -ge 1 ]; then
@@ -69,14 +71,30 @@ case $build in
     # For test
     ./scripts/feeds update zftlab
     make package/feeds/zftlab/ipeye/clean ; make -j1 V=s package/feeds/zftlab/ipeye/compile ; make -j1 V=s package/feeds/zftlab/ipeye/install
-    scp ./bin/hisilicon/packages/zftlab/*.ipk zig@172.28.200.74:~
+    #scp ./bin/hisilicon/packages/zftlab/*.ipk zig@172.28.200.74:~
     ;;
+
+  osdrv2)
+    # For test
+    ./scripts/feeds update glutinium
+    ./scripts/feeds install -f -p glutinium hisi-osdrv2-base
+    make package/feeds/glutinium/hisi-osdrv2/clean ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/compile ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/install
+    #scp ./bin/hisilicon/packages/glutinium/*.ipk zig@172.28.200.74:~
+    ;;
+
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
     echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3";
     echo -e "\nSystem command section:\n  update\n  upload";
-    echo -e "\nRebuild software section:\n  ipeye\n"
+    echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
+    echo -e "\n#####################################"
+    (echo -e "\nCheck OPENWRT repo...\n" ; git status)
+    echo -e "\n#####################################"
+    (echo -e "\nCheck GLUTINIUM feed...\n" ; cd feeds/glutinium ; git status)
+    echo -e "\n#####################################"
+    (echo -e "\nCheck ZFTLAB feed...\n" ; cd feeds/zftlab ; git status)
+    echo -e "\n#####################################"
     sleep 3
     ;;
 
