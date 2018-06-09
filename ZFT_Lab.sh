@@ -50,6 +50,7 @@ case $build in
 
   update)
     # Update ZFT Lab. feeds
+    git pull
     ./scripts/feeds update glutinium
     ./scripts/feeds update zftlab
     ;;
@@ -85,8 +86,8 @@ case $build in
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3";
-    echo -e "\nSystem command section:\n  update\n  upload";
+    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3"
+    echo -e "\nSystem command section:\n  update\n  upload"
     echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
     echo -e "\n#####################################"
     (echo -e "\nCheck OPENWRT repo...\n" ; git status)
@@ -110,8 +111,6 @@ esac
 #
 #    sed -i 's/CONFIG_HIETH_PHYID_U:=.*/CONFIG_HIETH_PHYID_U:=0/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_U=0           - BLUE vendor
 #    sed -i 's/CONFIG_HIETH_PHYID_D:=.*/CONFIG_HIETH_PHYID_D:=1/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_D=1           - BLUE vendor
-
-
 
 #    sed -i 's/CONFIG_HIETH_MII_RMII_MODE_U:=.*/CONFIG_HIETH_MII_RMII_MODE_U:=1/' target/linux/hisilicon/config-3.4.35.phy-xm     # Set CONFIG_HIETH_MII_RMII_MODE_U=1   - XM+BLUE vendor
 #    sed -i 's/CONFIG_HIETH_MII_RMII_MODE_D:=.*/CONFIG_HIETH_MII_RMII_MODE_D:=1/' target/linux/hisilicon/config-3.4.35.phy-xm     # Set CONFIG_HIETH_MII_RMII_MODE_D=1   - XM+BLUE vendor
