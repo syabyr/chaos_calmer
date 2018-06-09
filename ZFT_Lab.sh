@@ -7,6 +7,8 @@ if [ $# -ge 1 ]; then
   vendor=$2
 fi
 
+# clear
+
 case $build in
 
   hi3516cv1|hi3518av1|hi3518cv1|hi3518ev1)
@@ -48,7 +50,7 @@ case $build in
 
   update)
     # Update ZFT Lab. feeds
-    git pull
+    # git pull
     ./scripts/feeds update glutinium
     ./scripts/feeds update zftlab
     ;;
@@ -109,6 +111,8 @@ esac
 #
 #    sed -i 's/CONFIG_HIETH_PHYID_U:=.*/CONFIG_HIETH_PHYID_U:=0/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_U=0           - BLUE vendor
 #    sed -i 's/CONFIG_HIETH_PHYID_D:=.*/CONFIG_HIETH_PHYID_D:=1/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_D=1           - BLUE vendor
+
+
 
 #    sed -i 's/CONFIG_HIETH_MII_RMII_MODE_U:=.*/CONFIG_HIETH_MII_RMII_MODE_U:=1/' target/linux/hisilicon/config-3.4.35.phy-xm     # Set CONFIG_HIETH_MII_RMII_MODE_U=1   - XM+BLUE vendor
 #    sed -i 's/CONFIG_HIETH_MII_RMII_MODE_D:=.*/CONFIG_HIETH_MII_RMII_MODE_D:=1/' target/linux/hisilicon/config-3.4.35.phy-xm     # Set CONFIG_HIETH_MII_RMII_MODE_D=1   - XM+BLUE vendor
