@@ -30,7 +30,7 @@ case $build in
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35";                   # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
-    make clean && time make -i -j 7                                                                 # Clean and compile
+    make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv2-XM-${DATE}.bin    #
