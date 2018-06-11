@@ -80,9 +80,9 @@ case $build in
     ./scripts/feeds update glutinium
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample
     make package/feeds/glutinium/hisi-osdrv2/clean ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/compile ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/install
+    make package/feeds/glutinium/hisi-sample/clean ; make -j1 V=s package/feeds/glutinium/hisi-sample/compile ; make -j1 V=s package/feeds/glutinium/hisi-sample/install
     #scp ./bin/hisilicon/packages/glutinium/*.ipk zig@172.28.200.74:~
     ;;
-
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
