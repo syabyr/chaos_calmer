@@ -78,7 +78,7 @@ case $build in
   osdrv2)
     # For test
     ./scripts/feeds update glutinium
-    ./scripts/feeds install -f -p glutinium hisi-osdrv2-base
+    ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample
     make package/feeds/glutinium/hisi-osdrv2/clean ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/compile ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/install
     #scp ./bin/hisilicon/packages/glutinium/*.ipk zig@172.28.200.74:~
     ;;
