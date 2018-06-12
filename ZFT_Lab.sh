@@ -13,7 +13,7 @@ case $build in
 
   hi3516cv1|hi3518av1|hi3518cv1|hi3518ev1)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8";                    # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                     # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
     make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
@@ -27,7 +27,7 @@ case $build in
 
   hi3516cv2|hi3518ev2)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35";                   # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                    # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
     make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
@@ -39,7 +39,7 @@ case $build in
 
   hi3516сv3)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20";                  # For SoC’s HI35_16C_V300 only with kernel 3.18.20
+    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                   # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
     make clean && time make -j 7                                                                 # Clean and compile
@@ -56,7 +56,7 @@ case $build in
     ;;
 
   upload)
-    echo "Start uploading firmware and packages";
+    echo "Start uploading firmware and packages"
     scp bin/hisilicon/uImage-OpenWrt-HI35xx root@172.28.200.72:/srv/tftp/uImage                  # Upload current firmware to TFTP server
     #scp bin/hisilicon/uImage-OpenWrt-HI35xx zig@172.28.200.74:~                                 # Upload current firmware to Desktop
     scp -r \
@@ -71,7 +71,7 @@ case $build in
   ipeye)
     # For test
     ./scripts/feeds update zftlab
-    make package/feeds/zftlab/ipeye/clean ; make -j1 V=s package/feeds/zftlab/ipeye/compile ; make -j1 V=s package/feeds/zftlab/ipeye/install
+    make package/feeds/zftlab/ipeye/clean  &&  make -j1 V=s package/feeds/zftlab/ipeye/compile  &&  make -j1 V=s package/feeds/zftlab/ipeye/install
     #scp ./bin/hisilicon/packages/zftlab/*.ipk zig@172.28.200.74:~
     ;;
 
@@ -79,8 +79,8 @@ case $build in
     # For test
     ./scripts/feeds update glutinium
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample
-    make package/feeds/glutinium/hisi-osdrv2/clean ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/compile ; make -j1 V=s package/feeds/glutinium/hisi-osdrv2/install
-    make package/feeds/glutinium/hisi-sample/clean ; make -j1 V=s package/feeds/glutinium/hisi-sample/compile ; make -j1 V=s package/feeds/glutinium/hisi-sample/install
+    make package/feeds/glutinium/hisi-osdrv2/clean  &&  make -j1 V=s package/feeds/glutinium/hisi-osdrv2/compile  &&  make -j1 V=s package/feeds/glutinium/hisi-osdrv2/install
+    make package/feeds/glutinium/hisi-sample/clean  &&  make -j1 V=s package/feeds/glutinium/hisi-sample/compile  &&  make -j1 V=s package/feeds/glutinium/hisi-sample/install
     #scp ./bin/hisilicon/packages/glutinium/*.ipk zig@172.28.200.74:~
     ;;
 
