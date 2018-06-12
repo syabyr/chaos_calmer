@@ -28,6 +28,8 @@ case $build in
   hi3516cv2|hi3518ev2)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                    # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
+    ./scripts/feeds update glutinium                                                             # *** Update glutinium feed
+    ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                         # *** Add hisilicon osdrv2 and sample packege from feed
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
     make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
