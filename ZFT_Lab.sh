@@ -60,13 +60,8 @@ case $build in
   upload)
     echo "Start uploading firmware and packages"
     scp bin/hisilicon/uImage-OpenWrt-HI35xx root@172.28.200.72:/srv/tftp/uImage                  # Upload current firmware to TFTP server
-    #scp bin/hisilicon/uImage-OpenWrt-HI35xx zig@172.28.200.74:~                                 # Upload current firmware to Desktop
     scp -r \
-      ~/chaos_calmer/bin/hisilicon/packages/base \
-      ~/chaos_calmer/bin/hisilicon/packages/glutinium \
-      ~/chaos_calmer/bin/hisilicon/packages/luci \
-      ~/chaos_calmer/bin/hisilicon/packages/packages \
-      ~/chaos_calmer/bin/hisilicon/packages/zftlab \
+      ~/chaos_calmer/bin/hisilicon/packages/* \
       root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/      # Upload packages to OPKG server
     ;;
 
