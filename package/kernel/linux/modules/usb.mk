@@ -19,6 +19,17 @@ define KernelPackage/usb-core
   FILES:= \
 	$(LINUX_DIR)/drivers/usb/core/usbcore.ko \
 	$(LINUX_DIR)/drivers/usb/common/usb-common.ko
+  #
+ifeq ($(KERNEL_PATCHVER),3.0.8)
+  FILES:= \
+	$(LINUX_DIR)/drivers/usb/core/usbcore.ko
+endif
+  #
+ifeq ($(KERNEL_PATCHVER),3.4.35)
+  FILES:= \
+	$(LINUX_DIR)/drivers/usb/core/usbcore.ko
+endif
+  #
   AUTOLOAD:=$(call AutoLoad,20,usb-common usbcore,1)
   $(call AddDepends/nls)
 endef

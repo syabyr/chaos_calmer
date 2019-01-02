@@ -578,6 +578,11 @@ define KernelPackage/slhc
   DEPENDS:=+kmod-lib-crc-ccitt
   KCONFIG:=CONFIG_SLHC
   FILES:=$(LINUX_DIR)/drivers/net/slip/slhc.ko
+  #
+ifeq ($(KERNEL_PATCHVER),3.0.8)
+  FILES:=$(LINUX_DIR)/drivers/net/slhc.ko
+endif
+  #
 endef
 
 $(eval $(call KernelPackage,slhc))
@@ -593,6 +598,13 @@ define KernelPackage/ppp
   FILES:= \
 	$(LINUX_DIR)/drivers/net/ppp/ppp_async.ko \
 	$(LINUX_DIR)/drivers/net/ppp/ppp_generic.ko
+  #
+ifeq ($(KERNEL_PATCHVER),3.0.8)
+  FILES:= \
+	$(LINUX_DIR)/drivers/net/ppp_async.ko \
+	$(LINUX_DIR)/drivers/net/ppp_generic.ko
+endif
+  #
   AUTOLOAD:=$(call AutoProbe,ppp_async)
 endef
 

@@ -16,7 +16,7 @@ case $build in
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                     # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
-    make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
+    make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv1-XM-${DATE}.bin    #
@@ -32,7 +32,7 @@ case $build in
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                         # *** Add hisilicon osdrv2 and sample packege from feed
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
-    make clean && time make -i -j 7                                                              # Clean and compile !!!!!!! any errors ignored (-i key) !!!!!!!
+    make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv2-XM-${DATE}.bin    #
@@ -44,7 +44,7 @@ case $build in
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                   # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
-    make clean && time make -j 7                                                                 # Clean and compile
+    make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv3-XM-${DATE}.bin    #
@@ -55,6 +55,16 @@ case $build in
     # git pull
     ./scripts/feeds update glutinium
     ./scripts/feeds update zftlab
+    ;;
+
+  project)
+    # Show project changes
+    HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
+    HASH2="abea6d72fb0cc498d1c68a089d81ddea1a2220ad"
+    #
+    echo -e "\n#####################################"
+    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/"
+    echo -e "\n#####################################"
     ;;
 
   upload)
@@ -84,7 +94,7 @@ case $build in
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
     echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3"
-    echo -e "\nSystem command section:\n  update\n  upload"
+    echo -e "\nSystem command section:\n  project\n  update\n  upload"
     echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
     echo -e "\n#####################################"
     (echo -e "\nCheck OPENWRT repo...\n" ; git status)
