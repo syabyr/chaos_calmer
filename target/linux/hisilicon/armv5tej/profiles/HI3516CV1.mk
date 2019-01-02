@@ -7,7 +7,7 @@
 
 define Profile/HI3516CV1
   NAME:=HI3516CV1 Soc
-  PACKAGES:=mercury206
+  PACKAGES:=busybox
 endef
 
 define Profile/HI3516CV1/Description

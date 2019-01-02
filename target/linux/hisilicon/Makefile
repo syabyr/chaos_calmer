@@ -11,7 +11,7 @@ ARCH:=arm
 BOARD:=hisilicon
 BOARDNAME:=Hisilicon HI35xx
 SUBTARGETS:=armv5tej armv7
-FEATURES:=usb squashfs
+FEATURES:=usb
 MAINTAINER:=Igor Zalatov (ZFT Lab.) <flyrouter@gmail.com>
 
 KERNEL_PATCHVER:=3.4.35
