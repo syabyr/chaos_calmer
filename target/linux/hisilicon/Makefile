@@ -8,24 +8,23 @@
 include $(TOPDIR)/rules.mk
 
 ARCH:=arm
-CPU_TYPE:=arm926ej-s
 BOARD:=hisilicon
-BOARDNAME:=Hisilicon HI35xx (ARMv5TEJ)
-#SUBTARGETS:=hi3518ev1 hi3516cv1
-
-FEATURES:=usb squashfs low_mem
-MAINTAINER:=ZigFisher (ZFT Lab.) <flyrouter@gmail.com>
+BOARDNAME:=Hisilicon HI35xx
+SUBTARGETS:=armv5tej armv7
+FEATURES:=usb squashfs
+MAINTAINER:=Igor Zalatov (ZFT Lab.) <flyrouter@gmail.com>
 
 KERNEL_PATCHVER:=3.4.35
 
 include $(INCLUDE_DIR)/target.mk
+
 DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 		kmod-usb-core kmod-usb2 kmod-usb-ohci \
 		kmod-usb-storage kmod-fs-vfat kmod-nls-utf8 \
 		kmod-ledtrig-usbdev kmod-tun
 
 define Target/Description
-	Build firmware images for Hisilicon SoC based IPCam's.
+	Build firmware images for Hisilicon SoC based IPCam's and NVR's.
 	Currently supports Xiong Mai (XM) and JVT based devices only.
 endef
 
