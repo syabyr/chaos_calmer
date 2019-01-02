@@ -6,7 +6,7 @@
 #
 
 define Profile/HI3518EV2
-  NAME:=HI3518EV2 Soc
+  NAME:=HI3518EV2, default
   PACKAGES:=busybox demo
 endef
 
@@ -15,4 +15,3 @@ define Profile/HI3518EV2/Description
 endef
 
 $(eval $(call Profile,HI3518EV2))
-
