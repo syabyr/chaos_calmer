@@ -60,7 +60,7 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="566a92f"
+    HASH2="411dd3d"
     #
     clear
     echo -e "\n####################################################################################################\n"
@@ -102,7 +102,7 @@ case $build in
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3"
+    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3\n  hi3520dv1 - coming soon"
     echo -e "\nSystem command section:\n  project\n  update\n  upload"
     echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
     echo -e "\n#####################################"
