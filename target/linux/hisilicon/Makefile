@@ -26,6 +26,8 @@ DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 define Target/Description
 	Build firmware images for Hisilicon SoC based IPCam's and NVR's.
 	Currently supports Xiong Mai (XM) and JVT based devices only.
+	Instructions are available here (rus):
+	https://zftlab.org/pages/2018010700.html
 endef
 
 $(eval $(call BuildTarget))
