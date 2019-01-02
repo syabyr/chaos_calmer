@@ -22,8 +22,7 @@ CONFIG_HAVE_DOT_CONFIG=y
 # CONFIG_TARGET_mpc85xx is not set
 # CONFIG_TARGET_imx6 is not set
 # CONFIG_TARGET_mxs is not set
-CONFIG_TARGET_hi3520d=y
-# CONFIG_TARGET_hisilicon is not set
+CONFIG_TARGET_hisilicon=y
 # CONFIG_TARGET_adm8668 is not set
 # CONFIG_TARGET_adm5120 is not set
 # CONFIG_TARGET_xburst is not set
@@ -42,8 +41,8 @@ CONFIG_TARGET_hi3520d=y
 # CONFIG_TARGET_uml is not set
 # CONFIG_TARGET_x86 is not set
 CONFIG_TARGET_hi3520d_Generic=y
-CONFIG_TARGET_BOARD="hi3520d"
-CONFIG_TARGET_ARCH_PACKAGES="hi3520d"
+CONFIG_TARGET_BOARD="hisilicon"
+CONFIG_TARGET_ARCH_PACKAGES="hisilicon"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -march=armv7-a -mtune=cortex-a9 -mfpu=vfpv3-d16"
 CONFIG_CPU_TYPE="cortex-a9+vfpv3"
 CONFIG_LINUX_3_0=y
