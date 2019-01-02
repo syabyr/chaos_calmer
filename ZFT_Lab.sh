@@ -60,7 +60,7 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="ee879cc"
+    HASH2="90f7517"
     #
     echo -e "\n#####################################\n"
     git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon/original_u-boot"
