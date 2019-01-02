@@ -1,5 +1,0 @@
-
-p. Test
-
-* HI3520DV100_INT_8M_IP101
-** XM-0000xxxx
