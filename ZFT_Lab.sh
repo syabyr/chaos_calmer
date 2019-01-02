@@ -60,11 +60,13 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="abea6d72fb0cc498d1c68a089d81ddea1a2220ad"
+    HASH2="ee879cc"
     #
-    echo -e "\n#####################################"
-    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/"
-    echo -e "\n#####################################"
+    echo -e "\n#####################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon/original_u-boot"
+    echo -e "\n#####################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/original_u-boot"
+    echo -e "\n#####################################\n"
     ;;
 
   upload)
