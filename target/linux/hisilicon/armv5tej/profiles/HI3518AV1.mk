@@ -7,7 +7,7 @@
 
 define Profile/HI3518AV1
   NAME:=HI3518AV1 Soc
-  PACKAGES:=busybox
+  PACKAGES:=busybox demo
 endef
 
 define Profile/HI3518AV1/Description
