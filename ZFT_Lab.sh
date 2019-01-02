@@ -60,13 +60,20 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="90f7517"
+    HASH2="9745e5a"
     #
-    echo -e "\n#####################################\n"
-    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon/original_u-boot"
-    echo -e "\n#####################################\n"
+    clear
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon"
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/" | grep -v "^target/linux/hisilicon/original_u-boot"
+    echo
     git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/original_u-boot"
-    echo -e "\n#####################################\n"
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon_armv7" | grep -v "^target/linux/hisilicon_armv7/original_u-boot"
+    echo
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon_armv7/original_u-boot"
+    echo -e "\n####################################################################################################\n"
     ;;
 
   upload)
