@@ -14,7 +14,7 @@ case $build in
   hi3516cv1|hi3518av1|hi3518cv1|hi3518ev1)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                     # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
-    cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
+    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                       # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile       # Set right kernel version - 3.0.8
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
@@ -30,7 +30,7 @@ case $build in
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                    # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     ./scripts/feeds update glutinium                                                             # *** Update glutinium feed
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                         # *** Add hisilicon osdrv2 and sample packege from feed
-    cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
+    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                       # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile      # Set right kernel version - 3.4.35
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
@@ -42,7 +42,7 @@ case $build in
   hi3516сv3)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                   # For SoC’s HI35_16C_V300 only with kernel 3.18.20
-    cp target/linux/hisilicon/examples/.config_current  ./.config                                # Copy default config
+    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                       # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile     # Set right kernel version - 3.18.20
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
