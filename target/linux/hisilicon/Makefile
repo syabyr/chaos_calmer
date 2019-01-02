@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 ARCH:=arm
 CPU_TYPE:=arm926ej-s
 BOARD:=hisilicon
-BOARDNAME:=Hisilicon HI35xx
+BOARDNAME:=Hisilicon HI35xx (ARMv5TEJ)
 #SUBTARGETS:=hi3518ev1 hi3516cv1
 
 FEATURES:=usb squashfs low_mem
