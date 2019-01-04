@@ -11,7 +11,7 @@ fi
 
 case $build in
 
-  hi3516cv1|hi3518av1|hi3518cv1|hi3518ev1)
+  hi3516cv100|hi3518av100|hi3518cv100|hi3518ev100)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                     # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                       # Copy default config
@@ -25,7 +25,7 @@ case $build in
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev1-XM-${DATE}.bin    #
     ;;
 
-  hi3516cv2|hi3518ev2)
+  hi3516cv200|hi3518ev200)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                    # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     ./scripts/feeds update glutinium                                                             # *** Update glutinium feed
@@ -39,7 +39,7 @@ case $build in
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev2-XM-${DATE}.bin    #
     ;;
 
-  hi3516сv3)
+  hi3516сv300)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                   # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                       # Copy default config
@@ -71,7 +71,7 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="fc10957"
+    HASH2="f58d46e"
     #
     clear
     echo -e "\n####################################################################################################\n"
@@ -109,7 +109,7 @@ case $build in
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBuild firmware section:\n  hi3516cv1\n  hi3518av1\n  hi3518cv1\n  hi3518ev1\n  hi3516cv2\n  hi3518ev2\n  hi3516сv3\n  hi3520dv100"
+    echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201 - not work correctly\n  hi3516сv300\n  hi3520dv100"
     echo -e "\nSystem command section:\n  project\n  update\n  upload"
     echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
     echo -e "\n#####################################"
@@ -134,7 +134,6 @@ esac
 #
 #    sed -i 's/CONFIG_HIETH_PHYID_U:=.*/CONFIG_HIETH_PHYID_U:=0/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_U=0           - BLUE vendor
 #    sed -i 's/CONFIG_HIETH_PHYID_D:=.*/CONFIG_HIETH_PHYID_D:=1/' target/linux/hisilicon/config-3.0.8.phy-xm                      # Set CONFIG_HIETH_PHYID_D=1           - BLUE vendor
-
 
 
 #    sed -i 's/CONFIG_HIETH_MII_RMII_MODE_U:=.*/CONFIG_HIETH_MII_RMII_MODE_U:=1/' target/linux/hisilicon/config-3.4.35.phy-xm     # Set CONFIG_HIETH_MII_RMII_MODE_U=1   - XM+BLUE vendor

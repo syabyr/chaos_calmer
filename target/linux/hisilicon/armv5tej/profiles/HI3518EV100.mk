@@ -5,13 +5,13 @@
 # See /LICENSE for more information.
 #
 
-define Profile/HI3518EV100-01
-  NAME:=HI3518EV100, 01, Int. RAM, 8M Flash, IP101, I2C
+define Profile/HI3518EV100
+  NAME:=HI3518EV100, default
   PACKAGES:=busybox demo
 endef
 
-define Profile/HI3518EV100-01/Description
+define Profile/HI3518EV100/Description
 	Package set compatible with hardware any Hisilicon HI3518EV100 SoC.
 endef
 
-$(eval $(call Profile,HI3518EV100-01))
+$(eval $(call Profile,HI3518EV100))
