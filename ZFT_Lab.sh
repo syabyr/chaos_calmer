@@ -71,7 +71,7 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="f58d46e"
+    HASH2="2bb2b44"
     #
     clear
     echo -e "\n####################################################################################################\n"
