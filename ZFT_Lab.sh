@@ -19,13 +19,13 @@ case $build in
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv1-XM-${DATE}.bin    #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518av1-XM-${DATE}.bin    #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518cv1-XM-${DATE}.bin    #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev1-XM-${DATE}.bin    #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv100-XM-${DATE}.bin  #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518av100-XM-${DATE}.bin  #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518cv100-XM-${DATE}.bin  #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev100-XM-${DATE}.bin  #
     ;;
 
-  hi3516cv200|hi3518ev200)
+  hi3516cv200|hi3518ev200|hi3518ev201)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                    # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
     ./scripts/feeds update glutinium                                                             # *** Update glutinium feed
@@ -35,8 +35,9 @@ case $build in
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv2-XM-${DATE}.bin    #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev2-XM-${DATE}.bin    #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv200-XM-${DATE}.bin  #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev200-XM-${DATE}.bin  #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev201-XM-${DATE}.bin  #
     ;;
 
   hi3516сv300)
@@ -47,7 +48,7 @@ case $build in
     make clean && time make V=99 -j1                                                             # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                    # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-XM-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv3-XM-${DATE}.bin    #
+    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv300-XM-${DATE}.bin  #
     ;;
 
   hi3520dv100)
@@ -109,7 +110,7 @@ case $build in
 
   *)
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201 - not work correctly\n  hi3516сv300\n  hi3520dv100"
+    echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201\n  hi3516сv300\n  hi3520dv100"
     echo -e "\nSystem command section:\n  project\n  update\n  upload"
     echo -e "\nRebuild software section:\n  ipeye\n  osdrv2"
     echo -e "\n#####################################"
