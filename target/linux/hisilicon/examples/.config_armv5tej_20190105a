@@ -4104,6 +4104,7 @@ CONFIG_PACKAGE_hisi-sample=m
 #
 CONFIG_PACKAGE_demo=y
 CONFIG_PACKAGE_hisi-rtsp=y
+CONFIG_PACKAGE_mpp-hi3518xv100=y
 
 #
 # Sound
