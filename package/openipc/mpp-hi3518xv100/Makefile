@@ -39,10 +39,13 @@ define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/install
-	$(INSTALL_DIR) $(1)/lib/modules/3.0.8
-	$(CP) ./modules/*.ko $(1)/lib/modules/3.0.8/
 	$(INSTALL_DIR) $(1)/etc/hi3518xv100
 	$(CP) ./scripts/* $(1)/etc/hi3518xv100
+	$(INSTALL_DIR) $(1)/lib/modules/3.0.8
+	$(CP) ./modules/*.ko $(1)/lib/modules/3.0.8/
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(CP) ./libs/* $(1)/usr/lib/
+	#
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
