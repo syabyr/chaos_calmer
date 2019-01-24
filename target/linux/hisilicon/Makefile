@@ -14,7 +14,7 @@ SUBTARGETS:=armv5tej armv7
 FEATURES:=usb
 MAINTAINER:=Igor Zalatov (ZFT Lab.) <flyrouter@gmail.com>
 
-KERNEL_PATCHVER:=3.0.8
+KERNEL_PATCHVER:=3.4.35
 
 include $(INCLUDE_DIR)/target.mk
 
