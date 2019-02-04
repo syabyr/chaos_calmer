@@ -4144,9 +4144,11 @@ CONFIG_PACKAGE_hisi-sample=m
 #
 # Testing
 #
-CONFIG_PACKAGE_hisi-i2c=y
+CONFIG_PACKAGE_demo=y
 CONFIG_PACKAGE_hisi-rtsp=m
 CONFIG_PACKAGE_mpp-hi3518xv100=m
+CONFIG_PACKAGE_hisi-i2c=y
+CONFIG_PACKAGE_minihttp=y
 
 #
 # Sound
