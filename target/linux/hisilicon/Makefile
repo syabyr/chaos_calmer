@@ -23,6 +23,8 @@ DEFAULT_PACKAGES := $(filter-out ppp%,$(DEFAULT_PACKAGES)) \
 		kmod-usb-storage kmod-fs-vfat kmod-nls-utf8 \
 		kmod-ledtrig-usbdev kmod-tun
 
+KERNELNAME:=zImage
+
 define Target/Description
 	Build firmware images for Hisilicon SoC based IPCam's and NVR's.
 	Currently supports Xiong Mai (XM) and JVT based devices only.
