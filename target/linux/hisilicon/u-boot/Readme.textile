@@ -20,6 +20,12 @@ h4. HI3518Ev20x_SDK_V1.0.2.0
 
 ---
 
+h4. HI3516CV300_SDK_V1.0.1.1
+
+* u-boot-hi3516cv300.bin
+
+---
+
 h4. HI3520Dv100_SDK_V1.0.5.0
 
 * u-boot_hi3520dv100.bin
