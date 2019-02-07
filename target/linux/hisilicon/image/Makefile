@@ -15,12 +15,12 @@ BOARDS:= \
 
 LOADADDR:=0x80008000
 
-define Image/BuildKernel
-	mkimage -A arm -O linux -T kernel -C none \
-		-a $(LOADADDR) \
-		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
-		-d $(KDIR)/linux-$(LINUX_VERSION)/arch/arm/boot/zImage $(BIN_DIR)/uImage-OpenWrt-HI35xx
-endef
+#define Image/BuildKernel
+#	mkimage -A arm -O linux -T kernel -C none \
+#		-a $(LOADADDR) \
+#		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
+#		-d $(KDIR)/linux-$(LINUX_VERSION)/arch/arm/boot/zImage $(BIN_DIR)/uImage-OpenWrt-HI35xx
+#endef
 
 #define Image/InstallKernel
 #	mkdir -p $(TARGET_DIR)/boot
@@ -43,9 +43,9 @@ define Image/Build/squashfs
 endef
 
 # Build rootfs as jffs2-128k
-define Image/Build/jffs2-128k
-	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(1).img bs=131072 conv=sync
-endef
+#define Image/Build/jffs2-128k
+#	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(1).img bs=131072 conv=sync
+#endef
 
 # Build sysupgrade image
 define BuildFirmware/Generic
@@ -70,7 +70,13 @@ endef
 define Image/Build
 	$(call Image/Build/$(1),$(1))
 	$(call BuildFirmware/Generic,$(1))
-	cp $(KDIR)/zImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
+	#cp $(KDIR)/zImage $(BIN_DIR)/$(IMG_PREFIX)-zImage
+	cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
+#
+	mkimage -A arm -O linux -T kernel -C gzip \
+		-a $(LOADADDR) \
+		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
+		-d $(KDIR)/zImage-initramfs $(BIN_DIR)/$(IMG_PREFIX)-initramfs-uImage
 #
 	$(call Image/Build/Profile/$(PROFILE),$(1))
 	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-root.$(1) bs=128k conv=sync

@@ -40,7 +40,7 @@ case $build in
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev201-${DATE}.bin  #
     ;;
 
-  hi3516сv300)
+  hi3516сv300|hi3516ev100)
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
@@ -62,11 +62,16 @@ case $build in
     cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3520dv100-${DATE}.bin  #
     ;;
 
+  release)
+    # Rebuild kernel, rootfs, firmware
+    make V=99 -j$(($(nproc)+1)) target/install
+    ;;
+
   update)
     # Update ZFT Lab. feeds
     # git pull
     ./scripts/feeds update glutinium
-    ./scripts/feeds update zftlab
+    #./scripts/feeds update zftlab
     ;;
 
   project)
