@@ -35,17 +35,30 @@ LOADADDR:=0x80008000
 #endef
 
 # Build rootfs as squashfs
-define Image/Build/squashfs
+#define Image/Build/squashfs
 #	$(STAGING_DIR_HOST)/bin/padjffs2 $(KDIR)/root.squashfs 128
-	$(call prepare_generic_squashfs,$(KDIR)/root.squashfs)
-	cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-root.squashfs
+#	$(call prepare_generic_squashfs,$(KDIR)/root.squashfs)
+#	cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-root.squashfs
 #	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(1).img bs=131072 conv=sync
-endef
+#endef
 
 # Build rootfs as jffs2-128k
 #define Image/Build/jffs2-128k
 #	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(1).img bs=131072 conv=sync
 #endef
+
+#define Image/Build/Profile/HI3518EV200
+#	$(call Image/Build/squashfs,$(1),HI3518EV200,HI3518EV200)
+#endef
+
+#define Image/Build/Profile/HI3518EV201
+#	$(call Image/Build/squashfs,$(1),HI3518EV201,HI3518EV201)
+#endef
+
+# Copy kernel's
+#	#cp $(KDIR)/zImage $(BIN_DIR)/$(IMG_PREFIX)-zImage
+#	#cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
+
 
 # Build sysupgrade image
 define BuildFirmware/Generic
@@ -54,32 +67,28 @@ define BuildFirmware/Generic
 	sh $(TOPDIR)/scripts/combined-image.sh \
 		$(KDIR)/zImage.pad \
 		$(KDIR)/root.$(1).pad \
-		$(BIN_DIR)/$(IMG_PREFIX)-$(patsubst jffs2-%,jffs2,$(patsubst squashfs-%,squashfs,$(1)))-sysupgrade.bin
+		$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-$(patsubst jffs2-%,jffs2,$(patsubst squashfs-%,squashfs,$(1)))-sysupgrade.bin
 endef
-
-
-define Image/Build/Profile/HI3518EV200
-	$(call Image/Build/squashfs,$(1),HI3518EV200,HI3518EV200)
-endef
-
-define Image/Build/Profile/HI3518EV201
-	$(call Image/Build/squashfs,$(1),HI3518EV201,HI3518EV201)
-endef
-
 
 define Image/Build
-	$(call Image/Build/$(1),$(1))
-	$(call BuildFirmware/Generic,$(1))
-	#cp $(KDIR)/zImage $(BIN_DIR)/$(IMG_PREFIX)-zImage
-	cp $(KDIR)/uImage $(BIN_DIR)/$(IMG_PREFIX)-uImage
 #
-	mkimage -A arm -O linux -T kernel -C gzip \
+#	$(call Image/Build/$(1),$(1))
+#
+	$(call BuildFirmware/Generic,$(1))
+#
+	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
-		-d $(KDIR)/zImage-initramfs $(BIN_DIR)/$(IMG_PREFIX)-initramfs-uImage
+		-d $(KDIR)/zImage $(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-uImage
 #
-	$(call Image/Build/Profile/$(PROFILE),$(1))
-	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-root.$(1) bs=128k conv=sync
+	mkimage -A arm -O linux -T kernel -C none \
+		-a $(LOADADDR) \
+		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
+		-d $(KDIR)/zImage-initramfs $(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-initramfs-uImage
+#
+#	$(call Image/Build/Profile/$(PROFILE),$(1))
+#
+	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-root.$(1) bs=128k conv=sync
 endef
 
 $(eval $(call BuildImage))
