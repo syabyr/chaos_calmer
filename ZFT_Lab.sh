@@ -19,10 +19,10 @@ case $build in
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv100-${DATE}.bin  #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518av100-${DATE}.bin  #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518cv100-${DATE}.bin  #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev100-${DATE}.bin  #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv100-${DATE}.bin #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518av100-${DATE}.bin #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518cv100-${DATE}.bin #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev100-${DATE}.bin #
     ;;
 
   hi3516cv200|hi3518ev200|hi3518ev201)
@@ -35,9 +35,9 @@ case $build in
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv200-${DATE}.bin  #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev200-${DATE}.bin  #
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev201-${DATE}.bin  #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv200-${DATE}.bin #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev200-${DATE}.bin #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev201-${DATE}.bin #
     ;;
 
   hi3516сv300|hi3516ev100)
@@ -48,7 +48,7 @@ case $build in
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv300-${DATE}.bin  #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv300-${DATE}.bin #
     ;;
 
   hi3520dv100)
@@ -59,7 +59,7 @@ case $build in
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3520dv100-${DATE}.bin  #
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3520dv100-${DATE}.bin #
     ;;
 
   release)
@@ -91,7 +91,7 @@ case $build in
 
   upload)
     echo "Start uploading firmware and packages"
-    scp bin/hisilicon/uImage-OpenWrt-HI35xx root@172.28.200.72:/srv/tftp/uImage                  # Upload current firmware to TFTP server
+    scp bin/hisilicon/openwrt-hisilicon-* root@172.28.200.72:/srv/tftp/                          # Upload firmware to TFTP server
     scp -r \
       ~/chaos_calmer/bin/hisilicon/packages/* \
       root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/      # Upload packages to OPKG server
