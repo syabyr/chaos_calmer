@@ -17,12 +17,8 @@ case $build in
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
+    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv100-${DATE}.bin #
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518av100-${DATE}.bin #
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518cv100-${DATE}.bin #
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev100-${DATE}.bin #
     ;;
 
   hi3516cv200|hi3518ev200|hi3518ev201)
@@ -33,11 +29,8 @@ case $build in
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
+    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516cv200-${DATE}.bin #
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev200-${DATE}.bin #
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3518ev201-${DATE}.bin #
     ;;
 
   hi3516сv300|hi3516ev100)
@@ -46,9 +39,8 @@ case $build in
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile  # Set right kernel version - 3.18.20
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
+    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3516сv300-${DATE}.bin #
     ;;
 
   hi3520dv100)
@@ -57,9 +49,8 @@ case $build in
     cp target/linux/hisilicon/examples/.config_armv7_extrasmall  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                 # Set time and create output dir
+    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-hi3520dv100-${DATE}.bin #
     ;;
 
   release)

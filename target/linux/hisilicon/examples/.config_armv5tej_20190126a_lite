@@ -86,6 +86,7 @@ CONFIG_DEFAULT_uci=y
 CONFIG_AUDIO_SUPPORT=y
 CONFIG_GPIO_SUPPORT=y
 CONFIG_USB_SUPPORT=y
+CONFIG_USES_SQUASHFS=y
 CONFIG_LOW_MEMORY_FOOTPRINT=y
 CONFIG_arm=y
 CONFIG_ARCH="arm"
@@ -2026,8 +2027,8 @@ CONFIG_PACKAGE_procd=y
 # CONFIG_PROCD_SHOW_BOOT is not set
 # CONFIG_PROCD_ZRAM_TMPFS is not set
 # CONFIG_PACKAGE_qos-scripts is not set
-CONFIG_PACKAGE_resolveip=y
-CONFIG_PACKAGE_rpcd=y
+CONFIG_PACKAGE_resolveip=m
+CONFIG_PACKAGE_rpcd=m
 # CONFIG_PACKAGE_rpcd-mod-file is not set
 # CONFIG_PACKAGE_rpcd-mod-iwinfo is not set
 # CONFIG_PACKAGE_rpcd-mod-rpcsys is not set

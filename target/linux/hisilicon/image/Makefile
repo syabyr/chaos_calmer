@@ -61,6 +61,17 @@ LOADADDR:=0x80008000
 
 
 # Build sysupgrade image
+#define BuildFirmware/Generic
+#	dd if=$(KDIR)/uImage of=$(KDIR)/uImage.pad bs=64k conv=sync; \
+#	dd if=$(KDIR)/root.$(1) of=$(KDIR)/root.$(1).pad bs=128k conv=sync; \
+#	sh $(TOPDIR)/scripts/combined-image.sh \
+#		$(KDIR)/uImage.pad \
+#		$(KDIR)/root.$(1).pad \
+#		$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-$(patsubst jffs2-%,jffs2,$(patsubst squashfs-%,squashfs,$(1)))-sysupgrade.bin
+#endef
+
+
+# Build sysupgrade image
 define BuildFirmware/Generic
 	dd if=$(KDIR)/zImage of=$(KDIR)/zImage.pad bs=64k conv=sync; \
 	dd if=$(KDIR)/root.$(1) of=$(KDIR)/root.$(1).pad bs=128k conv=sync; \
