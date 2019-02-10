@@ -83,9 +83,8 @@ case $build in
   upload)
     echo "Start uploading firmware and packages"
     scp bin/hisilicon/openwrt-hisilicon-* root@172.28.200.72:/srv/tftp/                          # Upload firmware to TFTP server
-    scp -r \
-      ~/chaos_calmer/bin/hisilicon/packages/* \
-      root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/      # Upload packages to OPKG server
+    #scp -r ~/chaos_calmer/bin/hisilicon/packages/* \
+    #  root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/     # Upload packages to OPKG server
     ;;
 
   ipeye)
