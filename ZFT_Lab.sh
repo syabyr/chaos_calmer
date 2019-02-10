@@ -28,7 +28,7 @@ case $build in
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                      # *** Add hisilicon osdrv2 and sample packege from feed
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
-    make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
+    make clean && time make V=99 -j1 # -j$(($(nproc)+1))                                      # Clean and compile
     #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
     ;;

@@ -72,20 +72,28 @@ LOADADDR:=0x80008000
 
 
 # Build sysupgrade image
-define BuildFirmware/Generic
-	dd if=$(KDIR)/zImage of=$(KDIR)/zImage.pad bs=64k conv=sync; \
-	dd if=$(KDIR)/root.$(1) of=$(KDIR)/root.$(1).pad bs=128k conv=sync; \
-	sh $(TOPDIR)/scripts/combined-image.sh \
-		$(KDIR)/zImage.pad \
-		$(KDIR)/root.$(1).pad \
-		$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-$(patsubst jffs2-%,jffs2,$(patsubst squashfs-%,squashfs,$(1)))-sysupgrade.bin
-endef
+#define BuildFirmware/Generic
+#	dd if=$(KDIR)/zImage of=$(KDIR)/zImage.pad bs=64k conv=sync; \
+#	dd if=$(KDIR)/root.$(1) of=$(KDIR)/root.$(1).pad bs=128k conv=sync; \
+#	sh $(TOPDIR)/scripts/combined-image.sh \
+#		$(KDIR)/zImage.pad \
+#		$(KDIR)/root.$(1).pad \
+#		$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-$(patsubst jffs2-%,jffs2,$(patsubst squashfs-%,squashfs,$(1)))-sysupgrade.bin
+#endef
+
+
+
 
 define Image/Build
 #
 #	$(call Image/Build/$(1),$(1))
 #
-	$(call BuildFirmware/Generic,$(1))
+#	$(call BuildFirmware/Generic,$(1))
+#
+#	$(call Image/Build/Profile/$(PROFILE),$(1))
+#
+#	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-root.$(1) bs=128k conv=sync
+#
 #
 	mkimage -A arm -O linux -T kernel -C none \
 		-a $(LOADADDR) \
@@ -97,9 +105,17 @@ define Image/Build
 		-n 'Hisilicon OpenWrt Linux-$(LINUX_VERSION)' \
 		-d $(KDIR)/zImage-initramfs $(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-initramfs-uImage
 #
-#	$(call Image/Build/Profile/$(PROFILE),$(1))
 #
-	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-root.$(1) bs=128k conv=sync
+#WTF="-Xpreset 6 -Xlc 3 -Xlp 0 -Xpb 2              "   # Default
+#WTF="-Xpreset 9 -Xlc 0 -Xlp 2 -Xpb 2 -Xe -Xbcj arm"   # OpenWrt
+#WTF="-Xpreset 6 -Xlc 0 -Xlp 2 -Xpb 2              "   # Test OK
+#
+	$(STAGING_DIR_HOST)/bin/mksquashfs4 $(TARGET_DIR) $(BIN_DIR)/$(IMG_PREFIX)-$(LINUX_VERSION)-root.squashfs \
+		-nopad -noappend -root-owned -comp xz \
+		-Xpreset 6 -Xlc 0 -Xlp 2 -Xpb 2 \
+		-b 256k -p '/dev d 755 0 0' -p '/dev/console c 600 0 0 5 1' -processors 1
+#
 endef
 
 $(eval $(call BuildImage))
+

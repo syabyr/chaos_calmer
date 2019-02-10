@@ -158,6 +158,10 @@ $(call Build/Configure/Default,, \
 	cp \
 		$(LINUX_DIR)/include/linux/compiler.h \
 		$(LINUX_DIR)/include/$(LINUX_UAPI_DIR)linux/atm*.h \
+		$(PKG_BUILD_DIR)/pppd/plugins/pppoatm/linux/ || \
+	cp \
+		$(LINUX_DIR)/include/linux/compiler.h \
+		$(LINUX_DIR)/include/linux/atm*.h \
 		$(PKG_BUILD_DIR)/pppd/plugins/pppoatm/linux/
 endef
 
