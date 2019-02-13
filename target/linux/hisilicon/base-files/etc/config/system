@@ -3,7 +3,7 @@
 #
 
 config system
-	option hostname	IPCam_HI35xx
+	option hostname	OpenIPC_HI35xx
 	option timezone	UTC
 
 config timeserver ntp
