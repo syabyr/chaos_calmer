@@ -2009,7 +2009,7 @@ CONFIG_PACKAGE_jsonfilter=y
 CONFIG_PACKAGE_libc=y
 CONFIG_PACKAGE_libgcc=y
 CONFIG_PACKAGE_libpthread=y
-CONFIG_PACKAGE_librt=m
+CONFIG_PACKAGE_librt=y
 CONFIG_PACKAGE_libstdcpp=y
 # CONFIG_PACKAGE_libthread-db is not set
 CONFIG_PACKAGE_logd=y
@@ -2542,15 +2542,15 @@ CONFIG_PACKAGE_kmod-usb-core=y
 # CONFIG_PACKAGE_kmod-usb-dwc2 is not set
 # CONFIG_PACKAGE_kmod-usb-dwc3 is not set
 # CONFIG_PACKAGE_kmod-usb-hid is not set
-CONFIG_PACKAGE_kmod-usb-net=m
+CONFIG_PACKAGE_kmod-usb-net=y
 # CONFIG_PACKAGE_kmod-usb-net-asix is not set
 # CONFIG_PACKAGE_kmod-usb-net-asix-ax88179 is not set
 # CONFIG_PACKAGE_kmod-usb-net-cdc-eem is not set
-CONFIG_PACKAGE_kmod-usb-net-cdc-ether=m
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
 # CONFIG_PACKAGE_kmod-usb-net-cdc-mbim is not set
 # CONFIG_PACKAGE_kmod-usb-net-cdc-ncm is not set
 # CONFIG_PACKAGE_kmod-usb-net-cdc-subset is not set
-CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=m
+CONFIG_PACKAGE_kmod-usb-net-dm9601-ether=y
 # CONFIG_PACKAGE_kmod-usb-net-hso is not set
 # CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm is not set
 # CONFIG_PACKAGE_kmod-usb-net-ipheth is not set
@@ -3285,7 +3285,7 @@ CONFIG_PACKAGE_libuci-lua=m
 # CONFIG_PACKAGE_libupnp is not set
 # CONFIG_PACKAGE_libupnpp is not set
 # CONFIG_PACKAGE_liburcu is not set
-CONFIG_PACKAGE_libusb-1.0=m
+CONFIG_PACKAGE_libusb-1.0=y
 CONFIG_PACKAGE_libusb-compat=m
 # CONFIG_PACKAGE_libusbmuxd is not set
 # CONFIG_PACKAGE_libustream-cyassl is not set
@@ -4030,7 +4030,7 @@ CONFIG_BWMNG_EXTENDEDSTATS=y
 # CONFIG_BWMNG_LIBNCURSES is not set
 CONFIG_BWMNG_TIME=y
 # CONFIG_BWMNG_GETOPT_LONG is not set
-# CONFIG_PACKAGE_chat is not set
+CONFIG_PACKAGE_chat=y
 # CONFIG_PACKAGE_cshark is not set
 # CONFIG_PACKAGE_dhcpcd is not set
 # CONFIG_PACKAGE_dmapd is not set
@@ -4261,7 +4261,7 @@ CONFIG_PACKAGE_lame-lib=m
 # CONFIG_PACKAGE_filefrag is not set
 CONFIG_PACKAGE_fuse-utils=y
 # CONFIG_PACKAGE_hfsfsck is not set
-# CONFIG_PACKAGE_mkdosfs is not set
+CONFIG_PACKAGE_mkdosfs=y
 # CONFIG_PACKAGE_mkhfs is not set
 # CONFIG_PACKAGE_ncdu is not set
 # CONFIG_PACKAGE_nfs-utils is not set
@@ -4372,7 +4372,7 @@ CONFIG_PACKAGE_fuse-utils=y
 # CONFIG_PACKAGE_ccrypt is not set
 # CONFIG_PACKAGE_cmdpad is not set
 # CONFIG_PACKAGE_collectd is not set
-# CONFIG_PACKAGE_comgt is not set
+CONFIG_PACKAGE_comgt=y
 # CONFIG_PACKAGE_comgt-directip is not set
 # CONFIG_PACKAGE_comgt-ncm is not set
 # CONFIG_PACKAGE_coreutils is not set
@@ -4513,9 +4513,9 @@ CONFIG_PACKAGE_mii-diag=m
 CONFIG_PACKAGE_uboot-envtools=y
 CONFIG_UBOOT_ENVTOOLS_UBI=y
 # CONFIG_PACKAGE_ugps is not set
-CONFIG_PACKAGE_usb-modeswitch=m
+CONFIG_PACKAGE_usb-modeswitch=y
 # CONFIG_PACKAGE_usbmuxd is not set
-CONFIG_PACKAGE_usbreset=m
+CONFIG_PACKAGE_usbreset=y
 # CONFIG_PACKAGE_usbutils is not set
 # CONFIG_PACKAGE_uuidd is not set
 # CONFIG_PACKAGE_uuidgen is not set
