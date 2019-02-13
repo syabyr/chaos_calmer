@@ -63,6 +63,7 @@ case $build in
     # git pull
     ./scripts/feeds update glutinium
     #./scripts/feeds update zftlab
+    ./scripts/feeds install -p glutinium -a
     ;;
 
   project)
