@@ -8,9 +8,13 @@
 
 get_status_led() {
 	case $(hisilicon_board_name) in
+	hi3518ev100)
+		#status_led="tp-link:blue:system"
+		echo "Device hi3518ev100 found - diag.sh" | logger
+		;;
 	hi3518ev200)
 		#status_led="tp-link:blue:system"
-		echo "Maybe LED ON" | logger
+		echo "Device hi3518ev200 found - diag.sh" | logger
 		;;
 	esac
 }

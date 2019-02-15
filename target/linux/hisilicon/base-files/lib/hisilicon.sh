@@ -11,7 +11,8 @@ hisilicon_board_detect() {
 	local name
 
 	#machine=$(cat /proc/device-tree/model)
-	machine=$(awk 'BEGIN{FS="[ \t]+:[ \t]"} /Hardware/ {print $2}' /proc/cpuinfo)
+	#machine=$(awk 'BEGIN{FS="[ \t]+:[ \t]"} /Hardware/ {print $2}' /proc/cpuinfo)
+	machine=$(hi_chip_info --chip_id)
 
 	case "$machine" in
 	*"hi3518ev100")
@@ -21,7 +22,7 @@ hisilicon_board_detect() {
 		name="hi3518ev200"
 		;;
 	*)
-		name="generic";
+		name="unknown";
 		;;
 	esac
 

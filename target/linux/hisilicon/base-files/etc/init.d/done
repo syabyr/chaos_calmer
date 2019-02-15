@@ -17,6 +17,6 @@ boot() {
 	. /etc/diag.sh
 	set_state done
 
-	# run cmd from u-boot - hack for hisilicon
+	# run cmd from u-boot - idea by Maxim - realisation by Igor ;)
 	linux_cmd=$(fw_printenv -n linux_cmd) ; [ -n "${linux_cmd}" ] && eval "${linux_cmd}" >/dev/null 2>&1
 }
