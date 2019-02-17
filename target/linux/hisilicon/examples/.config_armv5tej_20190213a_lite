@@ -4175,24 +4175,37 @@ CONFIG_PACKAGE_wpa-supplicant-mini=y
 #
 
 #
-# Hisilicon OSDRV-2 for HI35_16C_18E_V200 with kernel 3.4.35
+# Hisilicon OSDRV-1 with kernel 3.0.8
+#
+CONFIG_PACKAGE_hisi-osdrv1-base=m
+CONFIG_PACKAGE_hisi-osdrv1-binary=m
+CONFIG_PACKAGE_hisi-osdrv1-kmod=m
+CONFIG_PACKAGE_hisi-osdrv1-lib=m
+CONFIG_PACKAGE_hisi-osdrv1-sensor=m
+
+#
+# Hisilicon OSDRV-2 with kernel 3.4.35
 #
 CONFIG_PACKAGE_hisi-osdrv2-base=y
 CONFIG_PACKAGE_hisi-osdrv2-binary=y
 CONFIG_PACKAGE_hisi-osdrv2-kmod=y
 CONFIG_PACKAGE_hisi-osdrv2-lib=y
 CONFIG_PACKAGE_hisi-osdrv2-sensor=y
-CONFIG_PACKAGE_hisi-sample=m
 
 #
-# Testing
+# Hisilicon OSDRV-3 with kernel 3.18.20
 #
-CONFIG_PACKAGE_mpp-hi3518xv100=m
+CONFIG_PACKAGE_hisi-osdrv3-base=m
+CONFIG_PACKAGE_hisi-osdrv3-binary=m
+CONFIG_PACKAGE_hisi-osdrv3-kmod=m
+CONFIG_PACKAGE_hisi-osdrv3-lib=m
+CONFIG_PACKAGE_hisi-osdrv3-sensor=m
 
 #
 # Testing by @FlyRouter
 #
 CONFIG_PACKAGE_hisi-rtsp=m
+CONFIG_PACKAGE_hisi-sample=m
 
 #
 # Testing by @SSH
