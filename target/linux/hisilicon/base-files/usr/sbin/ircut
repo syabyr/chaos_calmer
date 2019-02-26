@@ -1,0 +1,19 @@
+#!/bin/sh -x
+
+way="/sys/class/gpio"
+cmd="0"
+
+
+echo 64 >${way}/export
+echo "out" >${way}/gpio64/direction
+echo ${cmd} >${way}/gpio64/value
+usleep 250
+echo "in" >${way}/gpio64/direction
+
+sleep 1
+
+echo 65 >${way}/export
+echo "out" >${way}/gpio65/direction
+echo ${cmd} >${way}/gpio65/value
+usleep 250
+echo "in" >${way}/gpio65/direction

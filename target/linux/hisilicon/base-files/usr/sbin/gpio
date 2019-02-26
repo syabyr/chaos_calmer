@@ -54,7 +54,7 @@ ircut_on() {
   [ ! -f /sys/class/gpio/export ] && exit
   [ ! -d ${ctl}${ircut1} ] && echo ${ircut1} >/sys/class/gpio/export
   [ -f ${ctl}${ircut1}/direction ] && echo out > ${ctl}${ircut1}/direction && \
-    (echo 1 >${ctl}${ircut1}/value ; usleep 250 ; echo 0 >${ctl}${ircut1}/value ; echo in > ${ctl}${ircut1}/direction)
+    (echo 0 >${ctl}${ircut1}/value ; usleep 250 ; echo 1 >${ctl}${ircut1}/value ; usleep 250 ; echo in > ${ctl}${ircut1}/direction)
 }
 
 ircut_off() {
@@ -62,7 +62,7 @@ ircut_off() {
   [ ! -f /sys/class/gpio/export ] && exit
   [ ! -d ${ctl}${ircut2} ] && echo ${ircut2} >/sys/class/gpio/export
   [ -f ${ctl}${ircut2}/direction ] && echo out > ${ctl}${ircut2}/direction && \
-    (echo 1 >${ctl}${ircut2}/value ; usleep 250 ; echo 0 >${ctl}${ircut2}/value ; echo in > ${ctl}${ircut2}/direction)
+    (echo 0 >${ctl}${ircut2}/value ; usleep 250 ; echo 1 >${ctl}${ircut2}/value ; usleep 250 ; echo in > ${ctl}${ircut2}/direction)
 }
 
 search() {
