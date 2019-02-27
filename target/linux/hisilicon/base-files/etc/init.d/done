@@ -13,6 +13,10 @@ boot() {
 		sh /etc/rc.local
 	}
 
+	# gpio init
+	. /etc/diag.sh
+	gpio_init
+
 	# set leds to normal state
 	. /etc/diag.sh
 	set_state done

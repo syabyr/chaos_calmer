@@ -6,15 +6,15 @@ config global
 	option vendor	'jvt'
 	option model	's130h18v'
 	option soc	'hi3518ev200'
-	option totmem	'256M'
-	option sysmem	'192M'
+	option totmem	'64M'
+	option sysmem	'40M'
 	option flash	'8M'
 
 config video
 	option sensor	'ar0130'
 
 config gpio
-	option ircut	'0,0'
+	option ircut	'64,65,0'
 	option irled	'0'
 	option reset	'0'
 
