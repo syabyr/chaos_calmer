@@ -1,19 +1,26 @@
 #!/bin/sh -x
 
 way="/sys/class/gpio"
-cmd="0"
+end="0"
 
 
-echo 64 >${way}/export
+[ ! -d ${way}/gpio64 ] && echo 64 >${way}/export
+[ ! -d ${way}/gpio65 ] && echo 65 >${way}/export
+#
 echo "out" >${way}/gpio64/direction
-echo ${cmd} >${way}/gpio64/value
-usleep 250
-echo "in" >${way}/gpio64/direction
-
-sleep 1
-
-echo 65 >${way}/export
 echo "out" >${way}/gpio65/direction
-echo ${cmd} >${way}/gpio65/value
-usleep 250
-echo "in" >${way}/gpio65/direction
+
+
+echo 1 >${way}/gpio64/value
+echo 0 >${way}/gpio65/value
+usleep 150
+echo ${end} >${way}/gpio64/value
+echo ${end} >${way}/gpio65/value
+
+usleep 500000
+
+echo 0 >${way}/gpio64/value
+echo 1 >${way}/gpio65/value
+usleep 150
+echo ${end} >${way}/gpio64/value
+echo ${end} >${way}/gpio65/value
