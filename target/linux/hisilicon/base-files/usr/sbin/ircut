@@ -4,6 +4,8 @@ way="/sys/class/gpio"
 end="0"
 
 
+#[ ! -d ${way}/gpio0 ] && echo 0 >${way}/export
+#
 [ ! -d ${way}/gpio64 ] && echo 64 >${way}/export
 [ ! -d ${way}/gpio65 ] && echo 65 >${way}/export
 #

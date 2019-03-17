@@ -14,7 +14,7 @@ config video
 	option sensor	'ar0130'
 
 config gpio
-	option ircut	'64,65,0'
+	option ircut	'64,65'
 	option irled	'0'
 	option reset	'0'
 

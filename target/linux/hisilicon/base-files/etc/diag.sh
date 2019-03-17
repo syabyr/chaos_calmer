@@ -13,6 +13,13 @@ gpio_init() {
 		echo "No GPIO settings" | logger
 		;;
 	hi3518ev200)
+		#
+		devmem 0x200f00C0 32 0x3 && echo " | GPIO6_0 |  AMA1  | uart1_rxd | Any Board                                        | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f00C8 32 0x3 && echo " | GPIO6_2 |  AMA1  | uart1_txd | Any Board                                        | SoC hi3518ev200 | " | logger -t gpio_init
+		#
+		devmem 0x200f00CC 32 0x3 && echo " | GPIO6_3 |  AMA2  | uart2_rxd | Any Board                                        | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f00D0 32 0x3 && echo " | GPIO6_4 |  AMA2  | uart2_txd | Any Board                                        | SoC hi3518ev200 | " | logger -t gpio_init
+		#
 		devmem 0x200f0058 32 0x0 && echo " | GPIO4_1 | GPIO33 | ircut_1   | Board XM 00018520                                | SoC hi3518ev200 | " | logger -t gpio_init
 		devmem 0x200f005c 32 0x0 && echo " | GPIO4_2 | GPIO34 | ircut_2   | Board XM 00018520                                | SoC hi3518ev200 | " | logger -t gpio_init
 		devmem 0x200f0060 32 0x0 && echo " | GPIO4_3 | GPIO35 | alarm_out | Board XM 00018520                                | SoC hi3518ev200 | " | logger -t gpio_init
