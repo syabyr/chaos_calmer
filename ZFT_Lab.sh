@@ -94,7 +94,8 @@ case $build in
   ipeye)
     # For test
     ./scripts/feeds update zftlab
-    make package/feeds/zftlab/ipeye/clean  &&  make -j1 V=s package/feeds/zftlab/ipeye/compile  &&  make -j1 V=s package/feeds/zftlab/ipeye/install
+    #make package/feeds/glutinium/kdb/{clean,compile,install}
+    make package/feeds/zftlab/ipeye/{clean,compile,install}
     #scp ./bin/hisilicon/packages/zftlab/*.ipk zig@172.28.200.74:~
     ;;
 
