@@ -1,0 +1,236 @@
+/dts-v1/;
+
+/include/ "mt7628an.dtsi"
+
+/ {
+	compatible = "mediatek,k4700", "mediatek,mt7628an-soc";
+	model = "Switron K4700";
+
+	chosen {
+		bootargs = "console=ttyS0,115200";
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x4000000>;
+	};
+
+	pinctrl {
+		state_default: pinctrl0 {
+			gpio {
+				ralink,group = "gpio";
+				ralink,function = "gpio";
+			};
+			perst {
+				ralink,group = "perst";
+				ralink,function = "gpio";
+			};
+			refclk {
+				ralink,group = "refclk";
+				ralink,function = "gpio";
+			};
+			i2s {
+				ralink,group = "i2s";
+				ralink,function = "gpio";
+			};
+			spis {
+				ralink,group = "spis";
+				ralink,function = "gpio";
+			};
+			wled_kn {
+				ralink,group = "wled_kn";
+				ralink,function = "gpio";
+			};
+			wled_an {
+				ralink,group = "wled_an";
+				ralink,function = "wled_an";
+			};
+			wdt {
+				ralink,group = "wdt";
+				ralink,function = "gpio";
+			};
+		};
+	};
+
+	palmbus@10000000 {
+		spi@b00 {
+			status = "okay";
+
+			pinctrl-names = "default";
+			pinctrl-0 = <&spi_pins>, <&spi_cs1_pins>;
+
+			m25p80@0 {
+				#address-cells = <1>;
+				#size-cells = <1>;
+				compatible = "mx25l25635e";
+				reg = <0 0>;
+				linux,modalias = "m25p80", "mx25l25635e";
+				spi-max-frequency = <40000000>;
+				m25p,chunked-io = <31>;
+
+				partition@0 {
+					label = "u-boot";
+					reg = <0x0 0x20000>;
+					read-only;
+				};
+
+				partition@20000 {
+					label = "firmware";
+					reg = <0x20000 0x7a0000>;
+				};
+
+				partition@7c0000 {
+					label = "config";
+					reg = <0x7c0000 0x10000>;
+					read-only;
+				};
+
+				factory: partition@7d0000 {
+					label = "factory";
+					reg = <0x7d0000 0x30000>;
+					read-only;
+				};
+			};
+
+			spidev@1 {
+				#address-cells = <1>;
+				#size-cells = <1>;
+				compatible = "spidev";
+				reg = <1 0>;
+				spi-max-frequency = <40000000>;
+			};
+		};
+
+		i2c@900 {
+			status = "okay";
+		};
+
+		uart1@d00 {
+			status = "okay";
+		};
+
+		uart2@e00 {
+			status = "okay";
+		};
+
+		pwm@5000 {
+			status = "okay";
+		};
+	};
+
+	ethernet@10100000 {
+		mtd-mac-address = <&factory 0x28>;
+	};
+
+	sdhci@10130000 {
+		status = "okay";
+		mediatek,cd-high;
+//		mediatek,cd-poll;
+	};
+
+	bootstrap {
+		compatible = "mediatek,k4700";
+
+		status = "okay";
+	};
+
+	gpio-leds {
+		compatible = "gpio-leds";
+		status {
+			label = "k4700:green:status";
+			gpios = <&gpio0 2 0>;
+			default-state = "on";
+		};
+//		wifi {
+//			label = "mediatek:orange:wifi";
+//			gpios = <&wgpio 0 0>;
+//			default-state = "on";
+//		};
+//		status {
+//			label = "k4700:green:status";
+//			gpios = <&gpio0 31 0>;
+//			default-state = "on";
+//		};
+//		usb {
+//			label = "k4700:green:usb";
+//			gpios = <&gpio0 21 0>;
+//			default-state = "on";
+//		};
+	};
+
+
+//	gpio-export {
+//		compatible = "gpio-export";
+//		#size-cells = <0>;
+//		gpio1 {
+//			gpio-export,name = "gpio1";
+//			#gpio-export,direction_may_change = <1>;
+//			gpio-export,output = <1>;
+//			gpios = <&gpio0 1 0>;
+//		};
+//		gpio11 {
+//			gpio-export,name = "gpio11";
+//			#gpio-export,direction_may_change = <1>;
+//			gpio-export,output = <1>;
+//			gpios = <&gpio0 11 0>;
+//		};
+//	};
+
+
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		poll-interval = <20>;
+		wps {
+			label = "wps";
+			gpios = <&gpio1 6 0>;
+			linux,code = <0x198>;
+		};
+		modec1 {
+			label = "sw1";
+			gpios = <&gpio1 9 0>;
+			linux,code = <0x198>;
+		};
+		modec2 {
+			label = "sw2";
+			gpios = <&gpio1 10 0>;
+			linux,code = <0x198>;
+		};
+//		reset {
+//			label = "reset";
+//			gpios = <&gpio0 2 1>;
+//			linux,code = <0x198>;
+//		};
+	};
+
+
+	wgpio: gpio-wifi {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		compatible = "mediatek,gpio-wifi";
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
+
+	wmac@10180000 {
+		ralink,mtd-eeprom = <&factory 0>;
+		#ralink,mtd-eeprom = <&factory 0x20000>;
+	};
+
+	pcie@10140000 {
+		status = "okay";
+		pcie-bridge {
+			mt76@0,0 {
+				reg = <0x0000 0 0 0 0>;
+				device_type = "pci";
+				mediatek,mtd-eeprom = <&factory 0x8000>;
+				mediatek,2ghz = <0>;
+			};
+		};
+	};
+
+
+};
+

@@ -108,5 +108,17 @@
 			linux,code = <0x198>;
 		};
 	};
+
+	gpio-export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+		gpio2 {
+			gpio-export,name = "gpio2";
+			#gpio-export,direction_may_change = <1>;
+			gpio-export,output = <0>;                 /* Значение по-умолчанию при старте: 0 - горит светодиод, питание на USB через ключ НЕ подаётся */
+			gpios = <&gpio0 2 0>;                     /* Адрес контроллера, номер GPIO, 0 или 1 будет использоваться в качестве ON/OFF (привязываемся к подаче питания) */
+		};
+	};
+
 };
 

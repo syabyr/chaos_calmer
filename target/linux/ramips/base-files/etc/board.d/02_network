@@ -56,6 +56,7 @@ ramips_setup_interfaces()
 	broadway | \
 	dcs-930| \
 	dcs-930l-b1| \
+	dcs-932l-a1| \
 	ht-tm02| \
 	ncs601w | \
 	wnce2001)
@@ -127,6 +128,12 @@ ramips_setup_interfaces()
 		ucidef_add_switch_vlan "switch0" "2" "4 9t"
 		;;
 
+	bricket)
+		ucidef_set_interface_lan "eth0.1"
+		ucidef_add_switch "switch0" "1" "1"
+		ucidef_add_switch_vlan "switch0" "1" "0 6t"
+		;;
+
 	3g-6200n | \
 	ai-br100 | \
 	dir-610-a1 | \
@@ -147,6 +154,7 @@ ramips_setup_interfaces()
 	wt1520 | \
 	xiaomi-miwifi-mini |\
 	y1|\
+	rt2257|\
 	zbt-wg2626)
 		ucidef_set_interfaces_lan_wan "eth0.1" "eth0.2"
 		ucidef_add_switch "switch0" "1" "1"
@@ -174,6 +182,7 @@ ramips_setup_interfaces()
 	f5d8235-v1 | \
 	f5d8235-v2 | \
 	hg255d | \
+	k4700| \
 	rt-n14u | \
 	wrtnode | \
 	wt3020 | \

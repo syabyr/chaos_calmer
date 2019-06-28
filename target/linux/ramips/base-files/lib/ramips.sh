@@ -109,6 +109,9 @@ ramips_board_detect() {
 	*"DCS-930L B1")
 		name="dcs-930l-b1"
 		;;
+	*"DCS-932L A1")
+		name="dcs-932l-a1"
+		;;
 	*"DIR-300 B1")
 		name="dir-300-b1"
 		;;
@@ -310,6 +313,12 @@ ramips_board_detect() {
 	*"Sparklan WCR-150GN")
 		name="wcr-150gn"
 		;;
+	*"Switron K4700")
+		name="k4700"
+		;;
+	*"Switron RT-2257")
+		name="rt2257"
+		;;
 	*"V22RW-2X2")
 		name="v22rw-2x2"
 		;;
@@ -411,6 +420,9 @@ ramips_board_detect() {
 		;;
 	*"ZBT WR8305RT")
 		name="wr8305rt"
+		;;
+	*"ZFT Lab. BRICKET")
+		name="bricket"
 		;;
 	*"ZTE Q7")
 		name="zte-q7"

@@ -36,6 +36,9 @@ get_status_led() {
 	br6425 | br-6475nd)
 		status_led="edimax:green:power"
 		;;
+	bricket)
+		status_led="bricket:white:power"
+		;;
 	cf-wr800n)
 		status_led="comfast:white:wps"
 		;;
@@ -87,6 +90,9 @@ get_status_led() {
 	all0239-3g|\
 	hw550-3g)
 		status_led="hw550-3g:green:status"
+		;;
+	k4700)
+		status_led="k4700:green:status"
 		;;
 	linkits7688| \
 	linkits7688d)

@@ -31,6 +31,7 @@ platform_check_image() {
 	awm002-evb | \
 	awm003-evb | \
 	bc2 | \
+	bricket |\
 	broadway | \
 	carambola | \
 	cf-wr800n | \
@@ -38,6 +39,7 @@ platform_check_image() {
 	dap-1350 | \
 	dcs-930 | \
 	dcs-930l-b1 | \
+	dcs-932l-a1 | \
 	dir-300-b1 | \
 	dir-300-b7 | \
 	dir-320-b1 | \
@@ -61,6 +63,7 @@ platform_check_image() {
 	ht-tm02 | \
 	hw550-3g | \
 	ip2202 | \
+	k4700 | \
 	linkits7688 | \
 	linkits7688d | \
 	m2m | \
@@ -85,6 +88,7 @@ platform_check_image() {
 	px4885 | \
 	re6500 | \
 	rp-n53 | \
+	rt2257 | \
 	rt-g32-b1 | \
 	rt-n10-plus | \
 	rt-n13u | \

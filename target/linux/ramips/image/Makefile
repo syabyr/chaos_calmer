@@ -347,6 +347,16 @@ define BuildFirmware/PorayDualSize/squashfs
 endef
 BuildFirmware/PorayDualSize/initramfs=$(call BuildFirmware/DefaultDualSize/initramfs,$(1),$(2),$(3))
 
+define BuildFirmware/Bricket4M/squashfs
+	$(call BuildFirmware/Default4M/$(1),$(1),$(2),$(3))
+	if [ -e "$(call sysupname,$(1),$(2))" ]; then \
+		mkporayfw -B wt1520 -F 4M \
+			-f $(call sysupname,$(1),$(2)) \
+			-o $(call imgname,$(1),$(2))-factory.bin; \
+	fi
+endef
+BuildFirmware/Bricket4M/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3))
+
 define BuildFirmware/Gemtek/squashfs
 	$(call BuildFirmware/Default4M/$(1),$(1),$(2),$(3))
 	if [ -e "$(call sysupname,$(1),$(2))" ]; then \
@@ -519,6 +529,7 @@ endef
 BuildFirmware/DCS930/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3))
 Image/Build/Profile/DCS930=$(call BuildFirmware/DCS930/$(1),$(1),dcs-930,DCS-930)
 Image/Build/Profile/DCS930LB1=$(call BuildFirmware/DCS930/$(1),$(1),dcs-930l-b1,DCS-930L-B1)
+Image/Build/Profile/DCS932LA1=$(call BuildFirmware/DCS930/$(1),$(1),dcs-932l-a1,DCS-932L-A1)
 
 Image/Build/Profile/ESR-9753=$(call BuildFirmware/Default4M/$(1),$(1),esr-9753,ESR-9753)
 
@@ -677,6 +688,8 @@ Image/Build/Profile/WNCE2001=$(call BuildFirmware/WNCE2001/$(1),$(1),wnce2001,WN
 
 Image/Build/Profile/WR512-3GN=$(call BuildFirmware/DefaultDualSize/$(1),$(1),wr512-3ng,WR512-3GN)
 
+Image/Build/Profile/BRICKET=$(call BuildFirmware/Bricket4M/$(1),$(1),bricket,BRICKET)
+
 Image/Build/Profile/WT1520=$(call BuildFirmware/PorayDualSize/$(1),$(1),wt1520,WT1520)
 
 Image/Build/Profile/UR-326N4G=$(call BuildFirmware/Default4M/$(1),$(1),ur-326n4g,UR-326N4G)
@@ -708,6 +721,7 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/AWM002EVB,$(1))
 	$(call Image/Build/Profile/AWAPN2403,$(1))
 	$(call Image/Build/Profile/BC2,$(1))
+	$(call Image/Build/Profile/BRICKET,$(1))
 	$(call Image/Build/Profile/BROADWAY,$(1))
 	$(call Image/Build/Profile/CARAMBOLA,$(1))
 	$(call Image/Build/Profile/D105,$(1))
@@ -725,6 +739,7 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/DAP1350WW,$(1))
 	$(call Image/Build/Profile/DCS930,$(1))
 	$(call Image/Build/Profile/DCS930LB1,$(1))
+	$(call Image/Build/Profile/DCS932LA1,$(1))
 	$(call Image/Build/Profile/ESR-9753,$(1))
 	$(call Image/Build/Profile/F7C027,$(1))
 	$(call Image/Build/Profile/F5D8235V2,$(1))
@@ -905,6 +920,7 @@ Image/Build/Profile/Y1S=$(call BuildFirmware/Default16M/$(1),$(1),Lenovo-y1s,Y1S
 Image/Build/Profile/MLW221=$(call BuildFirmware/Default16M/$(1),$(1),mlw221,MLW221)
 Image/Build/Profile/MLWG2=$(call BuildFirmware/Default16M/$(1),$(1),mlwg2,MLWG2)
 Image/Build/Profile/WMR300=$(call BuildFirmware/Default8M/$(1),$(1),wmr-300,WMR300)
+Image/Build/Profile/RT2257=$(call BuildFirmware/Default16M/$(1),$(1),rt2257,RT2257)
 Image/Build/Profile/RT-N14U=$(call BuildFirmware/Default8M/$(1),$(1),rt-n14u,RT-N14U)
 Image/Build/Profile/WR8305RT=$(call BuildFirmware/Default8M/$(1),$(1),wr8305rt,WR8305RT)
 Image/Build/Profile/WRTNODE=$(call BuildFirmware/Default16M/$(1),$(1),wrtnode,WRTNODE)
@@ -939,6 +955,7 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/MLW221,$(1))
 	$(call Image/Build/Profile/MLWG2,$(1))
 	$(call Image/Build/Profile/WMR300,$(1))
+	$(call Image/Build/Profile/RT2257,$(1))
 	$(call Image/Build/Profile/RT-N14U,$(1))
 	$(call Image/Build/Profile/WR8305RT,$(1))
 	$(call Image/Build/Profile/WRTNODE,$(1))
@@ -1026,11 +1043,13 @@ endif
 
 Image/Build/Profile/MT7688=$(call BuildFirmware/Default4M/$(1),$(1),mt7628,MT7628)
 Image/Build/Profile/LinkIt7688=$(call BuildFirmware/Default32M/$(1),$(1),LinkIt7688,LINKIT7688)
+Image/Build/Profile/K4700=$(call BuildFirmware/Default16M/$(1),$(1),k4700,K4700)
 
 ifeq ($(SUBTARGET),mt7628)
 define Image/Build/Profile/Default
 	$(call Image/Build/Profile/MT7688,$(1))
 	$(call Image/Build/Profile/LinkIt7688,$(1))
+	$(call Image/Build/Profile/K4700,$(1))
 endef
 endif
 

@@ -66,6 +66,9 @@ case $board in
 	br-6475nd)
 		set_wifi_led "edimax:amber:wlan"
 		;;
+	bricket)
+		set_wifi_led "rt2800pci-phy0::radio"
+		;;
 	broadway)
 		set_usb_led "red:diskmounted"
 		set_wifi_led "red:wps_active"
@@ -138,6 +141,10 @@ case $board in
 	all0239-3g|\
 	hw550-3g)
 		set_usb_led "hw550-3g:green:usb"
+		;;
+	k4700)
+		set_usb_led "k4700:green:status"
+		set_usb_led "k4700:green:usb"
 		;;
 	mlw221|\
 	mlwg2)

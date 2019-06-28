@@ -15,3 +15,15 @@ define Profile/WT1520/Description
 endef
 
 $(eval $(call Profile,WT1520))
+
+
+define Profile/BRICKET
+	NAME:=ZFT Lab. BRICKET
+	PACKAGES:=kmod-usb2
+endef
+
+define Profile/BRICKET/Description
+	Package set for BRICKET
+endef
+
+$(eval $(call Profile,BRICKET))
