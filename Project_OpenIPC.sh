@@ -78,15 +78,17 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="f47dd3f166"
+    HASH2="bb0ab9d537"
     #
     clear
     echo -e "\n####################################################################################################\n"
-    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon"
+    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "target/linux/ar71xx" | grep -v "^target/linux/hisilicon" | grep -v "^target/linux/ramips"
     echo -e "\n####################################################################################################\n"
     git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/" | grep -v "^target/linux/hisilicon/u-boot_from_sdk"
     echo
     git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/u-boot_from_sdk"
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/ar71xx"
     echo -e "\n####################################################################################################\n"
     git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/ramips"
     echo -e "\n####################################################################################################\n"
@@ -123,7 +125,7 @@ case $build in
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201\n  hi3516сv300\n  hi3520dv100"
+    echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201\n\n  hi3516сv300\n  hi3516ev100\n\n  hi3520dv100"
     echo -e "\nSystem command section:\n  project\n  update\n  upload"
     echo -e "\nRebuild software section:\n  osdrv2\n  release"
     echo -e "\n#####################################"
