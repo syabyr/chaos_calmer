@@ -250,6 +250,9 @@ tplink_board_detect() {
 	"934100"*)
 		model="NC-LINK SMART-300"
 		;;
+	"934102"*)
+		model="LigoWave NFT 1Ni"
+		;;
 	"c50000"*)
 		model="TP-Link Archer C5"
 		;;
@@ -550,6 +553,9 @@ ar71xx_board_detect() {
 		;;
 	*MZK-W300NH)
 		name="mzk-w300nh"
+		;;
+	*"LigoWave NFT 1Ni")
+		name="nft1ni"
 		;;
 	*"NBG460N/550N/550NH")
 		name="nbg460n_550n_550nh"

@@ -221,6 +221,7 @@ platform_check_image() {
 	hornet-ub-x2 | \
 	mzk-w04nu | \
 	mzk-w300nh | \
+	nft1ni | \
 	tew-632brp | \
 	tew-712br | \
 	tew-732br | \

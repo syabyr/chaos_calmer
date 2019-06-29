@@ -297,6 +297,12 @@ nbg6716)
 	ucidef_set_led_usbdev "usb2" "USB2" "zyxel:white:usb2" "1-1"
 	;;
 
+nft1ni)
+	ucidef_set_led_netdev "wan" "WAN" "ligowave:green:wan" "eth0"
+	ucidef_set_led_switch "lan1" "LAN1" "ligowave:green:lan1" "switch0" "0x04"
+	ucidef_set_led_wlan "wlan" "WLAN" "ligowave:green:wlan" "phy0tpt"
+	;;
+
 om2p | \
 om2pv2 | \
 om2p-hs | \

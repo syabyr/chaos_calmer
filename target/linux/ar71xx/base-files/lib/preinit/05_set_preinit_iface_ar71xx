@@ -18,6 +18,7 @@ set_preinit_iface() {
 	dir-505-a1 |\
 	gl-inet |\
 	jwap003 |\
+	nft1ni |\
 	pb42 |\
 	pb44 |\
 	rb-433 |\

@@ -61,23 +61,30 @@ case $build in
   update)
     # Update ZFT Lab. feeds
     # git pull
-    ./scripts/feeds update glutinium
-    #./scripts/feeds update zftlab
+    ./scripts/feeds update glutinium packages luci management routing telephony # zftlab
     ./scripts/feeds install -p glutinium -a
+    ./scripts/feeds install -p luci -a
+    ./scripts/feeds install -p packages -a
+    ./scripts/feeds install -p routing -a
+    ./scripts/feeds install -p management -a
+    ./scripts/feeds install -p telephony -a
+    #./scripts/feeds install -p zftlab -a
     ;;
 
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="8ef0e40"
+    HASH2="f47dd3f166"
     #
     clear
     echo -e "\n####################################################################################################\n"
     git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "^target/linux/hisilicon"
     echo -e "\n####################################################################################################\n"
-    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/" | grep -v "^target/linux/hisilicon/original_u-boot"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/" | grep -v "^target/linux/hisilicon/u-boot_from_sdk"
     echo
-    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/original_u-boot"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/u-boot_from_sdk"
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/ramips"
     echo -e "\n####################################################################################################\n"
     ;;
 
