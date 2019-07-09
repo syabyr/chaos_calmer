@@ -112,6 +112,13 @@ case $build in
     #scp ./bin/hisilicon/packages/zftlab/*.ipk zig@172.28.200.74:~
     ;;
 
+  minihttp)
+    # For test
+    ./scripts/feeds update glutinium
+    make -j1 V=s package/feeds/glutinium/minihttp/{clean,compile,install}
+    #scp root@172.28.200.80:/usr/bin/minihttp_test
+    ;;
+
   osdrv2)
     # For test
     ./scripts/feeds update glutinium
