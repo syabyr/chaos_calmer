@@ -40,13 +40,13 @@ help() {
 debug() {
   echo "Mount DEBUGFS and get info about all GPIO"
   [ -f /sys/kernel/debug/gpio ] || mount -t debugfs none /sys/kernel/debug >/dev/null 2>&1
-  [ -f /sys/kernel/debug/gpio ] && watch "cat /sys/kernel/debug/gpio"
+  [ -f /sys/kernel/debug/gpio ] && watch -n2 "cat /sys/kernel/debug/gpio"
 }
 
 info() {
   echo "Mount DEBUGFS and get info about all GPIO"
   [ -f /sys/kernel/debug/gpio ] || mount -t debugfs none /sys/kernel/debug >/dev/null 2>&1
-  [ -f /sys/kernel/debug/gpio ] && cat /sys/kernel/debug/gpio
+  [ -f /sys/kernel/debug/gpio ] && awk '/gpio-/ {print $1,$4,$5}' /sys/kernel/debug/gpio
 }
 
 ircut_on() {

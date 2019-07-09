@@ -1,28 +1,56 @@
-#!/bin/sh -x
+#!/bin/sh
 
 way="/sys/class/gpio"
+ircut1="64"
+ircut2="65"
 end="0"
 
 
-#[ ! -d ${way}/gpio0 ] && echo 0 >${way}/export
-#
-[ ! -d ${way}/gpio64 ] && echo 64 >${way}/export
-[ ! -d ${way}/gpio65 ] && echo 65 >${way}/export
-#
-echo "out" >${way}/gpio64/direction
-echo "out" >${way}/gpio65/direction
+prepare() {
+  logger -t ircut "IRCUT prepare"
+  [ ! -d ${way}/gpio${ircut1} ] && echo ${ircut1} >${way}/export
+  [ ! -d ${way}/gpio${ircut2} ] && echo ${ircut2} >${way}/export
+  #
+  echo "out" >${way}/gpio${ircut1}/direction
+  echo "out" >${way}/gpio${ircut2}/direction
+}
+
+enable() {
+  logger -t ircut "IRCUT enable"
+  echo 1 >${way}/gpio${ircut1}/value
+  echo 0 >${way}/gpio${ircut2}/value
+  usleep 150
+  echo ${end} >${way}/gpio${ircut1}/value
+  echo ${end} >${way}/gpio${ircut2}/value
+}
+
+pause() {
+  logger -t ircut "IRCUT pause"
+  usleep 500000
+}
+
+disable() {
+  logger -t ircut "IRCUT disable"
+  echo 0 >${way}/gpio${ircut1}/value
+  echo 1 >${way}/gpio${ircut2}/value
+  usleep 150
+  echo ${end} >${way}/gpio${ircut1}/value
+  echo ${end} >${way}/gpio${ircut2}/value
+}
+
+test() {
+  logger -t ircut "IRCUT test"
+  prepare
+  enable
+  pause
+  disable
+}
 
 
-echo 1 >${way}/gpio64/value
-echo 0 >${way}/gpio65/value
-usleep 150
-echo ${end} >${way}/gpio64/value
-echo ${end} >${way}/gpio65/value
+if [ -n "$1" ]; then
+  prepare
+  $1
+else
+  test
+fi
 
-usleep 500000
-
-echo 0 >${way}/gpio64/value
-echo 1 >${way}/gpio65/value
-usleep 150
-echo ${end} >${way}/gpio64/value
-echo ${end} >${way}/gpio65/value
