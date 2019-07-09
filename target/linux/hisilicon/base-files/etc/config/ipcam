@@ -2,7 +2,7 @@
 # Copyright (C) 2018 OpenWrt.org
 #
 
-config global
+config ipcam 'global'
 	option vendor	'jvt'
 	option model	's130h18v'
 	option soc	'hi3518ev200'
@@ -10,13 +10,13 @@ config global
 	option sysmem	'40M'
 	option flash	'8M'
 
-config video
+config ipcam 'video'
 	option sensor	'ar0130'
 
-config gpio
-	option ircut	'64,65'
-	option irled	'0'
+config ipcam 'gpio'
+	option ircut	'64,65,0'
+	option irled	'47'
 	option reset	'0'
 
-config i2c
+config ipcam 'i2c'
 	option status	'-'
