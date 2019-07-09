@@ -8,14 +8,14 @@ boot() {
 	mount_root done
 	rm -f /sysupgrade.tgz
 
+	# gpio init
+	. /etc/diag.sh
+	gpio_init
+
 	# process user commands
 	[ -f /etc/rc.local ] && {
 		sh /etc/rc.local
 	}
-
-	# gpio init
-	. /etc/diag.sh
-	gpio_init
 
 	# set leds to normal state
 	. /etc/diag.sh
