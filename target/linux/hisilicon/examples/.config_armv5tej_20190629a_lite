@@ -3926,7 +3926,7 @@ CONFIG_PACKAGE_remserial=m
 # CONFIG_PACKAGE_kamailio4 is not set
 # CONFIG_PACKAGE_miax is not set
 # CONFIG_PACKAGE_pcapsipdump is not set
-CONFIG_PACKAGE_pjsua=m
+# CONFIG_PACKAGE_pjsua is not set
 # CONFIG_PACKAGE_restund is not set
 # CONFIG_PACKAGE_rtpproxy is not set
 # CONFIG_PACKAGE_sipp is not set
