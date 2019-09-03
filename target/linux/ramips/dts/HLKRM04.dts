@@ -59,7 +59,7 @@
 	pinctrl {
 		state_default: pinctrl0 {
 			gpio {
-				ralink,group = "jtag";
+				ralink,group = "i2c", "jtag";
 				ralink,function = "gpio";
 			};
 		};
@@ -100,4 +100,11 @@
 			gpios = <&gpio0 0 1>;
 		};
 	};
+
+	i2c-gpio {
+		compatible = "i2c-gpio";
+		gpios = <&gpio0 1 0 &gpio0 2 0>;
+		i2c-gpio,delay-us = <10>;
+	};
+
 };
