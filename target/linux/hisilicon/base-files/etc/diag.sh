@@ -9,6 +9,9 @@
 
 gpio_init() {
 	case $(hisilicon_board_name) in
+	hi3516cv200)
+		echo "No GPIO settings" | logger
+		;;
 	hi3518ev100)
 		echo "No GPIO settings" | logger
 		;;
@@ -34,6 +37,10 @@ gpio_init() {
 
 get_status_led() {
 	case $(hisilicon_board_name) in
+	hi3516cv200)
+		#status_led="tp-link:blue:system"
+		echo "Device hi3518ev100 found - diag.sh" | logger
+		;;
 	hi3518ev100)
 		#status_led="tp-link:blue:system"
 		echo "Device hi3518ev100 found - diag.sh" | logger
