@@ -15,6 +15,9 @@ hisilicon_board_detect() {
 	machine=$(hi_chip_info --chip_id)
 
 	case "$machine" in
+	*"hi3516cv100")
+		name="hi3516cv100"
+		;;
 	*"hi3516cv200")
 		name="hi3516cv200"
 		;;
