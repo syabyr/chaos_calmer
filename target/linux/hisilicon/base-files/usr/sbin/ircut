@@ -1,8 +1,8 @@
 #!/bin/sh
 
 way="/sys/class/gpio"
-ircut1="64"
-ircut2="65"
+ircut1=$(uci -q get ipcam.gpio.ircut1)
+ircut2=$(uci -q get ipcam.gpio.ircut2)
 end="0"
 
 

@@ -14,7 +14,8 @@ config ipcam 'video'
 	option sensor	'ar0130'
 
 config ipcam 'gpio'
-	option ircut	'64,65,0'
+	option ircut1	'64'
+	option ircut2	'65'
 	option irled	'47'
 	option reset	'0'
 
