@@ -10,13 +10,13 @@
 gpio_init() {
 	case $(hisilicon_board_name) in
 	hi3516cv100)
-		echo "No GPIO settings" | logger
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
 		;;
 	hi3516cv200)
-		echo "No GPIO settings" | logger
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
 		;;
 	hi3518ev100)
-		echo "No GPIO settings" | logger
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
 		;;
 	hi3518ev200)
 		#
@@ -35,6 +35,16 @@ gpio_init() {
 		devmem 0x200f0100 32 0x1 && echo " | GPIO8_0 | GPIO64 | ircut_1   | Board JVT S130H18V and JVS/Sunwo ZB232_V200+0130 | SoC hi3518ev200 | " | logger -t gpio_init
 		devmem 0x200f0104 32 0x1 && echo " | GPIO8_1 | GPIO65 | ircut_2   | Board JVT S130H18V and JVS/Sunwo ZB232_V200+0130 | SoC hi3518ev200 | " | logger -t gpio_init
 		;;
+
+	jvt_s130h18v)
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		;;
+	jvt_s135h18v)
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		;;
+	jvt_s323h16v)
+		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		;;
 	esac
 }
 
@@ -42,19 +52,26 @@ get_status_led() {
 	case $(hisilicon_board_name) in
 	hi3516cv100)
 		#status_led="tp-link:blue:system"
-		echo "Device hi3518cv100 found - diag.sh" | logger
+		echo "Device ${hisilicon_board_name found} - diag.sh" | logger
 		;;
 	hi3516cv200)
-		#status_led="tp-link:blue:system"
-		echo "Device hi3518cv200 found - diag.sh" | logger
+		echo "Device ${hisilicon_board_name found} - diag.sh" | logger
 		;;
 	hi3518ev100)
-		#status_led="tp-link:blue:system"
-		echo "Device hi3518ev100 found - diag.sh" | logger
+		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
 		;;
 	hi3518ev200)
-		#status_led="tp-link:blue:system"
-		echo "Device hi3518ev200 found - diag.sh" | logger
+		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		;;
+
+	jvt_s130h18v)
+		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		;;
+	jvt_s135h18v)
+		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		;;
+	jvt_s323h16v)
+		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
 		;;
 	esac
 }

@@ -10,20 +10,26 @@ board=$(hisilicon_board_name)
 
 case "$board" in
 hi3516cv100)
-	#ucidef_set_led_usbdev "usb" "USB" "dlan-usb-extender:green:usb" "2-1"
-	echo "Device hi3516cv100 found - 01_leds" | logger
+	echo "Device ${board} found - 01_leds" | logger
 	;;
 hi3516cv200)
-	#ucidef_set_led_usbdev "usb" "USB" "dlan-usb-extender:green:usb" "2-1"
-	echo "Device hi3516cv200 found - 01_leds" | logger
+	echo "Device ${board} found - 01_leds" | logger
 	;;
 hi3518ev100)
-	#ucidef_set_led_usbdev "usb" "USB" "dlan-usb-extender:green:usb" "2-1"
-	echo "Device hi3518ev100 found - 01_leds" | logger
+	echo "Device ${board} found - 01_leds" | logger
 	;;
 hi3518ev200)
-	#ucidef_set_led_netdev "eth" "eth" "rbt-832:red:ethernet" "eth0"
-	echo "Device hi3518ev200 found - 01_leds" | logger
+	echo "Device ${board} found - 01_leds" | logger
+	;;
+
+jvt_s130h18v)
+	echo "Device ${board} found - 01_leds" | logger
+	;;
+jvt_s135h18v)
+	echo "Device ${board} found - 01_leds" | logger
+	;;
+jvt_s323h16v)
+	echo "Device ${board} found - 01_leds" | logger
 	;;
 esac
 

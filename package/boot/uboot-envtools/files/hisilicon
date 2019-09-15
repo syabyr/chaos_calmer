@@ -30,6 +30,18 @@ hi3518ev200 | \
 hi3518ev201)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x10000" "0x10000" "1"
 	;;
+
+jvt_s130h18v)
+	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x10000" "0x10000" "1"
+	;;
+
+jvt_s135h18v)
+	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x20000" "0x20000" "1"
+	;;
+
+jvt_s323h16v)
+	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x20000" "0x20000" "1"
+	;;
 esac
 
 config_load ubootenv
