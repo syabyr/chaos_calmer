@@ -94,10 +94,14 @@ case $build in
     echo -e "\n####################################################################################################\n"
     ;;
 
+  push)
+    echo "Start pushing firmware"
+    scp bin/hisilicon/openwrt-hisilicon-* root@172.28.200.72:/srv/tftp/                          # Push firmware to ZFT Lab. TFTP server
+    #scp bin/hisilicon/openwrt-hisilicon-* zig@172.28.200.74:~                                   # Push firmware to Ukraine PC
+    ;;
+
   upload)
     echo "Start uploading firmware and packages"
-    scp bin/hisilicon/openwrt-hisilicon-* zig@172.28.200.74:~                                    # Upload firmware to Admin PC
-    scp bin/hisilicon/openwrt-hisilicon-* root@172.28.200.72:/srv/tftp/                          # Upload firmware to TFTP server
     scp bin/hisilicon/openwrt-hisilicon-* \
       root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Firmware/      # Upload firmware to WEB server
     scp -r bin/hisilicon/packages/* \
@@ -133,7 +137,7 @@ case $build in
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
     echo -e "\nBuild firmware section:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3516cv200\n  hi3518ev200\n  hi3518ev201\n\n  hi3516сv300\n  hi3516ev100\n\n  hi3520dv100"
-    echo -e "\nSystem command section:\n  project\n  update\n  upload"
+    echo -e "\nSystem command section:\n  project\n  push\n  update\n  upload"
     echo -e "\nRebuild software section:\n  osdrv2\n  release"
     echo -e "\n#####################################"
     (echo -e "\nCheck OPENWRT repo...\n" ; git status)
