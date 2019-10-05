@@ -10,13 +10,13 @@
 gpio_init() {
 	case $(hisilicon_board_name) in
 	hi3516cv100)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		echo "No GPIO settings for $(hisilicon_board_name) found" | logger
 		;;
 	hi3516cv200)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		echo "No GPIO settings for $(hisilicon_board_name) found" | logger
 		;;
 	hi3518ev100)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		echo "No GPIO settings for $(hisilicon_board_name) found" | logger
 		;;
 	hi3518ev200)
 		#
@@ -37,13 +37,15 @@ gpio_init() {
 		;;
 
 	jvt_s130h18v)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		devmem 0x200f00bc 32 0x0 && echo " | GPIO5_7 | GPIO47 | irled     | Board JVT S130H18V and JVS/Sunwo ZB232_V200+0130 | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f0100 32 0x1 && echo " | GPIO8_0 | GPIO64 | ircut_1   | Board JVT S130H18V and JVS/Sunwo ZB232_V200+0130 | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f0104 32 0x1 && echo " | GPIO8_1 | GPIO65 | ircut_2   | Board JVT S130H18V and JVS/Sunwo ZB232_V200+0130 | SoC hi3518ev200 | " | logger -t gpio_init
 		;;
 	jvt_s135h18v)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		echo "No GPIO settings for jvt_s135h18v found" | logger
 		;;
 	jvt_s323h16v)
-		echo "No GPIO settings for ${hisilicon_board_name found}" | logger
+		echo "No GPIO settings for jvt_s323h16v found" | logger
 		;;
 	esac
 }
@@ -52,26 +54,26 @@ get_status_led() {
 	case $(hisilicon_board_name) in
 	hi3516cv100)
 		#status_led="tp-link:blue:system"
-		echo "Device ${hisilicon_board_name found} - diag.sh" | logger
+		echo "Device hi3516cv100 found - diag.sh" | logger
 		;;
 	hi3516cv200)
-		echo "Device ${hisilicon_board_name found} - diag.sh" | logger
+		echo "Device hi3516cv200 found - diag.sh" | logger
 		;;
 	hi3518ev100)
-		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		echo "Device hi3518ev100 found - diag.sh" | logger
 		;;
 	hi3518ev200)
-		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		echo "Device hi3518ev200 found - diag.sh" | logger
 		;;
 
 	jvt_s130h18v)
-		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		echo "Device jvt_s130h18v found - diag.sh" | logger
 		;;
 	jvt_s135h18v)
-		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		echo "Device jvt_s135h18v found - diag.sh" | logger
 		;;
 	jvt_s323h16v)
-		echo "Device ${hisilicon_board_name found} found - diag.sh" | logger
+		echo "Device jvt_s323h16v found - diag.sh" | logger
 		;;
 	esac
 }

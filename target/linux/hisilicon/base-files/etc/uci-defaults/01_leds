@@ -10,26 +10,26 @@ board=$(hisilicon_board_name)
 
 case "$board" in
 hi3516cv100)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device hi3516cv100 found - 01_leds" | logger
 	;;
 hi3516cv200)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device hi3516cv200 found - 01_leds" | logger
 	;;
 hi3518ev100)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device hi3518ev100 found - 01_leds" | logger
 	;;
 hi3518ev200)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device hi3518ev200 found - 01_leds" | logger
 	;;
 
 jvt_s130h18v)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device jvt_s130h18v found - 01_leds" | logger
 	;;
 jvt_s135h18v)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device jvt_s135h18v found - 01_leds" | logger
 	;;
 jvt_s323h16v)
-	echo "Device ${board} found - 01_leds" | logger
+	echo "Device jvt_s323h16v found - 01_leds" | logger
 	;;
 esac
 
