@@ -105,7 +105,7 @@ case $build in
   push)
     echo "Start pushing firmware"
     scp bin/hisilicon/openwrt-hisilicon-* root@172.28.200.72:/srv/tftp/                          # Push firmware to ZFT Lab. TFTP server
-    #scp bin/hisilicon/openwrt-hisilicon-* zig@172.28.200.74:~                                   # Push firmware to Ukraine PC
+    scp bin/hisilicon/openwrt-hisilicon-* zig@172.28.200.74:~                                    # Push firmware to my PC
     ;;
 
   upload)
@@ -115,7 +115,7 @@ case $build in
     scp -r bin/hisilicon/packages/* \
       root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/Packages/      # Upload packages to WEB server
     scp -r bin/hisilicon/OpenWrt-* \
-      root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/               # Upload SDK an ImageBuilder to WEB server
+      root@araneus:/var/www/net_flyrouter/downloads/software/ipcam/GitHub_OpenWrt/SDK/           # Upload SDK an ImageBuilder to WEB server
     ;;
 
   ipeye)
