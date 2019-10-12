@@ -1,0 +1,78 @@
+--- a/drivers/mtd/devices/hifmc100/hifmc_spi_nor_ids.c	2019-10-12 00:35:50.000000000 +0300
++++ b/drivers/mtd/devices/hifmc100/hifmc_spi_nor_ids.c	2019-10-12 23:14:42.443595565 +0300
+@@ -215,6 +215,55 @@
+ /*****************************************************************************/
+ static struct spi_nor_info hifmc_spi_nor_info_table[] = {
+ 	/* name		id	id_len	chipsize(Bytes)	erasesize */
++
++	/* Xinxin MXC */
++	{
++		"xm25qh64a", {0x20, 0x70, 0x17}, 3, _8M, _64K, 3,
++		{
++			&READ_STD(0, INFINITE, 66),
++#ifndef CONFIG_CLOSE_SPI_8PIN_4IO
++			&READ_QUAD(1, INFINITE, 80),
++#endif
++			0
++		},
++		{
++			&WRITE_STD(0, 256, 100),
++#ifndef CONFIG_CLOSE_SPI_8PIN_4IO
++			&WRITE_QUAD(0, 256, 80),
++#endif
++			0
++		},
++		{
++			&ERASE_SECTOR_64K(0, _64K, 100),
++			0
++		},
++			&spi_driver_general,
++	},
++
++	{
++		"xm25qh128a", {0x20, 0x70, 0x18}, 3, _16M, _64K, 3,
++		{
++			&READ_STD(0, INFINITE, 66),
++#ifndef CONFIG_CLOSE_SPI_8PIN_4IO
++			&READ_QUAD(1, INFINITE, 80),
++#endif
++			0
++		},
++		{
++			&WRITE_STD(0, 256, 100),
++#ifndef CONFIG_CLOSE_SPI_8PIN_4IO
++			&WRITE_QUAD(0, 256, 80),
++#endif
++			0
++		},
++		{
++			&ERASE_SECTOR_64K(0, _64K, 100),
++			0
++		},
++		&spi_driver_general,
++	},
++
++
+ 	{
+ 		"at25fs010", {0x1f, 0x66, 0x01}, 3, _128K, _32K, 3,
+ 		{
+--- a/drivers/mtd/devices/hifmc100/hifmc100.h	2019-10-12 00:35:50.000000000 +0300
++++ b/drivers/mtd/devices/hifmc100/hifmc100.h	2019-10-12 23:24:52.294019766 +0300
+@@ -42,6 +42,7 @@
+ 
+ #ifdef CONFIG_SPI_BLOCK_PROTECT
+ #define MID_SPANSION			0x01    /* Spansion Manufacture ID */
++#define MID_XMC				0x20    /* Xinxin Manufacture ID */
+ #define MID_WINBOND			0xef    /* Winbond  Manufacture ID */
+ #define MID_MXIC			0xc2    /* MXIC Manufacture ID */
+ #define MID_MICRON			0x20    /* Micron Manufacture ID */
+--- a/drivers/mtd/devices/hifmc100/hifmc100.c	2019-10-12 00:35:50.000000000 +0300
++++ b/drivers/mtd/devices/hifmc100/hifmc100.c	2019-10-12 23:30:26.684765030 +0300
+@@ -821,6 +821,7 @@
+ 	case MID_ESMT:
+ 	case MID_CFEON:
+ 	case MID_SPANSION:
++	case MID_XMC:
+ 		host->level = hifmc100_bp_to_level(host, BP_NUM_3);
+ 		break;
+ 	case MID_WINBOND:
