@@ -12,6 +12,7 @@ config ipcam 'global'
 
 config ipcam 'video'
 	option sensor	'ar0130'
+	option disabled	'0'
 
 config ipcam 'gpio'
 	option ircut1	'64'
