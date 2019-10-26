@@ -22,7 +22,7 @@ case $build in
     cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    rm target/linux/hisilicon/base-files/etc/soc-version                                      # Remove identification file
+    rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
     #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
     ;;
