@@ -14,12 +14,8 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
-# PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:= \
 	http://flyrouter.net/downloads/software/ipcam/archive/
-# PKG_SOURCE_URL:= \
-# 	http://mirror2.openwrt.org/sources \
-# 	ftp://ftp.denx.de/pub/u-boot
 PKG_MD5SUM:=
 PKG_TARGETS:=bin
 
@@ -36,11 +32,6 @@ define uboot/Default
   IMAGE:=
   REG_FILE:=
 endef
-
-# define uboot/nbg460n_550n_550nh
-# define uboot/hi3518cv100
-#   TITLE:=U-boot for the NBG460N/550N/550NH routers
-# endef
 
 UBOOTS:=16cv100
 UBOOTS+=16cv200
@@ -66,13 +57,6 @@ UBOOTS+=18ev201
 # hi3516a_config
 # hi3536_config
 # ?
-
-# UBOOTS+=hi3516cv100
-# UBOOTS+=hi3516cv100
-# define uboot/$(1)
-#   TITLE:=U-boot for the $(1) boards
-# endef
-# # 
 
 define Package/uboot/template
 define Package/uboot-hi35xx-$(1)
@@ -123,11 +107,8 @@ ifeq ($(BUILD_VARIANT), 18ev201)
 	REG_FILE:=reg_info_hi3518e.bin
 endif
 
-
-# UBOOT_CONFIG:=$(if $(CONFIG),$(CONFIG),$(BUILD_VARIANT))
-
-# UBOOT_IMAGE:=$(if $(IMAGE),$(IMAGE),openwrt-$(BOARD)-$(BUILD_VARIANT)-u-boot.bin)
-UBOOT_IMAGE:=$(IMG_PREFIX)-u-boot.bin
+VERSION_NUMBER:=15.05.1
+UBOOT_IMAGE:="openwrt-$(if $(CONFIG_VERSION_FILENAMES),$(VERSION_NUMBER)-)$(BOARD)$(if $(SUBTARGET),-$(SUBTARGET))-u-boot.bin"
 endif
 
 define Build/Prepare
@@ -148,15 +129,13 @@ endef
 
 define Package/uboot/install/template
 define Package/uboot-hi35xx-$(1)/install
-	$(INSTALL_DIR) $$(1)
-	$(PKG_BUILD_DIR)/uboot_tools/mkboot.sh $(PKG_BUILD_DIR)/uboot_tools/$(REG_FILE) $(PKG_BUILD_DIR)/u-boot.bin $(PKG_BUILD_DIR)/u-boot-ok.bin
-	$(CP) $(PKG_BUILD_DIR)/u-boot-ok.bin $(BIN_DIR)/$(2)
+	$(PKG_BUILD_DIR)/uboot_tools/mkboot.sh $(PKG_BUILD_DIR)/uboot_tools/$(REG_FILE) $(PKG_BUILD_DIR)/u-boot.bin $(PKG_BUILD_DIR)/$(UBOOT_IMAGE)
+	$(CP) $(PKG_BUILD_DIR)/$(UBOOT_IMAGE) $(BIN_DIR)/
 endef
 endef
 
 $(foreach u,$(UBOOTS), \
-	$(eval $(call Package/uboot/install/template,$(u), \
-		openwrt-$(if $(CONFIG_VERSION_FILENAMES),$(VERSION_NUMBER)-)$(BOARD)$(if $(SUBTARGET),-$(SUBTARGET))-u-boot.bin)) \
+	$(eval $(call Package/uboot/install/template,$(u))) \
 )
 
 $(foreach u,$(UBOOTS), \
