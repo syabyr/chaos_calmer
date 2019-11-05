@@ -1,6 +1,6 @@
 
 Creating user directories with which it was not possible to automatically merge code designs.
 
-Claus Marxmeier
+Igor Zalatov
 
-https://github.com/cmarxmeier/chaos_calmer
+https://github.com/ZigFisher/chaos_calmer
