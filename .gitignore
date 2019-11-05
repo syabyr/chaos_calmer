@@ -25,4 +25,4 @@ git-src
 #
 /target/linux/ramips/patches-3.18/0521-zftlab-flyprotect.patch
 /backup
-dl/
+/dl

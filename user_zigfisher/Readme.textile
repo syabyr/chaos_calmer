@@ -1,0 +1,6 @@
+
+Creating user directories with which it was not possible to automatically merge code designs.
+
+Igor Zalatov
+
+https://github.com/ZigFisher/chaos_calmer
