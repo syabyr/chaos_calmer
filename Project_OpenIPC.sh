@@ -3,7 +3,7 @@
 # More information on the site - http://openipc.org
 #
 
-DEFCONF="target/linux/hisilicon/examples/config_armv5tej_luci_default"
+DEFCONF="target/linux/hisilicon/examples/.config_armv5tej_luci_default"
 
 
 
