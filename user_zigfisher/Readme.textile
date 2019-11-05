@@ -1,6 +1,7 @@
+h3. Igor Zalatov (aka ZigFisher)
 
-Creating user directories with which it was not possible to automatically merge code designs.
+---
 
-Igor Zalatov
+p. !https://img.shields.io/github/v/release/ZigFisher/chaos_calmer.svg! !https://img.shields.io/github/downloads/ZigFisher/chaos_calmer/total.svg!
 
-https://github.com/ZigFisher/chaos_calmer
+p. This is my development branch
