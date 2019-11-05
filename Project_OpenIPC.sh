@@ -3,6 +3,9 @@
 # More information on the site - http://openipc.org
 #
 
+DEFCONF="target/linux/hisilicon/examples/config_armv5tej_luci_default"
+
+
 
 set -e # exit immediately if a command exits with a non-zero status.
 
@@ -19,7 +22,8 @@ case $build in
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                  # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
     #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
+    ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
+    cp ${DEFCONF}  ./.config                                                                  # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
@@ -33,7 +37,7 @@ case $build in
     #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
     ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
     ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                      # *** Add hisilicon osdrv2 and sample packege from feed
-    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
+    cp ${DEFCONF}  ./.config                                                                  # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
     make clean && time make V=99 -j1  -j$(($(nproc)+1))                                       # Clean and compile
     rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
@@ -45,7 +49,8 @@ case $build in
     SOC=${build}
     echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                # For SoC’s HI35_16C_V300 only with kernel 3.18.20
     #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    cp target/linux/hisilicon/examples/.config_armv5tej_current  ./.config                    # Copy default config
+    ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
+    cp ${DEFCONF}  ./.config                                                                  # Copy default config
     sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile  # Set right kernel version - 3.18.20
     make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
     rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
@@ -63,6 +68,14 @@ case $build in
     rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
     #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+    ;;
+
+  rotek)
+    SOC=${build}
+    echo -e "\nStart building OpenWrt firmware for Rotek board with kernel 3.4.35"            # For Rotek
+    cp target/linux/hisilicon/examples/.config_armv5tej_luci_rotek  ./.config                 # Copy default config
+    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
+    make clean && time make V=99 -j1  -j$(($(nproc)+1))                                       # Clean and compile
     ;;
 
   release)
