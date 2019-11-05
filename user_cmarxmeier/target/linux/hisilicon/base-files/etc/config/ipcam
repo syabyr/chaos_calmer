@@ -1,0 +1,22 @@
+#
+# Copyright (C) 2019 OpenIPC.org
+#
+
+config ipcam 'global'
+        option vendor   'zmodo'
+        option model    'ZH-IXU1D-MAC'
+        option soc      'hi3518cv100'
+        option totmem   '64M'
+        option sysmem   '40M'
+        option flash    '16M'
+
+config ipcam 'video'
+        option sensor   'ov9712'
+
+config ipcam 'gpio'
+	option ircut	'64,65,0'
+	option irled	'47'
+	option reset	'0'
+
+config ipcam 'i2c'
+	option status	'-'
