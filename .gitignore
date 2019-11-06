@@ -23,6 +23,7 @@ key-build*
 TAGS*~
 git-src
 #
+/RELEASE
 /backup
 /dl
 /target/linux/hisilicon/base-files/etc/soc-version
