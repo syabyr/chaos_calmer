@@ -3,9 +3,6 @@
 # More information on the site - http://openipc.org
 #
 
-DEFCONF="target/linux/hisilicon/examples/.config_armv5tej_luci_default"
-
-
 
 set -e # exit immediately if a command exits with a non-zero status.
 
@@ -14,69 +11,62 @@ if [ $# -ge 1 ]; then
   vendor=$2
 fi
 
-# clear
+
+prepare_image_config() {
+    echo -e "\nStart building OpenWrt firmware for $1 with kernel $2"                         #
+    echo "$1" > target/linux/hisilicon/base-files/etc/soc-version                             # Create identification file for updates
+    cp target/linux/hisilicon/examples/.$3 ./.config                                          # Copy default config
+    sed -i "s/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=$2/" target/linux/hisilicon/Makefile       # Set right kernel version
+    #
+    ./scripts/feeds update glutinium && ./scripts/feeds install -f -d m -a -p glutinium       # Update glutinium feed and install packages
+    ./scripts/feeds update openipc && ./scripts/feeds install -f -d m -a -p openipc           # Update openipc feed and install packages
+    #
+    #sed -i 's/# CONFIG_ALL is not set.*/CONFIG_ALL=y/' ./.config                             # Enable all packages
+    #make package/feeds/OpenIPC/histreamer/{compile,install}
+}
+
+start_build() {
+    make clean && time make V=s -j$(($(nproc)+1))                                             # Clean and compile
+    rm target/linux/hisilicon/base-files/etc/soc-version                                      # Remove temporary identification file for updates
+    #
+    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
+    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+}
+
 
 case $build in
 
   hi3516cv100|hi3518av100|hi3518cv100|hi3518ev100)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                  # For SoC’s HI35_16C_18ACE_V100 only with kernel 3.0.8
-    #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
-    cp ${DEFCONF}  ./.config                                                                  # Copy default config
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
-    make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
-    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+    prepare_image_config ${SOC} "3.0.8" "config_armv5tej_luci_default"
+    start_build
     ;;
 
   hi3516cv200|hi3518ev200|hi3518ev201)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.4.35"                 # For SoC’s HI35_16C_18E_V200 only with kernel 3.4.35
-    #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
-    ./scripts/feeds install -f -p glutinium hisi-osdrv2-base hisi-sample                      # *** Add hisilicon osdrv2 and sample packege from feed
-    cp ${DEFCONF}  ./.config                                                                  # Copy default config
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
-    make clean && time make V=99 -j1  -j$(($(nproc)+1))                                       # Clean and compile
-    rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
-    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+    prepare_image_config ${SOC} "3.4.35" "config_armv5tej_luci_default"
+    start_build
     ;;
 
   hi3516сv300|hi3516ev100)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.18.20"                # For SoC’s HI35_16C_V300 only with kernel 3.18.20
-    #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    ./scripts/feeds update glutinium                                                          # *** Update glutinium feed
-    cp ${DEFCONF}  ./.config                                                                  # Copy default config
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.18.20/' target/linux/hisilicon/Makefile  # Set right kernel version - 3.18.20
-    make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
-    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+    prepare_image_config ${SOC} "3.18.20" "config_armv5tej_luci_default"
+    start_build
     ;;
 
   hi3520dv100)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for ${SOC} with kernel 3.0.8"                  # For SoC’s HI35_20D_V100 only with kernel 3.0.8
-    #echo "${SOC}" > target/linux/hisilicon/base-files/etc/soc-version                        # Create identification file for updates
-    cp target/linux/hisilicon/examples/.config_armv7_extrasmall  ./.config                    # Copy default config
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.0.8/' target/linux/hisilicon/Makefile    # Set right kernel version - 3.0.8
-    make clean && time make V=99 -j$(($(nproc)+1))                                            # Clean and compile
-    rm -f target/linux/hisilicon/base-files/etc/soc-version                                   # Remove identification file
-    #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
-    #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
+    prepare_image_config ${SOC} "3.0.8" "config_armv7_micro"
+    start_build
     ;;
 
   rotek)
     SOC=${build}
-    echo -e "\nStart building OpenWrt firmware for Rotek board with kernel 3.4.35"            # For Rotek
-    cp target/linux/hisilicon/examples/.config_armv5tej_luci_rotek  ./.config                 # Copy default config
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=3.4.35/' target/linux/hisilicon/Makefile   # Set right kernel version - 3.4.35
-    make clean && time make V=99 -j1  -j$(($(nproc)+1))                                       # Clean and compile
+    prepare_image_config ${SOC} "3.4.35" "config_armv5tej_luci_rotek"
+    start_build
     ;;
+
+
 
   release)
     # Rebuild kernel, rootfs, firmware
