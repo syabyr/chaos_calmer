@@ -16,4 +16,5 @@ cd OpenIPC
 ./Project_OpenIPC.sh update
 ./Project_OpenIPC.sh hi3516cv200
 
+---
 
