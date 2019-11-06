@@ -80,6 +80,8 @@ case $build in
     ./scripts/feeds install -p management -a -d m -f
     ./scripts/feeds install -p telephony -a -d m -f
     #./scripts/feeds install -p zftlab -a -d m -f
+    #
+    sed -i 's/+luci-app-firewall//' feeds/luci/collections/luci/Makefile
     ;;
 
   project)
@@ -166,7 +168,6 @@ case $build in
     echo -e "\n#####################################"
     #(echo -e "\nCheck ZFTLAB feed...\n" ; cd feeds/zftlab ; git status)
     #echo -e "\n#####################################"
-    sleep 3
     ;;
 
 esac
