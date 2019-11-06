@@ -17,10 +17,7 @@ prepare_image_config() {
     echo "$1" > target/linux/hisilicon/base-files/etc/soc-version                             # Create identification file for updates
     cp target/linux/hisilicon/examples/.$3 ./.config                                          # Copy default config
     sed -i "s/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=$2/" target/linux/hisilicon/Makefile       # Set right kernel version
-    #
-    ./scripts/feeds update glutinium && ./scripts/feeds install -f -d m -a -p glutinium       # Update glutinium feed and install packages
-    ./scripts/feeds update openipc && ./scripts/feeds install -f -d m -a -p openipc           # Update openipc feed and install packages
-    #
+    ./scripts/feeds update glutinium openipc                                                  # Update glutinium and openipc feed
     #sed -i 's/# CONFIG_ALL is not set.*/CONFIG_ALL=y/' ./.config                             # Enable all packages
     #make package/feeds/OpenIPC/histreamer/{compile,install}
 }
@@ -28,7 +25,6 @@ prepare_image_config() {
 start_build() {
     make clean && time make V=s -j$(($(nproc)+1))                                             # Clean and compile
     rm target/linux/hisilicon/base-files/etc/soc-version                                      # Remove temporary identification file for updates
-    #
     #DATE=$(date +%Y%m%d) ; [ -d zft_lab ] || mkdir -p zft_lab                                # Set time and create output dir
     #cp -v bin/hisilicon/uImage-OpenWrt-HI35xx zft_lab/uImage-OpenWrt-${SOC}-${DATE}.bin      # Copy Firmware
 }
@@ -74,16 +70,16 @@ case $build in
     ;;
 
   update)
-    # Update ZFT Lab. feeds
-    # git pull
-    ./scripts/feeds update glutinium packages luci management routing telephony # zftlab
-    ./scripts/feeds install -p glutinium -a
-    ./scripts/feeds install -p luci -a
-    ./scripts/feeds install -p packages -a
-    ./scripts/feeds install -p routing -a
-    ./scripts/feeds install -p management -a
-    ./scripts/feeds install -p telephony -a
-    #./scripts/feeds install -p zftlab -a
+    # Update feeds
+    ./scripts/feeds update glutinium openipc packages luci management routing telephony # zftlab
+    ./scripts/feeds install -p glutinium -a -d m -f
+    ./scripts/feeds install -p openipc -a -d m -f
+    ./scripts/feeds install -p luci -a -d m -f
+    ./scripts/feeds install -p packages -a -d m -f
+    ./scripts/feeds install -p routing -a -d m -f
+    ./scripts/feeds install -p management -a -d m -f
+    ./scripts/feeds install -p telephony -a -d m -f
+    #./scripts/feeds install -p zftlab -a -d m -f
     ;;
 
   project)
@@ -165,6 +161,8 @@ case $build in
     (echo -e "\nCheck OPENWRT repo...\n" ; git status)
     echo -e "\n#####################################"
     (echo -e "\nCheck GLUTINIUM feed...\n" ; cd feeds/glutinium ; git status)
+    echo -e "\n#####################################"
+    (echo -e "\nCheck OPENIPC feed...\n" ; cd feeds/openipc ; git status)
     echo -e "\n#####################################"
     #(echo -e "\nCheck ZFTLAB feed...\n" ; cd feeds/zftlab ; git status)
     #echo -e "\n#####################################"
