@@ -44,7 +44,7 @@ case $build in
     start_build
     ;;
 
-  hi3516сv300|hi3516ev100)
+  hi3516cv300|hi3516ev100)
     SOC=${build}
     prepare_image_config ${SOC} "3.18.20" "config_armv5tej_luci_default"
     start_build
@@ -55,6 +55,7 @@ case $build in
     prepare_image_config ${SOC} "3.0.8" "config_armv7_micro"
     start_build
     ;;
+
 
   rotek)
     SOC=${build}
