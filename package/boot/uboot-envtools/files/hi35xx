@@ -7,7 +7,7 @@
 
 touch /etc/config/ubootenv
 
-. /lib/hisilicon.sh
+. /lib/hi35xx.sh
 . /lib/uboot-envtools.sh
 . /lib/functions.sh
 

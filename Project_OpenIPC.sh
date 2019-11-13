@@ -88,15 +88,15 @@ case $build in
   project)
     # Show project changes
     HASH1="ceddf6298ad84c0ac103d25559e4e76a57f5bf76"
-    HASH2="c7f3399139"
+    HASH2="734f655c20"
     #
     clear
     echo -e "\n####################################################################################################\n"
-    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "target/linux/ar71xx" | grep -v "^target/linux/hisilicon" | grep -v "^target/linux/ramips"
+    git diff --name-only ${HASH1} ${HASH2} | grep -v "^dl/" | grep -v "target/linux/ar71xx" | grep -v "^target/linux/hi35xx" | grep -v "^target/linux/ramips" | grep -v "^package/boot" | grep -v "^user_cmarxmeier"
     echo -e "\n####################################################################################################\n"
-    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/" | grep -v "^target/linux/hisilicon/u-boot_from_sdk"
-    echo
-    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hisilicon/u-boot_from_sdk"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^package/boot"
+    echo -e "\n####################################################################################################\n"
+    git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/hi35xx"
     echo -e "\n####################################################################################################\n"
     git diff --name-only ${HASH1} ${HASH2} | grep -e "^target/linux/ar71xx"
     echo -e "\n####################################################################################################\n"
