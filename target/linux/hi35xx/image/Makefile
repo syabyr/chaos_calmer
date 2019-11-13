@@ -112,8 +112,10 @@ define NewDevice
   TARGET_DEVICES += $(1)
 endef
 
+ifeq ($(SUBTARGET),18cv100)
 $(eval $(call NewDevice,beward-ds06m,BW-DS06M,Beward DS06M,IMX138,HI3518CV100,512k,BEWARD_DS06M))
 $(eval $(call NewDevice,jvt-ip225ev1,JVT-IP-225E-V1,JVT IP-225E-V1,IMX225,HI3518EV100,512k,JVT_IP_225E_V1))
 $(eval $(call NewDevice,zmodo-zhixu1dmac,Zmodo-ZH-IXU1D-MAC,Zmodo ZH-IXU1D-MAC,OV9712,HI3518CV100,512k,ZMODO_ZH_IXU1D_MAC))
+endif # ifeq ($(SUBTARGET),18cv100)
 
 $(eval $(call BuildImage))
