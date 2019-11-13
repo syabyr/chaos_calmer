@@ -48,21 +48,22 @@ CONFIG_TARGET_hi35xx=y
 # CONFIG_TARGET_hi35xx_16cv300 is not set
 # CONFIG_TARGET_hi35xx_16ev100 is not set
 # CONFIG_TARGET_hi35xx_18av100 is not set
-CONFIG_TARGET_hi35xx_18cv100=y
+# CONFIG_TARGET_hi35xx_18cv100 is not set
 # CONFIG_TARGET_hi35xx_18ev100 is not set
-# CONFIG_TARGET_hi35xx_18ev200 is not set
+CONFIG_TARGET_hi35xx_18ev200=y
 # CONFIG_TARGET_hi35xx_18ev201 is not set
 # CONFIG_TARGET_hi35xx_20dv100 is not set
 # CONFIG_TARGET_hi35xx_20dv200 is not set
 # CONFIG_TARGET_hi35xx_18cv100_None is not set
-CONFIG_TARGET_hi35xx_18cv100_BEWARD_DS06M=y
+# CONFIG_TARGET_hi35xx_18cv100_BEWARD_DS06M is not set
 # CONFIG_TARGET_hi35xx_18cv100_ZMODO_ZH_IXU1D_MAC is not set
+CONFIG_TARGET_hi35xx_18ev200_None=y
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_TARGET_BOARD="hi35xx"
 CONFIG_TARGET_ARCH_PACKAGES="hi35xx"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -march=armv5te -mtune=arm926ej-s"
 CONFIG_CPU_TYPE="arm926ej-s"
-CONFIG_LINUX_3_0=y
+CONFIG_LINUX_3_4=y
 CONFIG_DEFAULT_base-files=y
 CONFIG_DEFAULT_busybox=y
 CONFIG_DEFAULT_dnsmasq=y
@@ -2080,7 +2081,7 @@ CONFIG_PACKAGE_usign=y
 #
 # Boot Loaders
 #
-CONFIG_PACKAGE_uboot-hi35xx-18cv100=y
+# CONFIG_PACKAGE_uboot-hi35xx-18ev200 is not set
 
 #
 # Development
@@ -3980,7 +3981,7 @@ CONFIG_WPA_MSG_MIN_PRIORITY=3
 #
 # HiSilicon related
 #
-# CONFIG_PACKAGE_himpp-dev-hi3518cv100 is not set
+# CONFIG_PACKAGE_himpp-dev-hi3518ev200 is not set
 
 #
 # Hisilicon OSDRV-1 with kernel 3.0.8
