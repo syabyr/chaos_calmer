@@ -80,9 +80,7 @@ CONFIG_LOG_BUF_SHIFT=14
 # CONFIG_SYSFS_DEPRECATED is not set
 # CONFIG_RELAY is not set
 CONFIG_BLK_DEV_INITRD=y
-CONFIG_INITRAMFS_SOURCE="/mnt/raid/OpenWrt/chaos_calmer/build_dir/target-arm_arm926ej-s_uClibc-0.9.33.2_eabi/root-hisilicon /mnt/raid/OpenWrt/chaos_calmer/target/linux/generic/image/initramfs-base-files.txt"
-CONFIG_INITRAMFS_ROOT_UID=1002
-CONFIG_INITRAMFS_ROOT_GID=1001
+CONFIG_INITRAMFS_SOURCE=""
 # CONFIG_RD_GZIP is not set
 # CONFIG_RD_BZIP2 is not set
 # CONFIG_RD_LZMA is not set
@@ -460,8 +458,8 @@ CONFIG_INET_TCP_DIAG=y
 # CONFIG_TCP_CONG_ADVANCED is not set
 CONFIG_TCP_CONG_CUBIC=y
 CONFIG_DEFAULT_TCP_CONG="cubic"
-# CONFIG_TCP_MD5SIG is not set
-# CONFIG_IPV6=y
+# CONFIG_TCP_MD5SIG
+# CONFIG_IPV6 is not set
 # CONFIG_IPV6_PRIVACY is not set
 # CONFIG_IPV6_ROUTER_PREF is not set
 # CONFIG_IPV6_OPTIMISTIC_DAD is not set
