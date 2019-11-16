@@ -155,6 +155,10 @@ case $build in
     #scp ./bin/hi35xx/packages/glutinium/*.ipk zig@172.28.200.74:~
     ;;
 
+  uboot)
+    make -j1 V=s package/boot/uboot-hi35xx/{clean,compile,install}
+    ;;
+
   *)
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
