@@ -59,7 +59,7 @@ case $build in
 
   rotek)
     SOC=${build}
-    prepare_image_config ${SOC} "3.4.35" "config_armv5tej_luci_rotek"
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_switcam_hs303"
     start_build
     ;;
 
