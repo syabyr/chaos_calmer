@@ -38,7 +38,7 @@ define Build/uImage
 		-C $(1) -a $(KERNEL_LOADADDR) -e $(if $(KERNEL_ENTRY),$(KERNEL_ENTRY),$(KERNEL_LOADADDR)) \
 		-n '$(IMAGE_HEADER_INFO)' -d $@ $@.new
 	@mv $@.new $@
-	cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-default-root.squashfs
+# cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-default-root.squashfs
 endef
 
 define Image/pad-to
