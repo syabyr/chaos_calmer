@@ -126,12 +126,12 @@
  *----------------------------------------------------------------------*/
 #include "../../product/env_setup.h"
 /* env in flash instead of CFG_ENV_IS_NOWHERE */
-#define CONFIG_ENV_OFFSET	0x80000      /* environment starts here */
+#define CONFIG_ENV_OFFSET	0x40000      /* environment starts here */
 #define CONFIG_ENV_NAND_ADDR	(CONFIG_ENV_OFFSET)
 #define CONFIG_ENV_SPI_ADDR	(CONFIG_ENV_OFFSET)
 #define CONFIG_CMD_SAVEENV
 
-#define CONFIG_ENV_SIZE		0x40000    /*include ENV_HEADER_SIZE */
+#define CONFIG_ENV_SIZE		0x10000    /*include ENV_HEADER_SIZE */
 #define CONFIG_ENV_SECT_SIZE	CONFIG_ENV_SIZE
 #define CONFIG_NR_DRAM_BANKS	1          /* we have 1 bank of DRAM */
 /* kernel parameter list phy addr */
@@ -140,9 +140,9 @@
 /*-----------------------------------------------------------------------
  *  Environment   Configuration
  *-----------------------------------------------------------------------*/
-#define CONFIG_BOOTCOMMAND	"bootm 0x82000000"
+#define CONFIG_BOOTCOMMAND	"sf probe 0; sf read 0x80000000 0x50000 0x200000; bootm 0x80000000"
 #define CONFIG_BOOTDELAY	1
-#define CONFIG_BOOTARGS		"mem=96M console=ttyAMA0,115200"
+#define CONFIG_BOOTARGS		"totalmem=128M mem=96M sensor=ar0130 console=ttyAMA0,115200 root=/dev/mtdblock3 rootfstype=squashfs,jffs2 mtdparts=hi_sfc:256k(boot),64k(env),2048k(kernel),5120k(rootfs),-(rootfs_data)"
 #define CONFIG_NETMASK  255.255.255.0       /* talk on MY local net */
 #define CONFIG_IPADDR   192.168.1.10        /* static IP I currently own */
 #define CONFIG_SERVERIP 192.168.1.254     /* current IP of tftp server ip */
