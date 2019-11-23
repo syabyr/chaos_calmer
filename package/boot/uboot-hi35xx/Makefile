@@ -78,6 +78,14 @@ ifeq ($(BUILD_VARIANT), 16cv200)
     UBOOT_CONFIG:=hi3516cv200_config
 	REG_FILE:=reg_info_hi3516cv200.bin
 endif
+ifeq ($(BUILD_VARIANT), 16cv300)
+    UBOOT_CONFIG:=hi3516cv300_config
+	REG_FILE:=reg_info_hi3516cv300.bin
+endif
+ifeq ($(BUILD_VARIANT), 16ev100)
+    UBOOT_CONFIG:=hi3516ev100_config
+	REG_FILE:=reg_info_hi3516ev100.bin
+endif
 ifeq ($(BUILD_VARIANT), 18av100)
     UBOOT_CONFIG:=hi3518a_config
 	REG_FILE:=reg_info_hi3518av100.bin
