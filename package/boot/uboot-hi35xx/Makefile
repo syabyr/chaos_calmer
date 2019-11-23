@@ -101,7 +101,7 @@ endif
 
 #VERSION_NUMBER:=15.05.1
 #UBOOT_IMAGE:="openwrt-$(if $(CONFIG_VERSION_FILENAMES),$(VERSION_NUMBER)-)$(BOARD)$(if $(SUBTARGET),-$(SUBTARGET))-u-boot.bin"
-UBOOT_IMAGE:="openwrt-$(BOARD)$(if $(SUBTARGET),-$(SUBTARGET))-default-uboot.bin"
+UBOOT_IMAGE:="openwrt-$(BOARD)$(if $(SUBTARGET),-$(SUBTARGET))-uboot.bin"
 endif
 
 define Build/Prepare
@@ -122,15 +122,13 @@ endef
 
 define Package/uboot/install/template
 define Package/uboot-hi35xx-$(1)/install
-
 	$(CP) $(PKG_BUILD_DIR)/u-boot.bin $(PKG_BUILD_DIR)/full-boot.bin
 	$(CP) $(PKG_BUILD_DIR)/uboot_tools/$(REG_FILE) $(PKG_BUILD_DIR)/.reg
+	$(MAKE) -C $(PKG_BUILD_DIR) CROSS_COMPILE=$(TARGET_CROSS) mini-boot.bin
+	$(CP) $(PKG_BUILD_DIR)/mini-boot.bin $(BIN_DIR)/$(UBOOT_IMAGE)
 	#
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CROSS_COMPILE=$(TARGET_CROSS) mini-boot.bin
-
-	$(PKG_BUILD_DIR)/uboot_tools/mkboot.sh $(PKG_BUILD_DIR)/uboot_tools/$(REG_FILE) $(PKG_BUILD_DIR)/u-boot.bin $(PKG_BUILD_DIR)/$(UBOOT_IMAGE)
-	$(CP) $(PKG_BUILD_DIR)/$(UBOOT_IMAGE) $(BIN_DIR)/
+	# $(PKG_BUILD_DIR)/uboot_tools/mkboot.sh $(PKG_BUILD_DIR)/uboot_tools/$(REG_FILE) $(PKG_BUILD_DIR)/u-boot.bin $(PKG_BUILD_DIR)/$(UBOOT_IMAGE)
+	# $(CP) $(PKG_BUILD_DIR)/$(UBOOT_IMAGE) $(BIN_DIR)/
 endef
 endef
 
