@@ -319,7 +319,7 @@
 /*-----------------------------------------------------------------------
  * Snapshot boot support
  * ----------------------------------------------------------------------*/
-/* #define CONFIG_SNAPSHOT_BOOT		1 */
+#define CONFIG_SNAPSHOT_BOOT		1
 
 #ifdef CONFIG_SNAPSHOT_BOOT
 /* #define CONFIG_ARCH_MMU */ /* enable MMU for fast decompress */
