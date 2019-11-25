@@ -1,5 +1,5 @@
---- a/files/common/Makefile	2018-04-26 06:57:52.000000000 +0300
-+++ a/files/common/Makefile	2019-11-23 23:16:50.036060696 +0300
+--- a/common/Makefile	2018-04-26 06:57:52.000000000 +0300
++++ a/common/Makefile	2019-11-23 23:16:50.036060696 +0300
 @@ -233,6 +233,20 @@
  bootss2:
  ifdef CONFIG_SNAPSHOT_BOOT
