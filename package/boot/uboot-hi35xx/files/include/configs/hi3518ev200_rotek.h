@@ -126,7 +126,7 @@
  *----------------------------------------------------------------------*/
 #include "../../product/env_setup.h"
 /* env in flash instead of CFG_ENV_IS_NOWHERE */
-#define CONFIG_ENV_OFFSET	0x40000      /* environment starts here */
+#define CONFIG_ENV_OFFSET	0x30000      /* environment starts here */
 #define CONFIG_ENV_NAND_ADDR	(CONFIG_ENV_OFFSET)
 #define CONFIG_ENV_SPI_ADDR	(CONFIG_ENV_OFFSET)
 #define CONFIG_CMD_SAVEENV
