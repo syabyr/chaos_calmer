@@ -38,6 +38,7 @@ define Build/uImage
 		-C $(1) -a $(KERNEL_LOADADDR) -e $(if $(KERNEL_ENTRY),$(KERNEL_ENTRY),$(KERNEL_LOADADDR)) \
 		-n '$(IMAGE_HEADER_INFO)' -d $@ $@.new
 	@mv $@.new $@
+# cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-default-root.squashfs
 endef
 
 define Image/pad-to
@@ -76,8 +77,8 @@ define Device/hi35xx-v1
 	KERNEL_NAME = zImage
 	KERNEL_SUFFIX := -uImage
 	KERNEL_INSTALL := 1
-	KERNEL_SIZE:=2048k
-	ROOT_FS_SIZE:=2048k
+	KERNEL_SIZE:=3072k
+	ROOT_FS_SIZE:=5120k
 	KERNEL_PAD_SIZE:=2097088
 	KERNEL := kernel-bin | uImage none
 	KERNEL_INITRAMFS := kernel-bin | uImage none
@@ -112,8 +113,36 @@ define NewDevice
   TARGET_DEVICES += $(1)
 endef
 
-$(eval $(call NewDevice,beward-ds06m,BW-DS06M,Beward DS06M,IMX138,HI3518CV100,512k,BEWARD_DS06M))
-$(eval $(call NewDevice,jvt-ip225ev1,JVT-IP-225E-V1,JVT IP-225E-V1,IMX225,HI3518EV100,512k,JVT_IP_225E_V1))
-$(eval $(call NewDevice,zmodo-zhixu1dmac,Zmodo-ZH-IXU1D-MAC,Zmodo ZH-IXU1D-MAC,OV9712,HI3518CV100,512k,ZMODO_ZH_IXU1D_MAC))
+
+ifeq ($(SUBTARGET),16cv200)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3516CV200,320k,DEFAULT)) # @flyrouter
+$(eval $(call NewDevice,jvt-s323h16vf,JVT-S323H16VF,JVT S323H16VF,IMX323,HI3516CV200,320k,JVT_S323H16VF)) # @flyrouter
+endif # ifeq ($(SUBTARGET),16cv200)
+
+ifeq ($(SUBTARGET),16cv300)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3516CV300,320k,DEFAULT)) # @flyrouter
+endif # ifeq ($(SUBTARGET),16cv300)
+
+ifeq ($(SUBTARGET),16ev100)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3516EV100,320k,DEFAULT)) # @flyrouter
+endif # ifeq ($(SUBTARGET),16ev100)
+
+ifeq ($(SUBTARGET),18cv100)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518CV100,320k,DEFAULT)) # @flyrouter
+$(eval $(call NewDevice,beward-ds06m,BW-DS06M,Beward DS06M,IMX138,HI3518CV100,512k,BEWARD_DS06M)) # @ussh
+$(eval $(call NewDevice,zmodo-zhixu1dmac,Zmodo-ZH-IXU1D-MAC,Zmodo ZH-IXU1D-MAC,OV9712,HI3518CV100,512k,ZMODO_ZH_IXU1D_MAC)) # @ussh
+endif # ifeq ($(SUBTARGET),18cv100)
+
+ifeq ($(SUBTARGET),18ev100)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV100,320k,DEFAULT)) # @flyrouter
+$(eval $(call NewDevice,jvt-ip225ev1,JVT-IP-225E-V1,JVT IP-225E-V1,IMX225,HI3518EV100,512k,JVT_IP_225E_V1)) # @ussh
+endif # ifeq ($(SUBTARGET),18ev100)
+
+ifeq ($(SUBTARGET),18ev200)
+$(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV200,512k,DEFAULT)) # @flyrouter
+$(eval $(call NewDevice,jvt-s130h18v,JVT-S130H18V,JVT S130H18V,AR0130,HI3518EV200,320k,JVT_S130H18V)) # @flyrouter
+$(eval $(call NewDevice,switcam-hs303,SWITCAM-HS303,SWITCAM HS303,JXF22,HI3518EV200,320k,SWITCAM_HS303)) # @flyrouter
+endif # ifeq ($(SUBTARGET),18ev200)
+
 
 $(eval $(call BuildImage))

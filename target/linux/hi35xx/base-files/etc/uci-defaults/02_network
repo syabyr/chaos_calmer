@@ -8,11 +8,11 @@
 touch /etc/config/network
 
 . /lib/functions/uci-defaults.sh
-. /lib/hisilicon.sh
+. /lib/hi35xx.sh
 
 ucidef_set_interface_loopback
 
-board=$(hisilicon_board_name)
+board=$(hi35xx_board_name)
 
 case "$board" in
 *)
