@@ -38,9 +38,7 @@ case $build in
     start_build
     ;;
 
-
-
-  16cv200_jvt_s323h16vf)
+  hi3516cv200)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_16cv200_jvt_s323h16vf"
     start_build
@@ -72,6 +70,12 @@ case $build in
     ;;
 
 #################
+
+  16cv200_jvt_s323h16vf)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_16cv200_jvt_s323h16vf"
+    start_build
+    ;;
 
   18ev200_jvt_s130h18v)
     SOC=${build}
