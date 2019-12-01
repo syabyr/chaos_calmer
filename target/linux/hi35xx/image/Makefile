@@ -72,8 +72,7 @@ define Build/sysupgrade-header
 	@mv $@.new $@
 endef
 
-# TODO: create separation of device template versions
-define Device/hi35xx-v1
+define Device/hi35xx-default
 	IMAGES := sysupgrade.bin factory.bin
 	IMAGE_PREFIX := $(IMG_PREFIX)-$(1)
 	KERNEL_PREFIX := $(IMG_PREFIX)-$(1)
@@ -91,21 +90,21 @@ define Device/hi35xx-v1
 	IMAGE/factory.bin := append-kernel $${KERNEL_SIZE} | pad-to 64k | append-rootfs $${ROOT_FS_SIZE} | check-size $$$$(IMAGE_SIZE)
 endef
 
-define Device/hi35xx-v1-16m
-	$(Device/hi35xx-v1)
+define Device/hi35xx-default-16m
+	$(Device/hi35xx-default)
 	FLASH_SIZE := 16m
 	IMAGE_SIZE := 15872k
 endef
 
-define Device/hi35xx-v1-8m
-	$(Device/hi35xx-v1)
+define Device/hi35xx-default-8m
+	$(Device/hi35xx-default)
 	FLASH_SIZE := 8m
 	IMAGE_SIZE := 7680k
 endef
 
 define NewDevice
   define Device/$(1)
-	$$(Device/hi35xx-v1-16m)
+	$$(Device/hi35xx-default-16m)
 	BOARDNAME := $(2)
 	DEVICE_TITLE := $(3)
 	SENSOR := $(4)
