@@ -89,6 +89,12 @@ case $build in
     start_build
     ;;
 
+  18ev200_jvt_s135h18vf)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_jvt_s135h18vf"
+    start_build
+    ;;
+
   18ev200_switcam_hs303)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_18ev200_switcam_hs303"
@@ -98,6 +104,12 @@ case $build in
   18ev200_switcam_hs303_rotek)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_18ev200_switcam_hs303_rotek"
+    start_build
+    ;;
+
+  18ev200_xm_blk18ev_0035_0042)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_xm_blk18ev_0035_0042"
     start_build
     ;;
 
@@ -201,8 +213,8 @@ case $build in
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nProfiles:\n  16cv200_jvt_s323h16vf\n\n  18ev200_jvt_s130h18v\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek"
-    echo -e "\nUntested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3518ev201\n\n  hi3516cv300\n  hi3516ev100\n\n  hi3520dv100"
+    echo -e "\nBest profiles:\n  16cv200_jvt_s323h16vf\n\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042"
+    echo -e "\nDefault and Untested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3518ev201\n\n  hi3516cv300\n  hi3516ev100\n\n  hi3520dv100"
     #echo -e "\nSystem command section:\n  project\n  push\n  update\n  upload"
     #echo -e "\nRebuild software section:\n  osdrv2\n  release"
     echo -e "\n#####################################"
@@ -214,6 +226,7 @@ case $build in
     echo -e "\n#####################################"
     #(echo -e "\nCheck ZFTLAB feed...\n" ; cd feeds/zftlab ; git status)
     #echo -e "\n#####################################"
+    touch target/linux/*/Makefile
     ;;
 
 esac
