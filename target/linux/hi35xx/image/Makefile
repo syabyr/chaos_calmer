@@ -163,6 +163,12 @@ endif # ifeq ($(SUBTARGET),18ev200)
 
 
 
+ifeq ($(SUBTARGET),18ev201)
+    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV201,512k,DEFAULT)) # @flyrouter
+endif # ifeq ($(SUBTARGET),18ev201)
+
+
+
 define Image/Build/squashfs
 	cp $(KDIR)/root.squashfs $(BIN_DIR)/$(IMG_PREFIX)-root.squashfs
 	dd if=$(KDIR)/root.$(1) of=$(BIN_DIR)/$(IMG_PREFIX)-$(1).img bs=131072 conv=sync
