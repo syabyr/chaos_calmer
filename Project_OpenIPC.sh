@@ -77,6 +77,12 @@ case $build in
 
 #################
 
+  16cv200_DEFAULT)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_16cv200_DEFAULT"
+    start_build
+    ;;
+
   16cv200_jvt_s323h16vf)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_16cv200_jvt_s323h16vf"
@@ -163,8 +169,8 @@ case $build in
   push)
     echo "Start pushing firmware"
     cd bin/hi35xx
-    scp openwrt-hi35xx-*-default-initramfs-uImage openwrt-hi35xx-*-default-uImage    root@172.28.200.72:/srv/tftp/                                # Push firmware to ZFT Lab. TFTP server
-    scp openwrt-hi35xx-*-default-initramfs-uImage openwrt-hi35xx-*-default-uImage    zig@172.28.200.74:~                                          # Push firmware to my PC
+    scp -P 35242 openwrt-hi35xx-*  root@172.28.200.75:/srv/tftp/                                 # Push firmware to ZFT Lab. TFTP server
+    #scp -P 35242 openwrt-hi35xx-*  zig@172.28.200.74:~                                          # Push firmware to my PC
     ;;
 
   upload)
@@ -219,7 +225,7 @@ case $build in
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBest profiles:\n  16cv200_jvt_s323h16vf\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042"
+    echo -e "\nBest profiles:\n  16cv200_DEFAULT\n  16cv200_jvt_s323h16vf\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042"
     echo -e "\nDefault and Untested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3518ev201\n\n  hi3516cv300\n  hi3516ev100\n\n  hi3520dv100"
     #echo -e "\nSystem command section:\n  project\n  push\n  update\n  upload"
     #echo -e "\nRebuild software section:\n  osdrv2\n  release"
