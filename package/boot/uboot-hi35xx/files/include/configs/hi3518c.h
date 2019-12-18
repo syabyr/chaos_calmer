@@ -127,13 +127,12 @@
 /*-----------------------------------------------------------------------
  *  Environment   Configuration
  ------------------------------------------------------------------------*/
-#define CONFIG_BOOTCOMMAND "bootm 0x82000000"
-
+#define CONFIG_BOOTCOMMAND "setenv bootargs $(bootargs) ethaddr=$(ethaddr) phyaddru=$(phyaddru) phyaddrd=$(phyaddrd) sensor=$(sensor) linux_cmd=$(linux_cmd); sf probe 0; sf read 0x82000000 0x50000 0x200000; bootm 0x82000000"
 #define CONFIG_BOOTDELAY 1
-#define CONFIG_BOOTARGS	"mem=64M console=ttyAMA0,115200"
+#define CONFIG_BOOTARGS	"totalmem=64M mem=40M console=ttyAMA0,115200 root=/dev/mtdblock3 rootfstype=squashfs,jffs2 mtdparts=hi_sfc:256k(boot),64k(env),2048k(kernel),5120k(rootfs),-(rootfs_data)"
 #define CONFIG_NETMASK	255.255.255.0		/* talk on MY local net */
 #define CONFIG_IPADDR	192.168.1.10		/* default static IP */
-#define CONFIG_SERVERIP	192.168.1.2		/* default tftp server ip */
+#define CONFIG_SERVERIP	192.168.1.254		/* default tftp server ip */
 #define CONFIG_ETHADDR	00:00:23:34:45:66
 #define CONFIG_BOOTFILE	"uImage"		/* file to load */
 #define CONFIG_BAUDRATE	115200
@@ -192,8 +191,8 @@
 	#define HISFV_RMII_MODE			1
 	#define HIETH_MII_RMII_MODE_U		HISFV_MII_MODE
 	#define HIETH_MII_RMII_MODE_D		HISFV_MII_MODE
-	#define HISFV_PHY_U			1
-	#define HISFV_PHY_D			2 /* fix me */
+	#define HISFV_PHY_U			0
+	#define HISFV_PHY_D			1 /* fix me */
 	#undef HISFV_RESET_GPIO_EN
 	#ifdef HISFV_RESET_GPIO_EN
 		/* use gpio5_0 to control sfv reset */
@@ -210,7 +209,7 @@
  * console display  Configuration
  ------------------------------------------------------------------------*/
 #define CONFIG_VERSION_VARIABLE	1		/* used in common/main.c */
-#define CONFIG_SYS_PROMPT	"openipc # "	/* Monitor Command Prompt */
+#define CONFIG_SYS_PROMPT	"OpenIPC # "	/* Monitor Command Prompt */
 #define CONFIG_SYS_CBSIZE	1024		/* Console I/O Buffer Size */
 #define CONFIG_SYS_PBSIZE	(CONFIG_SYS_CBSIZE+sizeof(CONFIG_SYS_PROMPT)+16)
 
@@ -252,7 +251,7 @@
 /*-----------------------------------------------------------------------
  * sdcard/usb storage system update
  * ----------------------------------------------------------------------*/
-#define CONFIG_AUTO_UPDATE			1 
+#define CONFIG_AUTO_UPDATE			1
 #ifdef CONFIG_AUTO_UPDATE
 	#define CONFIG_AUTO_SD_UPDATE		1
 /*	#define CONFIG_AUTO_USB_UPDATE		1 */
