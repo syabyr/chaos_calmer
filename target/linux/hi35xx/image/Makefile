@@ -154,7 +154,7 @@ endif # ifeq ($(SUBTARGET),18ev100)
 
 
 ifeq ($(SUBTARGET),18ev200)
-    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV200,512k,DEFAULT)) # @flyrouter
+    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV200,320k,DEFAULT)) # @flyrouter
     $(eval $(call NewDevice,jvt-s130h18v,JVT-S130H18V,JVT S130H18V,AR0130,HI3518EV200,320k,JVT_S130H18V)) # @flyrouter
     $(eval $(call NewDevice,jvt-s135h18vf,JVT-S135H18VF,JVT S135H18VF,SC1135,HI3518EV200,320k,JVT_S135H18VF)) # @flyrouter
     $(eval $(call NewDevice,switcam-hs303,SWITCAM-HS303,SWITCAM HS303,JXF22,HI3518EV200,320k,SWITCAM_HS303)) # @flyrouter
@@ -164,8 +164,18 @@ endif # ifeq ($(SUBTARGET),18ev200)
 
 
 ifeq ($(SUBTARGET),18ev201)
-    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV201,512k,DEFAULT)) # @flyrouter
+    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3518EV201,320k,DEFAULT)) # @flyrouter
 endif # ifeq ($(SUBTARGET),18ev201)
+
+
+
+ifeq ($(SUBTARGET),20dv100)
+    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3520DV100,320k,DEFAULT)) # @flyrouter
+endif # ifeq ($(SUBTARGET),20dv100)
+
+ifeq ($(SUBTARGET),20dv200)
+    $(eval $(call NewDevice,default,DEFAULT,DEFAULT,ALL,HI3520DV200,320k,DEFAULT)) # @flyrouter
+endif # ifeq ($(SUBTARGET),20dv200)
 
 
 
