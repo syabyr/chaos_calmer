@@ -2075,7 +2075,7 @@ CONFIG_PACKAGE_wireless-tools=m
 #
 # Boot Loaders
 #
-# CONFIG_PACKAGE_uboot-hi35xx-20dv100 is not set
+CONFIG_PACKAGE_uboot-hi35xx-20dv100=y
 
 #
 # Development
