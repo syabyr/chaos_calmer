@@ -137,12 +137,6 @@
 #define CONFIG_BOOTFILE	"uImage"		/* file to load */
 #define CONFIG_BAUDRATE	115200
 
-/* default location for tftp and bootm */
-#define CONFIG_LOADADDR		400000
-
-#define CONFIG_MAX_UBOOT_SIZE 0x40000
-
-// #define FS_STATISTICS 1
 /*-----------------------------------------------------------------------
  * for bootm linux
  -----------------------------------------------------------------------*/
@@ -170,15 +164,9 @@
 #define CONFIG_NET_RETRY_COUNT		50	/* FIXME */
 #define CONFIG_CMD_NET				/* do_ping common/cmd_net.c */
 
-#define CONFIG_CMD_HTTPD
-
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_MII
-// #define CONFIG_MII
-// #define CONFIG_NET_MULTI			1
-// #define CONFIG_NETCONSOLE			1
 #define CONFIG_SYS_FAULT_ECHO_LINK_DOWN	1
-
 
 /*-----------------------------------------------------------------------
  * HIETH driver
@@ -186,23 +174,12 @@
 /* default is hieth-switch-fabric */
 #define CONFIG_NET_HISFV300
 #ifdef CONFIG_NET_HISFV300
-	#define CONFIG_NET_HISFV300_3518	1
 	#define HISFV_MII_MODE			0
 	#define HISFV_RMII_MODE			1
 	#define HIETH_MII_RMII_MODE_U		HISFV_MII_MODE
 	#define HIETH_MII_RMII_MODE_D		HISFV_MII_MODE
-	#define HISFV_PHY_U			0
-	#define HISFV_PHY_D			1 /* fix me */
-	#undef HISFV_RESET_GPIO_EN
-	#ifdef HISFV_RESET_GPIO_EN
-		/* use gpio5_0 to control sfv reset */
-		#define HISFV_RESET_GPIO_BASE	GPIO0_REG_BASE
-		#define HISFV_RESET_GPIO_DIR	0x400
-		#define HISFV_RESET_GPIO_BIT	5
-		#define HISFV_RESET_GPIO_DIR_OUT 1
-		/* 0-reset; 1-undo reset */
-		#define HISFV_RESET_GPIO_DATA	0
-	#endif /* HISFV_RESET_GPIO_EN */
+	#define HISFV_PHY_U			1
+	#define HISFV_PHY_D			2 /* fix me */
 #endif /* CONFIG_NET_HISFV300 */
 
 /*-----------------------------------------------------------------------
@@ -221,7 +198,7 @@
 #define CFG_CMDLINE_HISTORYS		8
 #define CONFIG_CMDLINE_EDITING
 #define CFG_DDR_PHYS_OFFSET		MEM_BASE_DDR
-#define CFG_DDR_SIZE			(128 * 1024 * 1024)	/* 128M Bytes */
+#define CFG_DDR_SIZE			(128 * 1024 * 1024UL)	/* 128M Bytes */
 
 #define CONFIG_SYS_MEMTEST_START	(CFG_DDR_PHYS_OFFSET +\
 						sizeof(unsigned long))
@@ -288,21 +265,5 @@
  * SVB
  * ----------------------------------------------------------------------*/
 /* #define CONFIG_SVB_ENABLE */
-
-#define CFG_FLASH_BASE		0x9F000000
-
-/*
- * ===========================
- * HTTP recovery configuration
- * ===========================
- */
-#define WEBFAILSAFE_UPLOAD_KERNEL_ADDRESS	CFG_LOAD_ADDR
-
-#define WEBFAILSAFE_UPLOAD_ART_ADDRESS	(CFG_FLASH_BASE + 0x40000)
-
-
-/* Firmware size limit */
-#define WEBFAILSAFE_UPLOAD_LIMITED_AREA_IN_BYTES	(1856 * 1024)
-
 
 #endif	/* __CONFIG_H */
