@@ -16,7 +16,7 @@ prepare_image_config() {
     echo -e "\nStart building OpenWrt firmware for $1 with kernel $2"                      #
     echo "$1" > target/linux/hi35xx/base-files/etc/soc-version                             # Create identification file for updates
     cp target/linux/hi35xx/examples/.$3 ./.config                                          # Copy default config
-    sed -i "s/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=$2/" target/linux/hi35xx/Makefile       # Set right kernel version
+    #sed -i "s/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=$2/" target/linux/hi35xx/Makefile      # Set right kernel version
     ./scripts/feeds update glutinium openipc                                               # Update glutinium and openipc feed
     #sed -i 's/# CONFIG_ALL is not set.*/CONFIG_ALL=y/' ./.config                          # Enable all packages
     #make package/feeds/OpenIPC/histreamer/{compile,install}
@@ -68,17 +68,6 @@ case $build in
     start_build
     ;;
 
-  hi3520dv100)
-    SOC=${build}
-    prepare_image_config ${SOC} "3.0.8" "config_20dv100_zftlab_telemetry"
-    start_build
-    ;;
-
-  hi3520dv200)
-    SOC=${build}
-    prepare_image_config ${SOC} "3.0.8" "config_20dv200_zftlab_telemetry"
-    start_build
-    ;;
 
 #################
 
@@ -146,9 +135,15 @@ case $build in
     start_build
     ;;
 
+  18ev200_zftlab_dbell)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_dbell"
+    start_build
+    ;;
+
   18ev200_zftlab_mini)
     SOC=${build}
-    prepare_image_config ${SOC} "3.4.35" "config_18ev201_zftlab_mini"
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_mini"
     start_build
     ;;
 
@@ -164,6 +159,20 @@ case $build in
     prepare_image_config ${SOC} "3.4.35" "config_18ev201_DEFAULT"
     start_build
     ;;
+
+
+  20dv100_DEFAULT)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.0.8" "config_20dv100_zftlab_telemetry"
+    start_build
+    ;;
+
+  20dv200_DEFAULT)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.0.8" "config_20dv200_zftlab_telemetry"
+    start_build
+    ;;
+
 
 #################
 
@@ -265,8 +274,8 @@ case $build in
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBest tested profiles:\n  16cv200_DEFAULT\n  16cv200_jvt_s323h16vf\n\n  18cv100_zftlab_vixand\n\n  18ev100_zftlab_vixand\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042\n  18ev200_zftlab_mini\n  18ev200_zftlab_telemetry\n\n  18ev201_DEFAULT"
-    echo -e "\nUntested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3516cv300\n  hi3516ev100\n\n  hi3520dv100\n\n  hi3520dv200"
+    echo -e "\nBest tested profiles:\n  16cv200_DEFAULT\n  16cv200_jvt_s323h16vf\n\n  18cv100_zftlab_vixand\n\n  18ev100_zftlab_vixand\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042\n  18ev200_zftlab_dbell\n  18ev200_zftlab_mini\n  18ev200_zftlab_telemetry\n\n  18ev201_DEFAULT\n\n  20dv100_DEFAULT\n\n  20dv200_DEFAULT\n"
+    echo -e "\nUntested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3516cv300\n  hi3516ev100"
     #echo -e "\nSystem command section:\n  project\n  push\n  update\n  upload"
     #echo -e "\nRebuild software section:\n  osdrv2\n  release"
     echo -e "\n#####################################"
