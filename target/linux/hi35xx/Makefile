@@ -16,6 +16,7 @@ DEFAULT_PACKAGES := \
 		kmod-tun
 
 MAINTAINER:=Igor Zalatov (ZFT Lab.) <flyrouter@gmail.com>
+KERNEL_PATCHVER:=3.4.35
 KERNELNAME:=zImage
 
 define Target/Description
