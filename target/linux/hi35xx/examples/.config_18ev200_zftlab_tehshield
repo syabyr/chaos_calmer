@@ -2665,7 +2665,7 @@ CONFIG_PACKAGE_kmod-usb-storage=y
 CONFIG_PACKAGE_kmod-hi35xx-mt7601u=y
 # CONFIG_PACKAGE_MT7601_DEBUG is not set
 # CONFIG_PACKAGE_kmod-hi35xx-rtl8188eu is not set
-CONFIG_PACKAGE_kmod-hi35xx-rtl8188fu=m
+# CONFIG_PACKAGE_kmod-hi35xx-rtl8188fu is not set
 # CONFIG_PACKAGE_kmod-lib80211 is not set
 # CONFIG_PACKAGE_kmod-libertas-sdio is not set
 # CONFIG_PACKAGE_kmod-libertas-spi is not set
