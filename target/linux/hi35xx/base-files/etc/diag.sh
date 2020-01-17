@@ -49,6 +49,9 @@ gpio_init() {
 		#
 		devmem 0x200f00F8 32 0x1   && echo " | GPIO7_6 | GPIO62 | light     | Board Switcam HS303                              | SoC hi3518ev200 | " | logger -t gpio_init
 		#
+		#devmem 0x200f006c 32 0x0   && echo " | GPIO4_6 | GPIO38 | wifi_ena  | Board DBell prototype                            | SoC hi3518ev200 | " | logger -t gpio_init
+		#echo 38 >/sys/class/gpio/export ; echo "out" >/sys/class/gpio/gpio38/direction ; echo 1 >/sys/class/gpio/gpio3/value ; echo "Set GPIO3 wifi_pow UP"
+		#
 		devmem 0x200f0030 32 0x00  && echo " | GPIO0_3 | GPIO3  | wifi_ena  | Board Switcam HS303                              | SoC hi3518ev200 | " | logger -t gpio_init
 		#echo 3 >/sys/class/gpio/export ; echo "out" >/sys/class/gpio/gpio3/direction ; echo 1 >/sys/class/gpio/gpio3/value ; echo "Set GPIO3 wifi_pow UP"
 		#

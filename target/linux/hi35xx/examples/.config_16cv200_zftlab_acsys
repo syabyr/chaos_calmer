@@ -44,21 +44,18 @@ CONFIG_TARGET_hi35xx=y
 # CONFIG_TARGET_hi35xx_15cv100 is not set
 # CONFIG_TARGET_hi35xx_16av200 is not set
 # CONFIG_TARGET_hi35xx_16cv100 is not set
-# CONFIG_TARGET_hi35xx_16cv200 is not set
+CONFIG_TARGET_hi35xx_16cv200=y
 # CONFIG_TARGET_hi35xx_16cv300 is not set
 # CONFIG_TARGET_hi35xx_16ev100 is not set
 # CONFIG_TARGET_hi35xx_18av100 is not set
 # CONFIG_TARGET_hi35xx_18cv100 is not set
 # CONFIG_TARGET_hi35xx_18ev100 is not set
-CONFIG_TARGET_hi35xx_18ev200=y
+# CONFIG_TARGET_hi35xx_18ev200 is not set
 # CONFIG_TARGET_hi35xx_18ev201 is not set
 # CONFIG_TARGET_hi35xx_20dv100 is not set
 # CONFIG_TARGET_hi35xx_20dv200 is not set
-CONFIG_TARGET_hi35xx_18ev200_DEFAULT=y
-# CONFIG_TARGET_hi35xx_18ev200_JVT_S130H18V is not set
-# CONFIG_TARGET_hi35xx_18ev200_JVT_S135H18VF is not set
-# CONFIG_TARGET_hi35xx_18ev200_SWITCAM_HS303 is not set
-# CONFIG_TARGET_hi35xx_18ev200_XM_BLK18EV_0035_0042 is not set
+# CONFIG_TARGET_hi35xx_16cv200_DEFAULT is not set
+CONFIG_TARGET_hi35xx_16cv200_JVT_S323H16VF=y
 CONFIG_HAS_SUBTARGETS=y
 CONFIG_TARGET_BOARD="hi35xx"
 CONFIG_TARGET_ARCH_PACKAGES="hi35xx"
@@ -288,6 +285,7 @@ CONFIG_FEED_luci=y
 CONFIG_FEED_routing=y
 CONFIG_FEED_telephony=y
 CONFIG_FEED_management=y
+# CONFIG_FEED_zftlab is not set
 # CONFIG_SMIMEOPT is not set
 CONFIG_OPKGSMIME_PASSPHRASE=y
 
@@ -2048,7 +2046,7 @@ CONFIG_PACKAGE_ubusd=y
 CONFIG_PACKAGE_uci=y
 # CONFIG_PACKAGE_udev is not set
 CONFIG_PACKAGE_usign=y
-CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_wireless-tools=m
 # CONFIG_PACKAGE_zram-swap is not set
 
 #
@@ -2078,7 +2076,7 @@ CONFIG_PACKAGE_wireless-tools=y
 #
 # Boot Loaders
 #
-CONFIG_PACKAGE_uboot-hi35xx-18ev200=y
+CONFIG_PACKAGE_uboot-hi35xx-16cv200=y
 
 #
 # Development
@@ -2134,8 +2132,8 @@ CONFIG_PACKAGE_flyscripts_zftlab_openipc_base=y
 # CONFIG_PACKAGE_brcmfmac-firmware-usb is not set
 # CONFIG_PACKAGE_brcmsmac-firmware is not set
 # CONFIG_PACKAGE_carl9170-firmware is not set
-CONFIG_PACKAGE_hi35xx-rtl8188eu-firmware=m
-CONFIG_PACKAGE_hi35xx-rtl8188fu-firmware=m
+# CONFIG_PACKAGE_hi35xx-rtl8188eu-firmware is not set
+# CONFIG_PACKAGE_hi35xx-rtl8188fu-firmware is not set
 # CONFIG_PACKAGE_ibt-firmware is not set
 # CONFIG_PACKAGE_iwl3945-firmware is not set
 # CONFIG_PACKAGE_iwl4965-firmware is not set
@@ -2143,13 +2141,13 @@ CONFIG_PACKAGE_hi35xx-rtl8188fu-firmware=m
 # CONFIG_PACKAGE_libertas-sdio-firmware is not set
 # CONFIG_PACKAGE_libertas-spi-firmware is not set
 # CONFIG_PACKAGE_libertas-usb-firmware is not set
-# CONFIG_PACKAGE_mt7601u-firmware is not set
+CONFIG_PACKAGE_mt7601u-firmware=m
 # CONFIG_PACKAGE_mwifiex-pcie-firmware is not set
 # CONFIG_PACKAGE_mwl8k-firmware is not set
 # CONFIG_PACKAGE_r8169-firmware is not set
 # CONFIG_PACKAGE_r8188eu-firmware is not set
 # CONFIG_PACKAGE_rt2800-pci-firmware is not set
-# CONFIG_PACKAGE_rt2800-usb-firmware is not set
+CONFIG_PACKAGE_rt2800-usb-firmware=m
 # CONFIG_PACKAGE_rt61-pci-firmware is not set
 # CONFIG_PACKAGE_rt73-usb-firmware is not set
 # CONFIG_PACKAGE_rtl8192ce-firmware is not set
@@ -2274,12 +2272,12 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 #
 # I2C support
 #
-CONFIG_PACKAGE_kmod-i2c-core=y
-CONFIG_PACKAGE_kmod-i2c-algo-bit=y
+CONFIG_PACKAGE_kmod-i2c-core=m
+CONFIG_PACKAGE_kmod-i2c-algo-bit=m
 # CONFIG_PACKAGE_kmod-i2c-algo-pca is not set
 # CONFIG_PACKAGE_kmod-i2c-algo-pcf is not set
-CONFIG_PACKAGE_kmod-i2c-gpio=y
-CONFIG_PACKAGE_kmod-i2c-gpio-custom=y
+CONFIG_PACKAGE_kmod-i2c-gpio=m
+CONFIG_PACKAGE_kmod-i2c-gpio-custom=m
 # CONFIG_PACKAGE_kmod-i2c-mux is not set
 CONFIG_PACKAGE_kmod-i2c-tiny-usb=m
 
@@ -2663,10 +2661,9 @@ CONFIG_PACKAGE_kmod-usb-storage=y
 # CONFIG_PACKAGE_kmod-brcmutil is not set
 # CONFIG_PACKAGE_kmod-carl9170 is not set
 # CONFIG_PACKAGE_kmod-cfg80211 is not set
-CONFIG_PACKAGE_kmod-hi35xx-mt7601u=y
-# CONFIG_PACKAGE_hi35xx-mt7601u_debug is not set
-CONFIG_PACKAGE_kmod-hi35xx-rtl8188eu=m
-CONFIG_PACKAGE_kmod-hi35xx-rtl8188fu=m
+# CONFIG_PACKAGE_kmod-hi35xx-mt7601u is not set
+# CONFIG_PACKAGE_kmod-hi35xx-rtl8188eu is not set
+# CONFIG_PACKAGE_kmod-hi35xx-rtl8188fu is not set
 # CONFIG_PACKAGE_kmod-lib80211 is not set
 # CONFIG_PACKAGE_kmod-libertas-sdio is not set
 # CONFIG_PACKAGE_kmod-libertas-spi is not set
@@ -3043,8 +3040,8 @@ CONFIG_PACKAGE_libpolarssl=y
 # CONFIG_PACKAGE_libpjsip-ua is not set
 # CONFIG_PACKAGE_libpjsua is not set
 # CONFIG_PACKAGE_libpjsua2 is not set
-CONFIG_PACKAGE_libre=m
-CONFIG_PACKAGE_librem=m
+# CONFIG_PACKAGE_libre is not set
+# CONFIG_PACKAGE_librem is not set
 # CONFIG_PACKAGE_libspandsp is not set
 # CONFIG_PACKAGE_libsrtp is not set
 
@@ -3218,7 +3215,7 @@ CONFIG_PACKAGE_libmosquitto-nossl=m
 # CONFIG_PACKAGE_libmysqlclient is not set
 # CONFIG_PACKAGE_libmysqlclient-r is not set
 # CONFIG_PACKAGE_libnatpmp is not set
-# CONFIG_PACKAGE_libncurses is not set
+CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libncursesw is not set
 # CONFIG_PACKAGE_libneon is not set
 # CONFIG_PACKAGE_libnetconf is not set
@@ -3350,7 +3347,7 @@ CONFIG_PACKAGE_libuuid=m
 # CONFIG_PACKAGE_pthsem is not set
 # CONFIG_PACKAGE_sbc is not set
 # CONFIG_PACKAGE_shflags is not set
-# CONFIG_PACKAGE_terminfo is not set
+CONFIG_PACKAGE_terminfo=y
 # CONFIG_PACKAGE_tinycdb is not set
 # CONFIG_PACKAGE_uclibcxx is not set
 # CONFIG_PACKAGE_xmlrpc-c is not set
@@ -3933,22 +3930,8 @@ CONFIG_PACKAGE_remserial=m
 # CONFIG_PACKAGE_asterisk11 is not set
 # CONFIG_PACKAGE_asterisk13 is not set
 # CONFIG_PACKAGE_asterisk18 is not set
-CONFIG_PACKAGE_baresip=m
-# CONFIG_PACKAGE_baresip-mod-alsa is not set
-# CONFIG_PACKAGE_baresip-mod-avcodec is not set
-# CONFIG_PACKAGE_baresip-mod-avformat is not set
-# CONFIG_PACKAGE_baresip-mod-cons is not set
-# CONFIG_PACKAGE_baresip-mod-dtmfio is not set
-# CONFIG_PACKAGE_baresip-mod-evdev is not set
-# CONFIG_PACKAGE_baresip-mod-g711 is not set
-# CONFIG_PACKAGE_baresip-mod-g722 is not set
-# CONFIG_PACKAGE_baresip-mod-g726 is not set
-# CONFIG_PACKAGE_baresip-mod-httpd is not set
-# CONFIG_PACKAGE_baresip-mod-opus is not set
-# CONFIG_PACKAGE_baresip-mod-oss is not set
-# CONFIG_PACKAGE_baresip-mod-stdio is not set
-# CONFIG_PACKAGE_baresip-mod-v4l is not set
-# CONFIG_PACKAGE_baresip-mod-v4l2 is not set
+# CONFIG_PACKAGE_baresip is not set
+# CONFIG_PACKAGE_baresip-webrtc is not set
 # CONFIG_PACKAGE_freeswitch is not set
 # CONFIG_PACKAGE_kamailio3 is not set
 # CONFIG_PACKAGE_kamailio4 is not set
@@ -4098,7 +4081,7 @@ CONFIG_PACKAGE_ethtool=m
 # CONFIG_PACKAGE_hnetd-openssl is not set
 # CONFIG_PACKAGE_hostapd is not set
 CONFIG_PACKAGE_hostapd-common=m
-CONFIG_PACKAGE_hostapd-common-old=y
+# CONFIG_PACKAGE_hostapd-common-old is not set
 # CONFIG_PACKAGE_hostapd-mini is not set
 # CONFIG_PACKAGE_hostapd-utils is not set
 CONFIG_PACKAGE_httping=y
@@ -4206,7 +4189,7 @@ CONFIG_PACKAGE_wpa-cli=m
 # CONFIG_WPA_SUPPLICANT_NO_TIMESTAMP_CHECK is not set
 # CONFIG_WPA_RFKILL_SUPPORT is not set
 CONFIG_WPA_MSG_MIN_PRIORITY=3
-CONFIG_DRIVER_WEXT_SUPPORT=y
+# CONFIG_DRIVER_WEXT_SUPPORT is not set
 # CONFIG_DRIVER_11N_SUPPORT is not set
 # CONFIG_DRIVER_11W_SUPPORT is not set
 # CONFIG_PACKAGE_wpa-supplicant-mesh is not set
@@ -4228,7 +4211,7 @@ CONFIG_PACKAGE_wpad-mini=m
 # HiSilicon related
 #
 CONFIG_PACKAGE_hisi-osdrv2-base=y
-CONFIG_PACKAGE_hisi-osdrv2-binary=y
+CONFIG_PACKAGE_hisi-osdrv2-binary=m
 CONFIG_PACKAGE_hisi-osdrv2-kmod=y
 CONFIG_PACKAGE_hisi-osdrv2-lib=y
 CONFIG_PACKAGE_hisi-osdrv2-sensor=m
@@ -4254,10 +4237,8 @@ CONFIG_PACKAGE_kdb=m
 #
 CONFIG_PACKAGE_hi35xx_sensor_ar0130=y
 CONFIG_PACKAGE_hi35xx_sensor_imx222=y
-# CONFIG_PACKAGE_hi35xx_sensor_imx225 is not set
-# CONFIG_PACKAGE_hi35xx_sensor_imx323 is not set
-# CONFIG_PACKAGE_hi35xx_sensor_jxf22 is not set
 CONFIG_PACKAGE_hi35xx_sensor_jxf23=y
+CONFIG_PACKAGE_hi35xx_sensor_ov9712=y
 CONFIG_PACKAGE_hi35xx_sensor_ov9732=y
 CONFIG_PACKAGE_hi35xx_sensor_sc1135=y
 CONFIG_PACKAGE_hi35xx_sensor_sc2135=y
@@ -4269,7 +4250,6 @@ CONFIG_PACKAGE_hi35xx_sensor_sc2235=y
 CONFIG_PACKAGE_flash_tool=y
 CONFIG_PACKAGE_hi_chip_info=y
 CONFIG_PACKAGE_hisi-i2c=y
-# CONFIG_PACKAGE_kmod-hi35xx_health is not set
 
 #
 # Unused
@@ -4327,7 +4307,7 @@ CONFIG_PACKAGE_lame-lib=y
 # Editors
 #
 # CONFIG_PACKAGE_joe is not set
-# CONFIG_PACKAGE_nano is not set
+CONFIG_PACKAGE_nano=y
 # CONFIG_PACKAGE_vim is not set
 # CONFIG_PACKAGE_vim-full is not set
 # CONFIG_PACKAGE_vim-help is not set
@@ -4504,7 +4484,7 @@ CONFIG_PACKAGE_haserl=m
 CONFIG_PACKAGE_homes-smart=m
 # CONFIG_PACKAGE_hub-ctrl is not set
 # CONFIG_PACKAGE_hwclock is not set
-CONFIG_PACKAGE_i2c-telemetry=y
+CONFIG_PACKAGE_i2c-telemetry=m
 CONFIG_PACKAGE_i2c-tools=y
 # CONFIG_PACKAGE_iconv is not set
 # CONFIG_PACKAGE_iwcap is not set
@@ -4589,7 +4569,7 @@ CONFIG_PACKAGE_mii-diag=m
 # CONFIG_PACKAGE_sockread is not set
 # CONFIG_PACKAGE_spi-tools is not set
 # CONFIG_PACKAGE_spidev-test is not set
-CONFIG_PACKAGE_sshpass=y
+# CONFIG_PACKAGE_sshpass is not set
 # CONFIG_PACKAGE_stm32flash is not set
 # CONFIG_PACKAGE_stoken is not set
 # CONFIG_PACKAGE_strace is not set
@@ -4620,4 +4600,4 @@ CONFIG_PACKAGE_usbreset=y
 # CONFIG_PACKAGE_yanglint is not set
 # CONFIG_PACKAGE_yunbridge is not set
 # CONFIG_PACKAGE_zsh is not set
-CONFIG_OVERRIDE_PKGS="libnetfilter-cttimeout libnetfilter-cthelper libnetfilter-queue"
+CONFIG_OVERRIDE_PKGS="libnetfilter-queue libnetfilter-cthelper libnetfilter-cttimeout"
