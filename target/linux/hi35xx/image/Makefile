@@ -80,7 +80,7 @@ define Device/hi35xx-default
     KERNEL_NAME = zImage
     KERNEL_SUFFIX := -uImage
     KERNEL_INSTALL := 1
-    KERNEL_SIZE:=3072k
+    KERNEL_SIZE:=2048k
     ROOT_FS_SIZE:=5120k
     KERNEL_PAD_SIZE:=2097088
     KERNEL := kernel-bin | uImage none
