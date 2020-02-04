@@ -13,7 +13,9 @@ gpio_init() {
 		echo "No GPIO settings for $(hi35xx_board_name) found" | logger
 		;;
 	hi3516cv200)
-		echo "No GPIO settings for $(hi35xx_board_name) found" | logger
+		devmem 0x200f00bc 32 0x00  && echo " | GPIO5_7 | GPIO47 | light     | Board JVT S323H16VF                              | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f0100 32 0x1   && echo " | GPIO8_0 | GPIO64 | ircut_1   | Board JVT S323H16VF                              | SoC hi3516cv200 | " | logger -t gpio_init
+		devmem 0x200f0104 32 0x1   && echo " | GPIO8_1 | GPIO65 | ircut_2   | Board JVT S323H16VF                              | SoC hi3516cv200 | " | logger -t gpio_init
 		;;
 	hi3518ev100)
 		echo "No GPIO settings for $(hi35xx_board_name) found" | logger
