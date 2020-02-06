@@ -9,7 +9,7 @@ p. !https://img.shields.io/github/v/release/OpenIPC/chaos_calmer.svg!:https://gi
 
 ---
 
-h4. Usage example
+h4. Usage example for Debian/Ubuntu
 
 pre. git clone https://github.com/OpenIPC/chaos_calmer.git OpenIPC
 cd OpenIPC
@@ -18,3 +18,13 @@ cd OpenIPC
 
 ---
 
+h4. A simple example file for Docker
+
+pre. FROM debian:jessie
+#
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
+    build-essential gawk libncurses-dev intltool python \
+    git subversion time unzip zlib1g-dev libssl-dev wget curl cpio bc \
+    gettext gettext-base liblocale-gettext-perl
+#
+WORKDIR /src/chaos_calmer
