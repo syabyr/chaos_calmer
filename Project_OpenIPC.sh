@@ -84,6 +84,12 @@ case $build in
     start_build
     ;;
 
+  16cv200_zftlab_acsys)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_16cv200_zftlab_acsys"
+    start_build
+    ;;
+
 
   18cv100_zftlab_vixand)
     SOC=${build}
@@ -135,6 +141,12 @@ case $build in
     start_build
     ;;
 
+  18ev200_zftlab_baresip)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_baresip"
+    start_build
+    ;;
+
   18ev200_zftlab_dbell)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_dbell"
@@ -144,6 +156,18 @@ case $build in
   18ev200_zftlab_mini)
     SOC=${build}
     prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_mini"
+    start_build
+    ;;
+
+  18ev200_zftlab_okulus)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_okulus"
+    start_build
+    ;;
+
+  18ev200_zftlab_rotek)
+    SOC=${build}
+    prepare_image_config ${SOC} "3.4.35" "config_18ev200_zftlab_rotek"
     start_build
     ;;
 
@@ -206,6 +230,11 @@ case $build in
     #./scripts/feeds install -p zftlab -a -d m -f
     #
     sed -i 's/+luci-app-firewall//' feeds/luci/collections/luci/Makefile
+    ;;
+
+  upgrade)
+    # Upgrade feeds
+    git pull
     ;;
 
   project)
@@ -286,7 +315,7 @@ case $build in
     echo -e "\n#####################################"
     echo -e "\nMore information on the site - http://openipc.org\n"
     echo -e "\nPLEASE SELECT ONE OPTION IN COMMAND LINE"
-    echo -e "\nBest tested profiles:\n  16cv200_DEFAULT\n  16cv200_jvt_s323h16vf\n\n  18cv100_zftlab_vixand\n\n  18ev100_zftlab_vixand\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042\n  18ev200_zftlab_dbell\n  18ev200_zftlab_mini\n  18ev200_zftlab_tehshield\n  18ev200_zftlab_telemetry\n  18ev200_zftlab_vixand\n\n  18ev201_DEFAULT\n\n  20dv100_DEFAULT\n\n  20dv200_DEFAULT\n"
+    echo -e "\nBest tested profiles:\n\n  16cv200_DEFAULT\n  16cv200_jvt_s323h16vf\n  16cv200_zftlab_acsys\n\n  18cv100_zftlab_vixand\n\n  18ev100_zftlab_vixand\n\n  18ev200_DEFAULT\n  18ev200_jvt_s130h18v\n  18ev200_jvt_s135h18vf\n  18ev200_switcam_hs303\n  18ev200_switcam_hs303_rotek\n  18ev200_xm_blk18ev_0035_0042\n  18ev200_zftlab_baresip\n  18ev200_zftlab_dbell\n  18ev200_zftlab_mini\n  18ev200_zftlab_okulus\n  18ev200_zftlab_rotek\n  18ev200_zftlab_tehshield\n  18ev200_zftlab_telemetry\n  18ev200_zftlab_vixand\n\n  18ev201_DEFAULT\n\n  20dv100_DEFAULT\n\n  20dv200_DEFAULT\n"
     echo -e "\nUntested:\n  hi3516cv100\n  hi3518av100\n  hi3518cv100\n  hi3518ev100\n\n  hi3516cv300\n  hi3516ev100"
     #echo -e "\nSystem command section:\n  project\n  push\n  update\n  upload"
     #echo -e "\nRebuild software section:\n  osdrv2\n  release"
