@@ -42,7 +42,7 @@ gpio_init() {
 		#
 		devmem 0x200f00F8 32 0x1   && echo " | GPIO7_6 | GPIO62 | light     | Board Switcam HS303                              | SoC hi3518ev200 | " | logger -t gpio_init
 		#
-		#devmem 0x200f006c 32 0x0   && echo " | GPIO4_6 | GPIO38 | wifi_ena  | Board DBell prototype                            | SoC hi3518ev200 | " | logger -t gpio_init
+		#devmem 0x200f006c 32 0x0   && echo " | GPIO4_6 | GPIO38 | wifi_ena  | Board DBell prototype                           | SoC hi3518ev200 | " | logger -t gpio_init
 		#echo 38 >/sys/class/gpio/export ; echo "out" >/sys/class/gpio/gpio38/direction ; echo 1 >/sys/class/gpio/gpio38/value ; echo "Set gpio38 wifi_pow UP"
 		#
 		devmem 0x200f0030 32 0x00  && echo " | GPIO0_3 | GPIO3  | wifi_ena  | Board Switcam HS303                              | SoC hi3518ev200 | " | logger -t gpio_init
@@ -51,7 +51,9 @@ gpio_init() {
 		devmem 0x200f00D8 32 0x000 && echo " | GPIO6_6 | GPIO54 | wifi_ena  | Board China OV9732                               | SoC hi3518ev200 | " | logger -t gpio_init
 		#echo 54 >/sys/class/gpio/export ; echo "out" >/sys/class/gpio/gpio54/direction ; echo 1 >/sys/class/gpio/gpio54/value ; echo "Set gpio54 wifi_pow UP"
 		#
-		#devmem 0x200f0004 32 0x1  && echo " | GPIO0_5 | GPIO5  |           | Reset sensor pin                                | SoC hi3518ev200 | " | logger -t gpio_init
+		devmem 0x200f00FC 32 0x1   && echo " | GPIO7_7 | GPIO63 | ircut_1   | Board Rotek WiFi Bullet                          | SoC hi3518ev200 | " | logger -t gpio_init
+		
+		#devmem 0x200f0004 32 0x1  && echo " | GPIO0_5 | GPIO5  |           | Reset sensor pin                                 | SoC hi3518ev200 | " | logger -t gpio_init
 		;;
 
 	jvt_s130h18v|jvt_s135h18v|jvt_s323h16v)
