@@ -4241,6 +4241,7 @@ CONFIG_PACKAGE_kdb=m
 #
 CONFIG_PACKAGE_hi35xx_sensor_ar0130=y
 CONFIG_PACKAGE_hi35xx_sensor_imx222=y
+CONFIG_PACKAGE_hi35xx_sensor_jxf22=y
 CONFIG_PACKAGE_hi35xx_sensor_jxf23=y
 CONFIG_PACKAGE_hi35xx_sensor_ov9712=y
 CONFIG_PACKAGE_hi35xx_sensor_ov9732=y

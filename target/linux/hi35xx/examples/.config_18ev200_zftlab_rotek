@@ -2019,7 +2019,7 @@ CONFIG_PACKAGE_libc=y
 CONFIG_PACKAGE_libgcc=y
 CONFIG_PACKAGE_libpthread=y
 CONFIG_PACKAGE_librt=y
-CONFIG_PACKAGE_libstdcpp=y
+CONFIG_PACKAGE_libstdcpp=m
 # CONFIG_PACKAGE_libthread-db is not set
 CONFIG_PACKAGE_logd=y
 # CONFIG_PACKAGE_mksh is not set
@@ -4218,7 +4218,7 @@ CONFIG_PACKAGE_hisi-osdrv2-base=y
 CONFIG_PACKAGE_hisi-osdrv2-binary=m
 CONFIG_PACKAGE_hisi-osdrv2-kmod=y
 CONFIG_PACKAGE_hisi-osdrv2-lib=y
-CONFIG_PACKAGE_hisi-osdrv2-sensor=y
+CONFIG_PACKAGE_hisi-osdrv2-sensor=m
 
 #
 # Library
@@ -4241,6 +4241,7 @@ CONFIG_PACKAGE_kdb=m
 #
 CONFIG_PACKAGE_hi35xx_sensor_ar0130=y
 CONFIG_PACKAGE_hi35xx_sensor_imx222=y
+CONFIG_PACKAGE_hi35xx_sensor_jxf22=y
 CONFIG_PACKAGE_hi35xx_sensor_jxf23=y
 CONFIG_PACKAGE_hi35xx_sensor_ov9712=y
 CONFIG_PACKAGE_hi35xx_sensor_ov9732=y
