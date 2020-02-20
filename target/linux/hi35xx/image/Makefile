@@ -77,6 +77,7 @@ define Device/hi35xx-default
     IMAGES := sysupgrade.bin factory.bin
     IMAGE_PREFIX := $(IMG_PREFIX)-$(1)
     KERNEL_PREFIX := $(IMG_PREFIX)-$(1)
+    KERNEL_INITRAMFS_PREFIX := $(IMG_PREFIX)-$(1)-initramfs
     KERNEL_NAME = zImage
     KERNEL_SUFFIX := -uImage
     KERNEL_INSTALL := 1
@@ -84,7 +85,7 @@ define Device/hi35xx-default
     ROOT_FS_SIZE:=5120k
     KERNEL_PAD_SIZE:=2097088
     KERNEL := kernel-bin | uImage none
-    KERNEL_INITRAMFS := kernel-bin | uImage none
+    KERNEL_INITRAMFS := kernel-bin
     BLOCKSIZE := 128k
     FILESYSTEMS = $(filter-out jffs2-%,$(TARGET_FILESYSTEMS)) jffs2-$$(BLOCKSIZE)
     IMAGE/sysupgrade.bin := append-kernel $${KERNEL_SIZE} | pad-to 64k | append-rootfs $${ROOT_FS_SIZE} | sysupgrade-header
