@@ -1,0 +1,19 @@
+config wifi-device 'wlan0'
+        option type 'wext'
+        option hwmode '11g'
+        option channel 'auto'
+
+config wifi-iface
+        option device 'wlan0'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'OpenWrt'
+        option encryption 'none'
+
+config wifi-iface
+        option device 'wlan0'
+        option network 'wan'
+        option mode 'sta'
+        option ssid 'OpenWrt'
+        option key '1234567890'
+        option encryption 'psk2'
