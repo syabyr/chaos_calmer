@@ -1,0 +1,65 @@
+diff -r -u u-boot-2010.06.orig/common/Makefile u-boot-2010.06/common/Makefile
+--- u-boot-2010.06.orig/common/Makefile	2016-04-14 15:08:42.000000000 +0800
++++ u-boot-2010.06/common/Makefile	2020-04-18 18:35:38.227120378 +0800
+@@ -235,6 +235,15 @@
+ endif
+ endif
+ 
++ifeq ($(CROSS_COMPILE),arm-openwrt-linux-)
++ifdef CONFIG_HI3518EV200
++	cp cmd_bootss2_v400_hi3518ev200 bootss2.a -rf
++else
++	cp cmd_bootss2_v400 bootss2.a -rf
++endif
++endif
++
++
+ ifeq ($(CROSS_COMPILE),arm-hisiv500-linux-)
+ ifdef CONFIG_HI3519
+ ifdef CONFIG_HIFMC_NAND
+diff -r -u u-boot-2010.06.orig/include/configs/hi3518ev200.h u-boot-2010.06/include/configs/hi3518ev200.h
+--- u-boot-2010.06.orig/include/configs/hi3518ev200.h	2016-04-14 15:08:42.000000000 +0800
++++ u-boot-2010.06/include/configs/hi3518ev200.h	2020-04-18 19:05:08.390332697 +0800
+@@ -140,9 +140,9 @@
+ /*-----------------------------------------------------------------------
+  *  Environment   Configuration
+  *-----------------------------------------------------------------------*/
+-#define CONFIG_BOOTCOMMAND "bootm 0x82000000"
++#define CONFIG_BOOTCOMMAND "sf probe 0;sf read 0x82000000 0x100000 0x200000;bootm 0x82000000"
+ #define CONFIG_BOOTDELAY	1
+-#define CONFIG_BOOTARGS "mem=96M console=ttyAMA0,115200"
++#define CONFIG_BOOTARGS "mem=46M console=ttyAMA0,115200 sensor=ov9732 root=/dev/mtdblock4 rootfstype=squashfs mtdparts=hi_sfc:512K(boot),256K(env),256K(env1),2048K(kernel),5120K(rootfs),8192K(rootfs_data)"
+ #define CONFIG_NETMASK  255.255.255.0       /* talk on MY local net */
+ #define CONFIG_IPADDR   192.168.1.10        /* static IP I currently own */
+ #define CONFIG_SERVERIP 192.168.1.2     /* current IP of tftp server ip */
+@@ -270,10 +270,10 @@
+ /*-----------------------------------------------------------------------
+  * sdcard or usb storage system update
+  * ----------------------------------------------------------------------*/
+-/* #define CONFIG_AUTO_UPDATE			1 */
++#define CONFIG_AUTO_UPDATE			1
+ #ifdef CONFIG_AUTO_UPDATE
+ 	#define CONFIG_AUTO_SD_UPDATE		1
+-	#define CONFIG_AUTO_USB_UPDATE		1
++	#define CONFIG_AUTO_USB_UPDATE		0
+ #endif
+ 
+ /* #define __LITTLE_ENDIAN				1 */
+Only in u-boot-2010.06: mkboot.sh
+diff -r -u u-boot-2010.06.orig/product/hiupdate/auto_update.c u-boot-2010.06/product/hiupdate/auto_update.c
+--- u-boot-2010.06.orig/product/hiupdate/auto_update.c	2016-04-14 15:08:42.000000000 +0800
++++ u-boot-2010.06/product/hiupdate/auto_update.c	2020-04-19 10:06:11.289004418 +0800
+@@ -92,9 +92,9 @@
+ #define AU_FL_FIRMWARE_ST	0x0
+ #define AU_FL_FIRMWARE_ND	0x7FFFF
+ #define AU_FL_KERNEL_ST		0x100000
+-#define AU_FL_KERNEL_ND		0x5FFFFF
+-#define AU_FL_ROOTFS_ST		0x600000
+-#define AU_FL_ROOTFS_ND		0xbFFFFF
++#define AU_FL_KERNEL_ND		0x2FFFFF
++#define AU_FL_ROOTFS_ST		0x300000
++#define AU_FL_ROOTFS_ND		0x7FFFFF
+ 
+ static int au_stor_curr_dev; /* current device */
+ 
+Only in u-boot-2010.06: reg_info_hi3518ev200.bin

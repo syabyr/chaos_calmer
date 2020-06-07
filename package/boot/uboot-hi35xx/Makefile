@@ -10,7 +10,7 @@ include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/version.mk
 
 PKG_NAME:=u-boot
-PKG_VERSION:=2010.06_openipc
+PKG_VERSION:=2010.06
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
@@ -35,18 +35,8 @@ define uboot/Default
   COMPRESS:=
 endef
 
-UBOOTS:=16cv100
-UBOOTS+=16cv200
-UBOOTS+=16cv300
-UBOOTS+=16ev100
-UBOOTS+=18av100
-UBOOTS+=18cv100
-UBOOTS+=18ev100
 UBOOTS+=18ev200
-UBOOTS+=18ev201
 
-UBOOTS+=20dv100
-UBOOTS+=20dv200
 
 
 # ?
@@ -75,61 +65,11 @@ endef
 
 ifdef BUILD_VARIANT
 $(eval $(call uboot/$(BUILD_VARIANT)))
-ifeq ($(BUILD_VARIANT), 16cv100)
-    UBOOT_CONFIG:=hi3516c_config
-	REG_FILE:=reg_info_hi3516cv100.bin
-	COMPRESS:=0
-endif
-ifeq ($(BUILD_VARIANT), 16cv200)
-    UBOOT_CONFIG:=hi3516cv200_config
-	REG_FILE:=reg_info_hi3516cv200.bin
-	COMPRESS:=1
-endif
-ifeq ($(BUILD_VARIANT), 16cv300)
-    UBOOT_CONFIG:=hi3516cv300_config
-	REG_FILE:=reg_info_hi3516cv300.bin
-	COMPRESS:=1
-endif
-ifeq ($(BUILD_VARIANT), 16ev100)
-    UBOOT_CONFIG:=hi3516ev100_config
-	REG_FILE:=reg_info_hi3516ev100.bin
-	COMPRESS:=1
-endif
-ifeq ($(BUILD_VARIANT), 18av100)
-    UBOOT_CONFIG:=hi3518a_config
-	REG_FILE:=reg_info_hi3518av100.bin
-	COMPRESS:=0
-endif
-ifeq ($(BUILD_VARIANT), 18cv100)
-    UBOOT_CONFIG:=hi3518c_config
-	REG_FILE:=reg_info_hi3518cv100.bin
-	COMPRESS:=0
-endif
-ifeq ($(BUILD_VARIANT), 18ev100)
-    UBOOT_CONFIG:=hi3518e_config
-	REG_FILE:=reg_info_hi3518ev100.bin
-	COMPRESS:=0
-endif
 ifeq ($(BUILD_VARIANT), 18ev200)
     UBOOT_CONFIG:=hi3518ev200_config
 	REG_FILE:=reg_info_hi3518ev200.bin
 	COMPRESS:=1
-endif
-ifeq ($(BUILD_VARIANT), 18ev201)
-    UBOOT_CONFIG:=hi3518ev201_config
-	REG_FILE:=reg_info_hi3518ev201.bin
-	COMPRESS:=1
-endif
-
-ifeq ($(BUILD_VARIANT), 20dv100)
-    UBOOT_CONFIG:=hi3520d_config
-	REG_FILE:=reg_info_hi3520d_ext.bin
-	COMPRESS:=0
-endif
-ifeq ($(BUILD_VARIANT), 20dv200)
-    UBOOT_CONFIG:=hi3520d_config
-	REG_FILE:=reg_info_hi3520d_int.bin
-	COMPRESS:=0
+	CONFIG_HI3518EV200:=1
 endif
 
 
@@ -139,7 +79,8 @@ endif
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	$(CP) ./files/* $(PKG_BUILD_DIR)
+	#$(CP) ./files/* $(PKG_BUILD_DIR)
+	$(CP) $(PKG_BUILD_DIR)/common/cmd_bootss2_v400_hi3518ev200 $(PKG_BUILD_DIR)/common/bootss2.a -rf
 	find $(PKG_BUILD_DIR) -name .svn | $(XARGS) rm -rf
 endef
 
